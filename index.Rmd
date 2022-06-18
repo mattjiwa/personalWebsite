@@ -17,15 +17,15 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
-I'm a PhD candidate at the University of Melbourne studying the contextual factors and characteristics of information that drive us to seek it.
-
-There are a lot of questions surrounding our consumption of information that we don't fully understand:
+<center><b>
+*How can we make accurate information more desirable?*
 
 *Why do we tend to prefer information that supports our existing beliefs?*
 
-*How can we make accurate information more desirable?*
-
 *How can we limit the spread of misinformation and disinformation online?*
+</b></center>
+<br>
 
-These are a few examples of the questions that guide my research interests. I combine experimental design from cognitive psychology with computational modelling to address these questions. 
+I'm a PhD candidate at the University of Melbourne studying the contextual factors and characteristics of information that drive us to seek it.
+
+These are examples of the type of questions that guide my research interests. I combine experimental design from cognitive psychology with computational modelling to address these questions.
