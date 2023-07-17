@@ -1,5 +1,5 @@
 ---
-title: "Matthew Jiwa"
+title: "Matthew Jiwa, PhD"
 image: "assets/profile.png"
 links:
   - label: LinkedIn
@@ -7,7 +7,7 @@ links:
   - label: Twitter
     url: "https://twitter.com/mattjiwa"
   - label: Email
-    url: "mailto:mjiwa@student.unimelb.edu.au"
+    url: "mailto:mj3159@columbia.edu"
 site: distill::distill_website
 output:
   postcards::trestles
@@ -26,6 +26,6 @@ knitr::opts_chunk$set(echo = FALSE)
 </b></center>
 <br>
 
-I'm a PhD candidate at the University of Melbourne studying the contextual factors and characteristics of information that drive us to seek it.
+I'm a postdoctoral-researcher at the Zuckerman Institute, Columbia University studying the contextual factors and characteristics of information that drive us to seek it.
 
 These are examples of the type of questions that guide my research interests. I combine experimental design from cognitive psychology with computational modelling to address these questions.
