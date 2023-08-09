@@ -26,6 +26,6 @@ knitr::opts_chunk$set(echo = FALSE)
 </b></center>
 <br>
 
-I'm a postdoctoral-researcher at the Zuckerman Institute, Columbia University studying the contextual factors and characteristics of information that drive us to seek it.
+I'm a postdoctoral researcher at Columbia University studying our relationship with information.
 
 These are examples of the type of questions that guide my research interests. I combine experimental design from cognitive psychology with computational modelling to address these questions.
