@@ -28,4 +28,4 @@ knitr::opts_chunk$set(echo = FALSE)
 
 I'm a postdoctoral researcher at Columbia University studying our relationship with information.
 
-These are examples of the type of questions that guide my research interests. I combine computational modelling with experimental design from cognitive psychology to address these questions.
+These are examples of the type of questions that guide my research interests. I combine computational modelling with experimental design from cognitive psychology to address these questions. 
