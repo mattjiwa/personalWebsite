@@ -4,8 +4,6 @@ image: "assets/profile.png"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/matthew-jiwa-b1672610b/"
-  - label: Twitter
-    url: "https://twitter.com/mattjiwa"
   - label: Email
     url: "mailto:mj3159@columbia.edu"
 site: distill::distill_website
