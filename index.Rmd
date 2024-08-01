@@ -13,6 +13,12 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+## No arguments for either function
+## Use usethis::git_sitrep() to check creds
+## Use gitcreds::gitcreds_set() to update creds
+
+## To create a post, use distill::create_post("post_title_here")
+
 ```
 
 <center><b>

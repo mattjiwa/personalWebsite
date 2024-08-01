@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+<title>Matthew Jiwa: Deal or No Deal | Part 1: Beating the Banker</title>
+
+<meta property="description" itemprop="description" content="Everyone has heard of Deal or No Deal, but how does the show actually work?"/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2024-08-01"/>
+<meta property="article:created" itemprop="dateCreated" content="2024-08-01"/>
+<meta name="article:author" content="Matthew Jiwa"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Matthew Jiwa: Deal or No Deal | Part 1: Beating the Banker"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Everyone has heard of Deal or No Deal, but how does the show actually work?"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Matthew Jiwa"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Matthew Jiwa: Deal or No Deal | Part 1: Beating the Banker"/>
+<meta property="twitter:description" content="Everyone has heard of Deal or No Deal, but how does the show actually work?"/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Deal or No Deal | Part 1: Beating the Banker"]},{"type":"character","attributes":{},"value":["Everyone has heard of Deal or No Deal, but how does the show actually work?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Matthew Jiwa"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2024-08-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["dondpart1_files/anchor-4.2.2/anchor.min.js","dondpart1_files/bowser-1.9.3/bowser.min.js","dondpart1_files/crosstalk-1.2.1/css/crosstalk.min.css","dondpart1_files/crosstalk-1.2.1/js/crosstalk.js","dondpart1_files/crosstalk-1.2.1/js/crosstalk.js.map","dondpart1_files/crosstalk-1.2.1/js/crosstalk.min.js","dondpart1_files/crosstalk-1.2.1/js/crosstalk.min.js.map","dondpart1_files/crosstalk-1.2.1/scss/crosstalk.scss","dondpart1_files/distill-2.2.21/template.v2.js","dondpart1_files/figure-html5/plot_EVoffers-1.png","dondpart1_files/figure-html5/plot_EVoffers3-1.png","dondpart1_files/figure-html5/plot_possibleOffers-1.png","dondpart1_files/figure-html5/plot_zScoreoffers-1.png","dondpart1_files/header-attrs-2.27/header-attrs.js","dondpart1_files/htmltools-fill-0.5.8.1/fill.css","dondpart1_files/htmlwidgets-1.6.4/htmlwidgets.js","dondpart1_files/jquery-3.6.0/jquery-3.6.0.js","dondpart1_files/jquery-3.6.0/jquery-3.6.0.min.js","dondpart1_files/jquery-3.6.0/jquery-3.6.0.min.map","dondpart1_files/plotly-binding-4.10.4/plotly.js","dondpart1_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css","dondpart1_files/plotly-main-2.11.1/plotly-latest.min.js","dondpart1_files/popper-2.6.0/popper.min.js","dondpart1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dondpart1_files/tippy-6.2.7/tippy-light-border.css","dondpart1_files/tippy-6.2.7/tippy.css","dondpart1_files/tippy-6.2.7/tippy.umd.min.js","dondpart1_files/typedarray-0.1/typedarray.min.js","dondpart1_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+  font-size: 100%;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+hr.section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0px;
+}
+
+
+d-byline {
+  border-top: none;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+  border-top: none;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+/* tweak for Pandoc numbered line within distill */
+d-article pre.numberSource code > span {
+    left: -2em;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // separator
+  var separator = '<hr class="section-separator" style="clear: both"/>';
+  // prepend separator above appendix
+  $('.d-byline').before(separator);
+  $('.d-article').before(separator);
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme, except when numbering line
+  // in code chunk
+  $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      var author_name = front_matter.authors[i].author
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      const citeChild = $(this).children()[0]
+      // Do not process if @xyz has been used without escaping and without bibliography activated
+      // https://github.com/rstudio/distill/issues/466
+      if (citeChild === undefined) return true
+
+      if (citeChild.nodeName == "D-FOOTNOTE") {
+        var fn = citeChild
+        $(this).html(fn.shadowRoot.querySelector("sup"))
+        $(this).id = fn.id
+        fn.remove()
+      }
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        // Could use CSS.escape too here, we insure backward compatibility in navigator
+        return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+      }).join("\n");
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // fix footnotes in tables (#411)
+    // replacing broken distill.pub feature
+    $('table d-footnote').each(function() {
+      // we replace internal showAtNode methode which is triggered when hovering a footnote
+      this.hoverBox.showAtNode = function(node) {
+        // ported from https://github.com/distillpub/template/pull/105/files
+        calcOffset = function(elem) {
+            let x = elem.offsetLeft;
+            let y = elem.offsetTop;
+            // Traverse upwards until an `absolute` element is found or `elem`
+            // becomes null.
+            while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                x += elem.offsetLeft;
+                y += elem.offsetTop;
+            }
+
+            return { left: x, top: y };
+        }
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+        const bbox = node.getBoundingClientRect();
+        const offset = calcOffset(node);
+        this.show([offset.left + bbox.width, offset.top + bbox.height]);
+      }
+    })
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    // ignore leaflet img layers (#106)
+    figures = figures.filter(':not(img[class*="leaflet"])')
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@600&display=swap');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    "KoHo", serif;
+  --mono-font:       "KoHo", serif;
+  --body-font:       "KoHo", serif;
+  --navbar-font:     "KoHo", serif;
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.27/header-attrs.js"></script>
+  <link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+  <script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Deal or No Deal | Part 1: Beating the Banker","description":"Everyone has heard of Deal or No Deal, but how does the show actually work?","authors":[{"author":"Matthew Jiwa","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2024-08-01T00:00:00.000-04:00","citationText":"Jiwa, 2024"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Matthew Jiwa</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../publications.html">Publications</a>
+<a href="../../CV.html">CV</a>
+<a href="../../blog.html">Blog</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Deal or No Deal | Part 1: Beating the Banker</h1>
+
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Everyone has heard of Deal or No Deal, but how does the show actually work?</p></p>
+</div>
+
+<div class="d-byline">
+  Matthew Jiwa true 
+  
+<br/>2024-08-01
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+img {
+  max-width:100%;
+  height: auto;
+}
+
+</style>
+</div>
+<p>In this series of posts, I’ll be exploring the mechanics of the TV game show <em>Deal or No Deal</em>. In part 1, we’ll explore how the mysterious Banker produces their offers for the contestants to either accept or reject. In part 2, we’ll examine how those contestants make their decisions. And in part 3, we’ll use all of those insights to design the ultimate Banker.</p>
+<center>
+<span style="font-size: 18px;"><em>So, can we actually Beat the Banker?</em></span>
+</center>
+<p><br></p>
+<h3 id="what-is-deal-or-no-deal">What is <em>Deal or No Deal</em>?</h3>
+<p>You’re probably aware of the TV gameshow <em>Deal or No Deal</em> – since its launch in 2005, it has been licensed in 80 different countries, airing over 600 episodes of the original US version alone. For those who need a reminder, in <em>Deal or No Deal</em>, a contenstant is offered a selection of 26 briefcases each containing a different amount of money ranging from a single cent all the way up to 1 million dollars. Over the course of the game, they play a series of rounds in which they open some of the briefcases, eliminating those cases from the game. At the end of each round, “The Banker” offers the contestant a guaranteed cash value to quit the game. If the contenstant declines, the game continues until only one case remains and the contestant wins the amount in that case.</p>
+<p>It’s an incredibly simple format, but it also involves a series of crucial decisions all centred around the question:</p>
+<center>
+<span style="font-size: 18px;"><em>How much should you be willing to accept from The Banker?</em></span>
+</center>
+<p><br></p>
+<p>On first consideration, the answer is quite simple: you should never accept any offer that is less than the <em>Expected Value</em> of the remaining cases. When we say Expected Value, what we mean is the average amount in each of the remaining cases. For example, if you had two cases remaining, the 1-cent case and the 1 million dollar case, you should not be willing to accept anything less than $500,000 from The Banker because, on average, that is the amount that you will win.</p>
+<p>The predicament, however, is that The Banker (i.e., the showrunners) also understands Expected Value and adjusts their offers accordingly. To really optimize our strategy, we’ll have to better understand how these offers are formulated…</p>
+<h3 id="so-how-do-the-offers-in-deal-or-no-deal-work">So, how do the offers in <em>Deal or No Deal</em> work?</h3>
+<p>Below, I’ve plotted the offers made by The Banker in nearly 1000 rounds of <em>Deal or No Deal</em> played in three different countries<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The solid diagonal line indicates parity between the Expected Value and The Banker’s offer. You’ll notice that the offers are extremely variable, but almost never rise above the Expected Value.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="dondpart1_files/figure-html5/plot_EVoffers-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<p>So, how do these offers actually work?</p>
+<p>To understand them, we first have to understand the motives of the showrunners. To make the show entertaining (and fill the 44-minute runtime), they do <strong>not</strong> want contestants to accept the first offer they receive. To make sure of this, they make the first offer <u>extremely low</u>. In fact, for the 225 contestants we are analyzing, the first round offer was an average of 7.59% of the Expected Value.</p>
+<p>However, it is also in the showrunners’ interests that not every contestant goes to the final round; there need to be some difficult decisions and suspense. To make sure of this, The Banker’s offer gets closer to the Expected Value with every round that passes. This is best demonstrated visually – let’s plot the offers again, but this time, we’ll give each offer a colour corresponding to the round in which it was made. You can use the legend to toggle each round on/off.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div style="display: flex; justify-content: center; align-items: center; height: auto !important; width: 400px; margin: auto; max-width: 100%">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-940abda2856a35d75853" style="width:100%;height:400px;"></div>
+<script type="application/json" data-for="htmlwidget-940abda2856a35d75853">{"x":{"data":[{"x":[94741.810100000032,98716.802000000025,75941.655100000033,95511.66210000003,99701.5671,50916.617099999996,43765.867099999996,100955.86509999998,50216.357099999972,44516.855100000001,84266.767000000007,97016.810100000032,50891.365100000025,99510.856999999975,90515.66210000003,91676.862100000028,95730.862100000028,91411.267099999997,75011.767099999997,101151.2671,100265.81210000004,71680.867100000003,47731.81700000001,97005.5671,96706.815099999978,101410.85699999997,99761.617100000003,76685.3171,22491.867099999996,40466.867000000013,92986.867100000003,91660.667100000006,66666.565099999993,50256.357099999972,90665.267099999997,26760.367000000013,94515.357099999979,67681.857099999979,46506.862099999991,97761.75009999999,101015.31499999999,49936.667099999991,66690.85510000003,99981.5671,84716.867100000003,46016.717000000011,48541.857099999972,54681.862099999984,102941.65699999998,86691.167100000006,103186.35699999997,137141.73599999998,113635.06933333336,122251.06933333336,125181.59999999999,126902.936,122489.73599999998,132514.6693333333,111581.73333333329,26251.069333333329,130450.80266666666,131491.06933333338,52489.735999999983,120450.66666666666,133377.73599999998,133450.93333333332,71584.269333333315,140409.60266666661,72497.469333333356,127037.59999999999,133814.93600000002,128854.34200000002,56975.242000000013,125316.10200000003,46897.24200000002,39815.339999999989,124501.30200000003,123277.24000000001,76433.342000000019,75003.299999999974,122915.33999999998,81017.241999999998,71016.342000000019,107512.14000000001,69676.342000000019,98317.339999999982,44997.342000000019,128374.14199999999,124007.33999999998,127347.34200000002,125903.34200000002,78415.141999999993,85976.241999999984,124356.14199999999,120316.24199999997,98733.342000000019,125943.14199999999,89977.302000000011,170639.29999999996,119659.55050000001,152868.30050000004,118374.54999999997,151608.29999999996,120915.54999999997,79669.300499999998,145883.25,149147.05050000004,150894,145850.05050000004,145369.55050000004,142144.55050000004,169643.80050000004,114592.05050000003,169580.50049999997,144170.79999999996,150360.79999999996,169604.00049999997,114654.30050000003,110912.79999999997,169643.80050000004,154145.79999999996,108166.80050000003,94420.550500000012,163140.79999999999,150862.79999999996,118357.04999999997,134350.80050000004,134170.55050000004,117853.30050000001,138419.50049999997,170335.75,73379.550499999998,122870.75049999997,120832.80050000003,165622.55050000004,153409.55050000004,97920.25049999998,165640.54999999999,129558.30050000001,137083.30050000004,155660.25,125860.80050000003,163418.79999999999,144657.79999999996,95405.250499999995],"y":[5800,7600,5700,6400,6600,3800,3800,5400,3300,3100,4500,5200,2800,6300,5600,5400,6800,4800,4800,5600,5800,4500,2800,4800,5200,5400,4800,3400,1400,1700,5600,5400,2400,2400,4400,1700,5200,3800,2400,6400,5600,2600,2800,5700,4200,2200,1700,2900,6500,4800,5000,14000,11200,12800,14800,17600,16800,13200,11200,6800,12800,14000,6000,12800,13600,15600,8000,19200,7200,12800,16400,14000,5200,8400,3672,3000,5200,8000,3400,3240,5600,4400,4000,6400,5600,6000,5200,13600,16400,11600,9600,5600,7600,6400,14000,8400,11200,5600,21000,7000,13000,11000,9000,9000,4000,17000,10000,25000,21000,19000,15000,22000,13000,26000,9000,19000,26000,9000,13000,22000,12000,9000,6000,21000,22000,14000,14000,8000,15000,11000,29000,5000,9000,13000,23000,14000,7000,18000,16000,12000,22000,14000,26000,16000,11000],"text":["Expected Value: $94,742<br>Offer Value: $5,800<br>Round: 1","Expected Value: $98,717<br>Offer Value: $7,600<br>Round: 1","Expected Value: $75,942<br>Offer Value: $5,700<br>Round: 1","Expected Value: $95,512<br>Offer Value: $6,400<br>Round: 1","Expected Value: $99,702<br>Offer Value: $6,600<br>Round: 1","Expected Value: $50,917<br>Offer Value: $3,800<br>Round: 1","Expected Value: $43,766<br>Offer Value: $3,800<br>Round: 1","Expected Value: $100,956<br>Offer Value: $5,400<br>Round: 1","Expected Value: $50,216<br>Offer Value: $3,300<br>Round: 1","Expected Value: $44,517<br>Offer Value: $3,100<br>Round: 1","Expected Value: $84,267<br>Offer Value: $4,500<br>Round: 1","Expected Value: $97,017<br>Offer Value: $5,200<br>Round: 1","Expected Value: $50,891<br>Offer Value: $2,800<br>Round: 1","Expected Value: $99,511<br>Offer Value: $6,300<br>Round: 1","Expected Value: $90,516<br>Offer Value: $5,600<br>Round: 1","Expected Value: $91,677<br>Offer Value: $5,400<br>Round: 1","Expected Value: $95,731<br>Offer Value: $6,800<br>Round: 1","Expected Value: $91,411<br>Offer Value: $4,800<br>Round: 1","Expected Value: $75,012<br>Offer Value: $4,800<br>Round: 1","Expected Value: $101,151<br>Offer Value: $5,600<br>Round: 1","Expected Value: $100,266<br>Offer Value: $5,800<br>Round: 1","Expected Value: $71,681<br>Offer Value: $4,500<br>Round: 1","Expected Value: $47,732<br>Offer Value: $2,800<br>Round: 1","Expected Value: $97,006<br>Offer Value: $4,800<br>Round: 1","Expected Value: $96,707<br>Offer Value: $5,200<br>Round: 1","Expected Value: $101,411<br>Offer Value: $5,400<br>Round: 1","Expected Value: $99,762<br>Offer Value: $4,800<br>Round: 1","Expected Value: $76,685<br>Offer Value: $3,400<br>Round: 1","Expected Value: $22,492<br>Offer Value: $1,400<br>Round: 1","Expected Value: $40,467<br>Offer Value: $1,700<br>Round: 1","Expected Value: $92,987<br>Offer Value: $5,600<br>Round: 1","Expected Value: $91,661<br>Offer Value: $5,400<br>Round: 1","Expected Value: $66,667<br>Offer Value: $2,400<br>Round: 1","Expected Value: $50,256<br>Offer Value: $2,400<br>Round: 1","Expected Value: $90,665<br>Offer Value: $4,400<br>Round: 1","Expected Value: $26,760<br>Offer Value: $1,700<br>Round: 1","Expected Value: $94,515<br>Offer Value: $5,200<br>Round: 1","Expected Value: $67,682<br>Offer Value: $3,800<br>Round: 1","Expected Value: $46,507<br>Offer Value: $2,400<br>Round: 1","Expected Value: $97,762<br>Offer Value: $6,400<br>Round: 1","Expected Value: $101,015<br>Offer Value: $5,600<br>Round: 1","Expected Value: $49,937<br>Offer Value: $2,600<br>Round: 1","Expected Value: $66,691<br>Offer Value: $2,800<br>Round: 1","Expected Value: $99,982<br>Offer Value: $5,700<br>Round: 1","Expected Value: $84,717<br>Offer Value: $4,200<br>Round: 1","Expected Value: $46,017<br>Offer Value: $2,200<br>Round: 1","Expected Value: $48,542<br>Offer Value: $1,700<br>Round: 1","Expected Value: $54,682<br>Offer Value: $2,900<br>Round: 1","Expected Value: $102,942<br>Offer Value: $6,500<br>Round: 1","Expected Value: $86,691<br>Offer Value: $4,800<br>Round: 1","Expected Value: $103,186<br>Offer Value: $5,000<br>Round: 1","Expected Value: $137,142<br>Offer Value: $14,000<br>Round: 1","Expected Value: $113,635<br>Offer Value: $11,200<br>Round: 1","Expected Value: $122,251<br>Offer Value: $12,800<br>Round: 1","Expected Value: $125,182<br>Offer Value: $14,800<br>Round: 1","Expected Value: $126,903<br>Offer Value: $17,600<br>Round: 1","Expected Value: $122,490<br>Offer Value: $16,800<br>Round: 1","Expected Value: $132,515<br>Offer Value: $13,200<br>Round: 1","Expected Value: $111,582<br>Offer Value: $11,200<br>Round: 1","Expected Value: $26,251<br>Offer Value: $6,800<br>Round: 1","Expected Value: $130,451<br>Offer Value: $12,800<br>Round: 1","Expected Value: $131,491<br>Offer Value: $14,000<br>Round: 1","Expected Value: $52,490<br>Offer Value: $6,000<br>Round: 1","Expected Value: $120,451<br>Offer Value: $12,800<br>Round: 1","Expected Value: $133,378<br>Offer Value: $13,600<br>Round: 1","Expected Value: $133,451<br>Offer Value: $15,600<br>Round: 1","Expected Value: $71,584<br>Offer Value: $8,000<br>Round: 1","Expected Value: $140,410<br>Offer Value: $19,200<br>Round: 1","Expected Value: $72,497<br>Offer Value: $7,200<br>Round: 1","Expected Value: $127,038<br>Offer Value: $12,800<br>Round: 1","Expected Value: $133,815<br>Offer Value: $16,400<br>Round: 1","Expected Value: $128,854<br>Offer Value: $14,000<br>Round: 1","Expected Value: $56,975<br>Offer Value: $5,200<br>Round: 1","Expected Value: $125,316<br>Offer Value: $8,400<br>Round: 1","Expected Value: $46,897<br>Offer Value: $3,672<br>Round: 1","Expected Value: $39,815<br>Offer Value: $3,000<br>Round: 1","Expected Value: $124,501<br>Offer Value: $5,200<br>Round: 1","Expected Value: $123,277<br>Offer Value: $8,000<br>Round: 1","Expected Value: $76,433<br>Offer Value: $3,400<br>Round: 1","Expected Value: $75,003<br>Offer Value: $3,240<br>Round: 1","Expected Value: $122,915<br>Offer Value: $5,600<br>Round: 1","Expected Value: $81,017<br>Offer Value: $4,400<br>Round: 1","Expected Value: $71,016<br>Offer Value: $4,000<br>Round: 1","Expected Value: $107,512<br>Offer Value: $6,400<br>Round: 1","Expected Value: $69,676<br>Offer Value: $5,600<br>Round: 1","Expected Value: $98,317<br>Offer Value: $6,000<br>Round: 1","Expected Value: $44,997<br>Offer Value: $5,200<br>Round: 1","Expected Value: $128,374<br>Offer Value: $13,600<br>Round: 1","Expected Value: $124,007<br>Offer Value: $16,400<br>Round: 1","Expected Value: $127,347<br>Offer Value: $11,600<br>Round: 1","Expected Value: $125,903<br>Offer Value: $9,600<br>Round: 1","Expected Value: $78,415<br>Offer Value: $5,600<br>Round: 1","Expected Value: $85,976<br>Offer Value: $7,600<br>Round: 1","Expected Value: $124,356<br>Offer Value: $6,400<br>Round: 1","Expected Value: $120,316<br>Offer Value: $14,000<br>Round: 1","Expected Value: $98,733<br>Offer Value: $8,400<br>Round: 1","Expected Value: $125,943<br>Offer Value: $11,200<br>Round: 1","Expected Value: $89,977<br>Offer Value: $5,600<br>Round: 1","Expected Value: $170,639<br>Offer Value: $21,000<br>Round: 1","Expected Value: $119,660<br>Offer Value: $7,000<br>Round: 1","Expected Value: $152,868<br>Offer Value: $13,000<br>Round: 1","Expected Value: $118,375<br>Offer Value: $11,000<br>Round: 1","Expected Value: $151,608<br>Offer Value: $9,000<br>Round: 1","Expected Value: $120,916<br>Offer Value: $9,000<br>Round: 1","Expected Value: $79,669<br>Offer Value: $4,000<br>Round: 1","Expected Value: $145,883<br>Offer Value: $17,000<br>Round: 1","Expected Value: $149,147<br>Offer Value: $10,000<br>Round: 1","Expected Value: $150,894<br>Offer Value: $25,000<br>Round: 1","Expected Value: $145,850<br>Offer Value: $21,000<br>Round: 1","Expected Value: $145,370<br>Offer Value: $19,000<br>Round: 1","Expected Value: $142,145<br>Offer Value: $15,000<br>Round: 1","Expected Value: $169,644<br>Offer Value: $22,000<br>Round: 1","Expected Value: $114,592<br>Offer Value: $13,000<br>Round: 1","Expected Value: $169,581<br>Offer Value: $26,000<br>Round: 1","Expected Value: $144,171<br>Offer Value: $9,000<br>Round: 1","Expected Value: $150,361<br>Offer Value: $19,000<br>Round: 1","Expected Value: $169,604<br>Offer Value: $26,000<br>Round: 1","Expected Value: $114,654<br>Offer Value: $9,000<br>Round: 1","Expected Value: $110,913<br>Offer Value: $13,000<br>Round: 1","Expected Value: $169,644<br>Offer Value: $22,000<br>Round: 1","Expected Value: $154,146<br>Offer Value: $12,000<br>Round: 1","Expected Value: $108,167<br>Offer Value: $9,000<br>Round: 1","Expected Value: $94,421<br>Offer Value: $6,000<br>Round: 1","Expected Value: $163,141<br>Offer Value: $21,000<br>Round: 1","Expected Value: $150,863<br>Offer Value: $22,000<br>Round: 1","Expected Value: $118,357<br>Offer Value: $14,000<br>Round: 1","Expected Value: $134,351<br>Offer Value: $14,000<br>Round: 1","Expected Value: $134,171<br>Offer Value: $8,000<br>Round: 1","Expected Value: $117,853<br>Offer Value: $15,000<br>Round: 1","Expected Value: $138,420<br>Offer Value: $11,000<br>Round: 1","Expected Value: $170,336<br>Offer Value: $29,000<br>Round: 1","Expected Value: $73,380<br>Offer Value: $5,000<br>Round: 1","Expected Value: $122,871<br>Offer Value: $9,000<br>Round: 1","Expected Value: $120,833<br>Offer Value: $13,000<br>Round: 1","Expected Value: $165,623<br>Offer Value: $23,000<br>Round: 1","Expected Value: $153,410<br>Offer Value: $14,000<br>Round: 1","Expected Value: $97,920<br>Offer Value: $7,000<br>Round: 1","Expected Value: $165,641<br>Offer Value: $18,000<br>Round: 1","Expected Value: $129,558<br>Offer Value: $16,000<br>Round: 1","Expected Value: $137,083<br>Offer Value: $12,000<br>Round: 1","Expected Value: $155,660<br>Offer Value: $22,000<br>Round: 1","Expected Value: $125,861<br>Offer Value: $14,000<br>Round: 1","Expected Value: $163,419<br>Offer Value: $26,000<br>Round: 1","Expected Value: $144,658<br>Offer Value: $16,000<br>Round: 1","Expected Value: $95,405<br>Offer Value: $11,000<br>Round: 1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(68,1,84,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(68,1,84,1)"}},"hoveron":"points","name":"1","legendgroup":"1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[56321.480133333331,118588.80266666664,99240.873333333366,122014.6801333333,87468.756133333314,62454.815999999992,57687.015999999996,125607.6734666667,58954.740133333347,43349.00013333332,72655.022666666671,15689.079999999996,67508.020133333353,126000.80933333331,19920.882800000007,20901.149333333331,58541.146799999988,50481.622799999997,85347.686799999996,128200.34679999997,77687.736133333354,81574.2068,62302.273333333331,109207.35599999997,91841.08679999999,134067.8066666667,112980.80946666664,12900.422800000002,19655.676133333334,52608.880000000019,90514.420133333362,121533.53613333337,87815.400133333329,52635.076133333336,107520.34280000004,34533.742666666665,53320.409466666686,76542.076133333336,15335.816133333339,129581.40000000001,63907.086666666648,65782.073466666654,88767.733466666657,86508.089333333352,107581.02279999999,61055.342666666656,63387.733466666687,71569.080133333322,113920.80266666664,15588.016133333336,102815.07600000002,186092.7309090909,127309.63999999998,139387.63999999998,165065.45454545453,172913.09090909091,94286.003636363632,61520.003636363632,141155.09090909091,26651.454545454555,47883.821818181808,61102.367272727257,68840.363636363632,26978.181818181816,122787.82181818184,52851.272727272735,94832.730909090911,158558.5490909091,58674.730909090918,170405.81818181821,182273.09090909091,112472.32266666665,25953.656000000006,118416.13600000003,60529.333333333343,38927.12000000001,148588.40000000002,97552.319999999963,61868.322666666674,87308.39999999998,95134.853333333362,80622.986666666649,23221.656000000006,32389.519999999993,90714.855999999985,101004.45333333331,13316.269333333337,85725.522666666671,160966.85333333339,164376.45333333328,147817.65333333335,73673.522666666671,21194.722666666665,104461.52266666666,158946.98933333327,124164.32266666665,100457.52266666667,89168.402666666676,84129.06666666668,81186.06666666668,147087.73400000005,84448.666666666686,178784.33333333337,126137.40000000001,65792.400666666654,127807.33333333336,173860.40066666665,104500.33333333334,101106.73400000003,186812.0673333334,167839.33333333337,212183.33399999994,151706.06733333337,187106.66733333335,65227.399999999987,120446,131135.33399999997,152755.73400000005,61211.733333333344,192138.33399999994,133743.73333333328,90794.067333333354,97444.06733333334,121853.73333333329,167797,126109.40000000001,175710.40066666665,112134.06733333333,137104.40000000002,179456,200418.33333333337,79142.734000000026,77153.66733333336,70443.733333333308,152430.06666666668,197512.40066666665,128822.00066666666,130186.73333333329,165056.0673333334,95440.734000000026,197498.66666666663,111121.06666666667,199195.06666666668,175443.73333333328,112097.00066666664],"y":[9400,23700,17600,28200,14000,11800,6900,20200,7600,5500,9800,2900,8900,24800,5700,4400,11800,7300,8600,15300,8500,8300,7700,11600,12300,19600,12400,1600,2500,6800,10800,17300,9600,5600,11600,4600,6800,8600,1800,18200,7800,7900,9000,10800,15700,6500,7500,10800,12800,2600,13000,76000,51200,40000,76000,76000,35600,19200,39200,19600,19600,20000,29200,10000,39600,18000,38000,65600,18000,52000,59200,17200,4400,20800,10800,5600,13332,7600,6000,8800,8888,8800,4000,3200,13000,7600,3600,17400,47600,39996,19200,10520,6400,12800,34400,29200,15600,23200,37000,19000,27000,19000,28000,19000,13000,22000,31000,15000,17000,35000,37000,71000,37000,48000,7000,28000,19000,21000,17000,67000,21000,16000,11000,18000,50000,36000,31000,13000,33000,37000,66000,16000,9000,8000,31000,83000,23000,26000,42000,18000,64000,22000,61000,43000,24000],"text":["Expected Value: $56,321<br>Offer Value: $9,400<br>Round: 2","Expected Value: $118,589<br>Offer Value: $23,700<br>Round: 2","Expected Value: $99,241<br>Offer Value: $17,600<br>Round: 2","Expected Value: $122,015<br>Offer Value: $28,200<br>Round: 2","Expected Value: $87,469<br>Offer Value: $14,000<br>Round: 2","Expected Value: $62,455<br>Offer Value: $11,800<br>Round: 2","Expected Value: $57,687<br>Offer Value: $6,900<br>Round: 2","Expected Value: $125,608<br>Offer Value: $20,200<br>Round: 2","Expected Value: $58,955<br>Offer Value: $7,600<br>Round: 2","Expected Value: $43,349<br>Offer Value: $5,500<br>Round: 2","Expected Value: $72,655<br>Offer Value: $9,800<br>Round: 2","Expected Value: $15,689<br>Offer Value: $2,900<br>Round: 2","Expected Value: $67,508<br>Offer Value: $8,900<br>Round: 2","Expected Value: $126,001<br>Offer Value: $24,800<br>Round: 2","Expected Value: $19,921<br>Offer Value: $5,700<br>Round: 2","Expected Value: $20,901<br>Offer Value: $4,400<br>Round: 2","Expected Value: $58,541<br>Offer Value: $11,800<br>Round: 2","Expected Value: $50,482<br>Offer Value: $7,300<br>Round: 2","Expected Value: $85,348<br>Offer Value: $8,600<br>Round: 2","Expected Value: $128,200<br>Offer Value: $15,300<br>Round: 2","Expected Value: $77,688<br>Offer Value: $8,500<br>Round: 2","Expected Value: $81,574<br>Offer Value: $8,300<br>Round: 2","Expected Value: $62,302<br>Offer Value: $7,700<br>Round: 2","Expected Value: $109,207<br>Offer Value: $11,600<br>Round: 2","Expected Value: $91,841<br>Offer Value: $12,300<br>Round: 2","Expected Value: $134,068<br>Offer Value: $19,600<br>Round: 2","Expected Value: $112,981<br>Offer Value: $12,400<br>Round: 2","Expected Value: $12,900<br>Offer Value: $1,600<br>Round: 2","Expected Value: $19,656<br>Offer Value: $2,500<br>Round: 2","Expected Value: $52,609<br>Offer Value: $6,800<br>Round: 2","Expected Value: $90,514<br>Offer Value: $10,800<br>Round: 2","Expected Value: $121,534<br>Offer Value: $17,300<br>Round: 2","Expected Value: $87,815<br>Offer Value: $9,600<br>Round: 2","Expected Value: $52,635<br>Offer Value: $5,600<br>Round: 2","Expected Value: $107,520<br>Offer Value: $11,600<br>Round: 2","Expected Value: $34,534<br>Offer Value: $4,600<br>Round: 2","Expected Value: $53,320<br>Offer Value: $6,800<br>Round: 2","Expected Value: $76,542<br>Offer Value: $8,600<br>Round: 2","Expected Value: $15,336<br>Offer Value: $1,800<br>Round: 2","Expected Value: $129,581<br>Offer Value: $18,200<br>Round: 2","Expected Value: $63,907<br>Offer Value: $7,800<br>Round: 2","Expected Value: $65,782<br>Offer Value: $7,900<br>Round: 2","Expected Value: $88,768<br>Offer Value: $9,000<br>Round: 2","Expected Value: $86,508<br>Offer Value: $10,800<br>Round: 2","Expected Value: $107,581<br>Offer Value: $15,700<br>Round: 2","Expected Value: $61,055<br>Offer Value: $6,500<br>Round: 2","Expected Value: $63,388<br>Offer Value: $7,500<br>Round: 2","Expected Value: $71,569<br>Offer Value: $10,800<br>Round: 2","Expected Value: $113,921<br>Offer Value: $12,800<br>Round: 2","Expected Value: $15,588<br>Offer Value: $2,600<br>Round: 2","Expected Value: $102,815<br>Offer Value: $13,000<br>Round: 2","Expected Value: $186,093<br>Offer Value: $76,000<br>Round: 2","Expected Value: $127,310<br>Offer Value: $51,200<br>Round: 2","Expected Value: $139,388<br>Offer Value: $40,000<br>Round: 2","Expected Value: $165,065<br>Offer Value: $76,000<br>Round: 2","Expected Value: $172,913<br>Offer Value: $76,000<br>Round: 2","Expected Value: $94,286<br>Offer Value: $35,600<br>Round: 2","Expected Value: $61,520<br>Offer Value: $19,200<br>Round: 2","Expected Value: $141,155<br>Offer Value: $39,200<br>Round: 2","Expected Value: $26,651<br>Offer Value: $19,600<br>Round: 2","Expected Value: $47,884<br>Offer Value: $19,600<br>Round: 2","Expected Value: $61,102<br>Offer Value: $20,000<br>Round: 2","Expected Value: $68,840<br>Offer Value: $29,200<br>Round: 2","Expected Value: $26,978<br>Offer Value: $10,000<br>Round: 2","Expected Value: $122,788<br>Offer Value: $39,600<br>Round: 2","Expected Value: $52,851<br>Offer Value: $18,000<br>Round: 2","Expected Value: $94,833<br>Offer Value: $38,000<br>Round: 2","Expected Value: $158,559<br>Offer Value: $65,600<br>Round: 2","Expected Value: $58,675<br>Offer Value: $18,000<br>Round: 2","Expected Value: $170,406<br>Offer Value: $52,000<br>Round: 2","Expected Value: $182,273<br>Offer Value: $59,200<br>Round: 2","Expected Value: $112,472<br>Offer Value: $17,200<br>Round: 2","Expected Value: $25,954<br>Offer Value: $4,400<br>Round: 2","Expected Value: $118,416<br>Offer Value: $20,800<br>Round: 2","Expected Value: $60,529<br>Offer Value: $10,800<br>Round: 2","Expected Value: $38,927<br>Offer Value: $5,600<br>Round: 2","Expected Value: $148,588<br>Offer Value: $13,332<br>Round: 2","Expected Value: $97,552<br>Offer Value: $7,600<br>Round: 2","Expected Value: $61,868<br>Offer Value: $6,000<br>Round: 2","Expected Value: $87,308<br>Offer Value: $8,800<br>Round: 2","Expected Value: $95,135<br>Offer Value: $8,888<br>Round: 2","Expected Value: $80,623<br>Offer Value: $8,800<br>Round: 2","Expected Value: $23,222<br>Offer Value: $4,000<br>Round: 2","Expected Value: $32,390<br>Offer Value: $3,200<br>Round: 2","Expected Value: $90,715<br>Offer Value: $13,000<br>Round: 2","Expected Value: $101,004<br>Offer Value: $7,600<br>Round: 2","Expected Value: $13,316<br>Offer Value: $3,600<br>Round: 2","Expected Value: $85,726<br>Offer Value: $17,400<br>Round: 2","Expected Value: $160,967<br>Offer Value: $47,600<br>Round: 2","Expected Value: $164,376<br>Offer Value: $39,996<br>Round: 2","Expected Value: $147,818<br>Offer Value: $19,200<br>Round: 2","Expected Value: $73,674<br>Offer Value: $10,520<br>Round: 2","Expected Value: $21,195<br>Offer Value: $6,400<br>Round: 2","Expected Value: $104,462<br>Offer Value: $12,800<br>Round: 2","Expected Value: $158,947<br>Offer Value: $34,400<br>Round: 2","Expected Value: $124,164<br>Offer Value: $29,200<br>Round: 2","Expected Value: $100,458<br>Offer Value: $15,600<br>Round: 2","Expected Value: $89,168<br>Offer Value: $23,200<br>Round: 2","Expected Value: $84,129<br>Offer Value: $37,000<br>Round: 2","Expected Value: $81,186<br>Offer Value: $19,000<br>Round: 2","Expected Value: $147,088<br>Offer Value: $27,000<br>Round: 2","Expected Value: $84,449<br>Offer Value: $19,000<br>Round: 2","Expected Value: $178,784<br>Offer Value: $28,000<br>Round: 2","Expected Value: $126,137<br>Offer Value: $19,000<br>Round: 2","Expected Value: $65,792<br>Offer Value: $13,000<br>Round: 2","Expected Value: $127,807<br>Offer Value: $22,000<br>Round: 2","Expected Value: $173,860<br>Offer Value: $31,000<br>Round: 2","Expected Value: $104,500<br>Offer Value: $15,000<br>Round: 2","Expected Value: $101,107<br>Offer Value: $17,000<br>Round: 2","Expected Value: $186,812<br>Offer Value: $35,000<br>Round: 2","Expected Value: $167,839<br>Offer Value: $37,000<br>Round: 2","Expected Value: $212,183<br>Offer Value: $71,000<br>Round: 2","Expected Value: $151,706<br>Offer Value: $37,000<br>Round: 2","Expected Value: $187,107<br>Offer Value: $48,000<br>Round: 2","Expected Value: $65,227<br>Offer Value: $7,000<br>Round: 2","Expected Value: $120,446<br>Offer Value: $28,000<br>Round: 2","Expected Value: $131,135<br>Offer Value: $19,000<br>Round: 2","Expected Value: $152,756<br>Offer Value: $21,000<br>Round: 2","Expected Value: $61,212<br>Offer Value: $17,000<br>Round: 2","Expected Value: $192,138<br>Offer Value: $67,000<br>Round: 2","Expected Value: $133,744<br>Offer Value: $21,000<br>Round: 2","Expected Value: $90,794<br>Offer Value: $16,000<br>Round: 2","Expected Value: $97,444<br>Offer Value: $11,000<br>Round: 2","Expected Value: $121,854<br>Offer Value: $18,000<br>Round: 2","Expected Value: $167,797<br>Offer Value: $50,000<br>Round: 2","Expected Value: $126,109<br>Offer Value: $36,000<br>Round: 2","Expected Value: $175,710<br>Offer Value: $31,000<br>Round: 2","Expected Value: $112,134<br>Offer Value: $13,000<br>Round: 2","Expected Value: $137,104<br>Offer Value: $33,000<br>Round: 2","Expected Value: $179,456<br>Offer Value: $37,000<br>Round: 2","Expected Value: $200,418<br>Offer Value: $66,000<br>Round: 2","Expected Value: $79,143<br>Offer Value: $16,000<br>Round: 2","Expected Value: $77,154<br>Offer Value: $9,000<br>Round: 2","Expected Value: $70,444<br>Offer Value: $8,000<br>Round: 2","Expected Value: $152,430<br>Offer Value: $31,000<br>Round: 2","Expected Value: $197,512<br>Offer Value: $83,000<br>Round: 2","Expected Value: $128,822<br>Offer Value: $23,000<br>Round: 2","Expected Value: $130,187<br>Offer Value: $26,000<br>Round: 2","Expected Value: $165,056<br>Offer Value: $42,000<br>Round: 2","Expected Value: $95,441<br>Offer Value: $18,000<br>Round: 2","Expected Value: $197,499<br>Offer Value: $64,000<br>Round: 2","Expected Value: $111,121<br>Offer Value: $22,000<br>Round: 2","Expected Value: $199,195<br>Offer Value: $61,000<br>Round: 2","Expected Value: $175,444<br>Offer Value: $43,000<br>Round: 2","Expected Value: $112,097<br>Offer Value: $24,000<br>Round: 2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(71,45,123,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(71,45,123,1)"}},"hoveron":"points","name":"2","legendgroup":"2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[74874.745454545453,70339.272727272721,109827.55454545456,75247.272909090942,113637.39109090912,30520.20363636364,58527.745454545453,144010.10018181818,24483.727454545464,57275.818181818191,96938.663636363635,11391.472727272727,39327.300000000003,170272.91272727275,10664.836545454546,27864.276363636363,78728.654727272748,58381.849272727282,116137.6638181818,147455.00018181818,103965.09109090909,98501.100181818183,35230.372727272726,147464.55818181817,106600.56381818181,82818.463636363624,62837.467272727263,17046.027272727275,26775.918181818179,16739.200000000001,116018.74563636363,164272.81836363638,106975.45472727274,53593.103818181837,137982.19472727273,46046.003636363639,65882.367454545441,8011.9181818181823,19956.658363636372,156429.18181818182,82600.381818181821,27866.463818181819,29182.909272727273,17374.667272727271,46701.391090909085,76873.649090909079,82791.818363636368,97411.091090909089,149863.82181818181,21138.200181818182,43656.91272727272,237877.505,46300.255000000005,187883,101440,107755.5,129392.50499999999,79337.505000000005,44063.25,7895.5,65337.75,34013.005000000005,88405,7082.5,168780.505,46415.5,117892.5,216763,39427.505000000005,230555,119375.5,144989.53090909091,31354.981818181819,124858.36363636363,41467.272727272721,52827.636363636368,166145.63636363638,119389.16363636365,47818.549090909088,9964.1818181818198,111147.45454545453,15356.799999999997,28749.530909090903,33076.618181818187,109102.07636363634,26824.181818181816,6336.727272727273,105963.89454545455,201062.07272727269,127640.43636363634,110294.98181818183,27645.71272727273,24203.71272727273,50483.8909090909,162054.98181818178,166514.5490909091,118729.27636363637,121047.81818181822,98806.909090909103,110596.9090909091,164201.36363636362,105968.63636363637,206977.27272727274,12816.909090909092,21498.727272727276,146464.54545454547,191532.36363636362,51486.363636363632,128711.45545454546,254625.00090909089,159711.81818181821,252886.36454545456,136381,186934.09181818183,70670.54545454547,89153.636363636368,47000.455454545459,151485.00090909089,73766,171043.18181818179,100514.0909090909,114664.63727272731,114619.18272727271,70693.727272727265,133322.72727272726,171398.27272727274,161396.00090909089,77455.546363636357,186939.63636363638,206068.63636363638,132361.36363636365,107891.45545454546,36559.546363636364,96045.909090909103,207768.27272727274,187488.72818181815,148293.18272727271,175154.54545454547,127303.72818181819,130082.81818181822,96582.272727272735,124186.9090909091,167006.90909090909,141511.81818181821,139195.90999999997],"y":[19800,35400,34600,42400,48800,17800,12200,39200,12300,17200,33400,9600,14400,59000,4900,10300,28800,19700,30900,38200,29600,27000,9000,42200,26600,42200,18600,4600,5600,6200,29000,40400,18400,10200,30300,20800,24800,2200,14600,40200,18900,8600,8300,7200,9700,20400,16800,29200,41400,8300,8800,100000,26000,78000,58000,70000,76000,29600,20000,8000,26000,22000,54000,3600,78000,29200,70000,99200,19600,128000,73200,28000,9600,39600,8400,19600,36000,28800,13600,4000,24800,5600,6800,7200,29200,9600,2400,40000,65600,45000,22000,5200,8600,19600,58800,58400,37120,48400,53000,36000,48000,37000,58000,12000,9000,35000,48000,21000,33000,126000,66000,187000,52000,39000,16000,34000,15000,74000,31000,130000,17000,31000,26000,26000,44000,61000,27000,19000,102000,48000,43000,60000,15000,52000,74000,76000,46000,65000,37000,50000,29000,43000,49000,37000,50000],"text":["Expected Value: $74,875<br>Offer Value: $19,800<br>Round: 3","Expected Value: $70,339<br>Offer Value: $35,400<br>Round: 3","Expected Value: $109,828<br>Offer Value: $34,600<br>Round: 3","Expected Value: $75,247<br>Offer Value: $42,400<br>Round: 3","Expected Value: $113,637<br>Offer Value: $48,800<br>Round: 3","Expected Value: $30,520<br>Offer Value: $17,800<br>Round: 3","Expected Value: $58,528<br>Offer Value: $12,200<br>Round: 3","Expected Value: $144,010<br>Offer Value: $39,200<br>Round: 3","Expected Value: $24,484<br>Offer Value: $12,300<br>Round: 3","Expected Value: $57,276<br>Offer Value: $17,200<br>Round: 3","Expected Value: $96,939<br>Offer Value: $33,400<br>Round: 3","Expected Value: $11,391<br>Offer Value: $9,600<br>Round: 3","Expected Value: $39,327<br>Offer Value: $14,400<br>Round: 3","Expected Value: $170,273<br>Offer Value: $59,000<br>Round: 3","Expected Value: $10,665<br>Offer Value: $4,900<br>Round: 3","Expected Value: $27,864<br>Offer Value: $10,300<br>Round: 3","Expected Value: $78,729<br>Offer Value: $28,800<br>Round: 3","Expected Value: $58,382<br>Offer Value: $19,700<br>Round: 3","Expected Value: $116,138<br>Offer Value: $30,900<br>Round: 3","Expected Value: $147,455<br>Offer Value: $38,200<br>Round: 3","Expected Value: $103,965<br>Offer Value: $29,600<br>Round: 3","Expected Value: $98,501<br>Offer Value: $27,000<br>Round: 3","Expected Value: $35,230<br>Offer Value: $9,000<br>Round: 3","Expected Value: $147,465<br>Offer Value: $42,200<br>Round: 3","Expected Value: $106,601<br>Offer Value: $26,600<br>Round: 3","Expected Value: $82,818<br>Offer Value: $42,200<br>Round: 3","Expected Value: $62,837<br>Offer Value: $18,600<br>Round: 3","Expected Value: $17,046<br>Offer Value: $4,600<br>Round: 3","Expected Value: $26,776<br>Offer Value: $5,600<br>Round: 3","Expected Value: $16,739<br>Offer Value: $6,200<br>Round: 3","Expected Value: $116,019<br>Offer Value: $29,000<br>Round: 3","Expected Value: $164,273<br>Offer Value: $40,400<br>Round: 3","Expected Value: $106,975<br>Offer Value: $18,400<br>Round: 3","Expected Value: $53,593<br>Offer Value: $10,200<br>Round: 3","Expected Value: $137,982<br>Offer Value: $30,300<br>Round: 3","Expected Value: $46,046<br>Offer Value: $20,800<br>Round: 3","Expected Value: $65,882<br>Offer Value: $24,800<br>Round: 3","Expected Value: $8,012<br>Offer Value: $2,200<br>Round: 3","Expected Value: $19,957<br>Offer Value: $14,600<br>Round: 3","Expected Value: $156,429<br>Offer Value: $40,200<br>Round: 3","Expected Value: $82,600<br>Offer Value: $18,900<br>Round: 3","Expected Value: $27,866<br>Offer Value: $8,600<br>Round: 3","Expected Value: $29,183<br>Offer Value: $8,300<br>Round: 3","Expected Value: $17,375<br>Offer Value: $7,200<br>Round: 3","Expected Value: $46,701<br>Offer Value: $9,700<br>Round: 3","Expected Value: $76,874<br>Offer Value: $20,400<br>Round: 3","Expected Value: $82,792<br>Offer Value: $16,800<br>Round: 3","Expected Value: $97,411<br>Offer Value: $29,200<br>Round: 3","Expected Value: $149,864<br>Offer Value: $41,400<br>Round: 3","Expected Value: $21,138<br>Offer Value: $8,300<br>Round: 3","Expected Value: $43,657<br>Offer Value: $8,800<br>Round: 3","Expected Value: $237,878<br>Offer Value: $100,000<br>Round: 3","Expected Value: $46,300<br>Offer Value: $26,000<br>Round: 3","Expected Value: $187,883<br>Offer Value: $78,000<br>Round: 3","Expected Value: $101,440<br>Offer Value: $58,000<br>Round: 3","Expected Value: $107,756<br>Offer Value: $70,000<br>Round: 3","Expected Value: $129,393<br>Offer Value: $76,000<br>Round: 3","Expected Value: $79,338<br>Offer Value: $29,600<br>Round: 3","Expected Value: $44,063<br>Offer Value: $20,000<br>Round: 3","Expected Value: $7,896<br>Offer Value: $8,000<br>Round: 3","Expected Value: $65,338<br>Offer Value: $26,000<br>Round: 3","Expected Value: $34,013<br>Offer Value: $22,000<br>Round: 3","Expected Value: $88,405<br>Offer Value: $54,000<br>Round: 3","Expected Value: $7,082<br>Offer Value: $3,600<br>Round: 3","Expected Value: $168,781<br>Offer Value: $78,000<br>Round: 3","Expected Value: $46,416<br>Offer Value: $29,200<br>Round: 3","Expected Value: $117,892<br>Offer Value: $70,000<br>Round: 3","Expected Value: $216,763<br>Offer Value: $99,200<br>Round: 3","Expected Value: $39,428<br>Offer Value: $19,600<br>Round: 3","Expected Value: $230,555<br>Offer Value: $128,000<br>Round: 3","Expected Value: $119,376<br>Offer Value: $73,200<br>Round: 3","Expected Value: $144,990<br>Offer Value: $28,000<br>Round: 3","Expected Value: $31,355<br>Offer Value: $9,600<br>Round: 3","Expected Value: $124,858<br>Offer Value: $39,600<br>Round: 3","Expected Value: $41,467<br>Offer Value: $8,400<br>Round: 3","Expected Value: $52,828<br>Offer Value: $19,600<br>Round: 3","Expected Value: $166,146<br>Offer Value: $36,000<br>Round: 3","Expected Value: $119,389<br>Offer Value: $28,800<br>Round: 3","Expected Value: $47,819<br>Offer Value: $13,600<br>Round: 3","Expected Value: $9,964<br>Offer Value: $4,000<br>Round: 3","Expected Value: $111,147<br>Offer Value: $24,800<br>Round: 3","Expected Value: $15,357<br>Offer Value: $5,600<br>Round: 3","Expected Value: $28,750<br>Offer Value: $6,800<br>Round: 3","Expected Value: $33,077<br>Offer Value: $7,200<br>Round: 3","Expected Value: $109,102<br>Offer Value: $29,200<br>Round: 3","Expected Value: $26,824<br>Offer Value: $9,600<br>Round: 3","Expected Value: $6,337<br>Offer Value: $2,400<br>Round: 3","Expected Value: $105,964<br>Offer Value: $40,000<br>Round: 3","Expected Value: $201,062<br>Offer Value: $65,600<br>Round: 3","Expected Value: $127,640<br>Offer Value: $45,000<br>Round: 3","Expected Value: $110,295<br>Offer Value: $22,000<br>Round: 3","Expected Value: $27,646<br>Offer Value: $5,200<br>Round: 3","Expected Value: $24,204<br>Offer Value: $8,600<br>Round: 3","Expected Value: $50,484<br>Offer Value: $19,600<br>Round: 3","Expected Value: $162,055<br>Offer Value: $58,800<br>Round: 3","Expected Value: $166,515<br>Offer Value: $58,400<br>Round: 3","Expected Value: $118,729<br>Offer Value: $37,120<br>Round: 3","Expected Value: $121,048<br>Offer Value: $48,400<br>Round: 3","Expected Value: $98,807<br>Offer Value: $53,000<br>Round: 3","Expected Value: $110,597<br>Offer Value: $36,000<br>Round: 3","Expected Value: $164,201<br>Offer Value: $48,000<br>Round: 3","Expected Value: $105,969<br>Offer Value: $37,000<br>Round: 3","Expected Value: $206,977<br>Offer Value: $58,000<br>Round: 3","Expected Value: $12,817<br>Offer Value: $12,000<br>Round: 3","Expected Value: $21,499<br>Offer Value: $9,000<br>Round: 3","Expected Value: $146,465<br>Offer Value: $35,000<br>Round: 3","Expected Value: $191,532<br>Offer Value: $48,000<br>Round: 3","Expected Value: $51,486<br>Offer Value: $21,000<br>Round: 3","Expected Value: $128,711<br>Offer Value: $33,000<br>Round: 3","Expected Value: $254,625<br>Offer Value: $126,000<br>Round: 3","Expected Value: $159,712<br>Offer Value: $66,000<br>Round: 3","Expected Value: $252,886<br>Offer Value: $187,000<br>Round: 3","Expected Value: $136,381<br>Offer Value: $52,000<br>Round: 3","Expected Value: $186,934<br>Offer Value: $39,000<br>Round: 3","Expected Value: $70,671<br>Offer Value: $16,000<br>Round: 3","Expected Value: $89,154<br>Offer Value: $34,000<br>Round: 3","Expected Value: $47,000<br>Offer Value: $15,000<br>Round: 3","Expected Value: $151,485<br>Offer Value: $74,000<br>Round: 3","Expected Value: $73,766<br>Offer Value: $31,000<br>Round: 3","Expected Value: $171,043<br>Offer Value: $130,000<br>Round: 3","Expected Value: $100,514<br>Offer Value: $17,000<br>Round: 3","Expected Value: $114,665<br>Offer Value: $31,000<br>Round: 3","Expected Value: $114,619<br>Offer Value: $26,000<br>Round: 3","Expected Value: $70,694<br>Offer Value: $26,000<br>Round: 3","Expected Value: $133,323<br>Offer Value: $44,000<br>Round: 3","Expected Value: $171,398<br>Offer Value: $61,000<br>Round: 3","Expected Value: $161,396<br>Offer Value: $27,000<br>Round: 3","Expected Value: $77,456<br>Offer Value: $19,000<br>Round: 3","Expected Value: $186,940<br>Offer Value: $102,000<br>Round: 3","Expected Value: $206,069<br>Offer Value: $48,000<br>Round: 3","Expected Value: $132,361<br>Offer Value: $43,000<br>Round: 3","Expected Value: $107,891<br>Offer Value: $60,000<br>Round: 3","Expected Value: $36,560<br>Offer Value: $15,000<br>Round: 3","Expected Value: $96,046<br>Offer Value: $52,000<br>Round: 3","Expected Value: $207,768<br>Offer Value: $74,000<br>Round: 3","Expected Value: $187,489<br>Offer Value: $76,000<br>Round: 3","Expected Value: $148,293<br>Offer Value: $46,000<br>Round: 3","Expected Value: $175,155<br>Offer Value: $65,000<br>Round: 3","Expected Value: $127,304<br>Offer Value: $37,000<br>Round: 3","Expected Value: $130,083<br>Offer Value: $50,000<br>Round: 3","Expected Value: $96,582<br>Offer Value: $29,000<br>Round: 3","Expected Value: $124,187<br>Offer Value: $43,000<br>Round: 3","Expected Value: $167,007<br>Offer Value: $49,000<br>Round: 3","Expected Value: $141,512<br>Offer Value: $37,000<br>Round: 3","Expected Value: $139,196<br>Offer Value: $50,000<br>Round: 3"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(59,82,139,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(59,82,139,1)"}},"hoveron":"points","name":"3","legendgroup":"3","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[102940,26716.5,15840.000250000001,32587.779999999995,62950.650000000001,198001.375,25915.125,16190.5,15338.275000000001,52562.537500000006,220312.755,5289.1500000000005,36250.629999999997,83251.875,17587.542499999996,134687.53775000002,23316.262500000001,77513.767500000016,145325.52499999999,106250.13750000001,73901.512499999997,19000.787500000002,1691.8875,154525.02525000004,217750.00025000004,19588.750250000005,11188.005250000002,189538.00025000004,53313.004999999997,7891.2625000000007,85065.125,78575.025000000009,38252.512750000009,37001.250250000005,16390.017499999998,95638.755000000019,13838.750250000005,108815.25,199812.505,24690.000250000005,15028.254999999999,316836.66666666663,61666.673333333332,233843.33333333331,135020,133674,172356.66666666669,67450.006666666683,57017.666666666672,10344,37050.333333333328,45350,117833.33333333334,9433.3333333333321,225000.67333333334,11854,107023.33333333334,122334,50736.673333333325,257340,125167.33333333334,191760.60000000003,26613.099999999995,46650.25,44505,20038,221700,54160.100000000006,36850.505000000005,9700.75,59077.75,11110.6,39305.505000000005,7975.3500000000013,25005.355000000003,19383,7113,139300.255,147700.35000000003,161755.5,19105.599999999999,10512.855000000001,13030.105000000001,69360.25,22825.099999999999,210207.50500000003,142002.755,156265.75,110734.375,152006.375,188223.75,89419.375,190709.375,16317,28279.5,157576.25,132044.5,31918.75,125725.12625000002,212603.12625000003,194478.125,178968.75125000003,125010.75,250712.50125000003,290.75,100701.875,62750.625,77041.875,98262.625,116425,137519.375,156407.50125000003,95097.001250000016,34610,181937.5,223166.25,212543.875,106453.25125000002,250666.875,282681.875,78778.125,54562.626250000001,47118.751250000001,62688.125,235662.625,164046.875,72615.626250000016,53331.25,137533.12625000003,178176.25,107706.25,170069.375,104609.375,193894.375,153266.25125000003],"y":[69800,30200,9600,23000,21400,79000,15500,11200,14500,39600,115000,4400,19600,55000,10400,55600,10600,36600,80400,77600,42200,8800,2800,84000,81000,9600,6500,86600,35400,3500,46400,40800,24400,15200,10800,39400,8300,61000,105000,19000,5800,158400,36400,132000,78000,90000,112000,35600,39600,11200,18400,34000,74000,6000,116000,8800,78000,76000,33200,158000,76800,39200,9600,16400,14400,7600,58000,19800,11960,4800,19200,5604,13600,2400,8888,6800,3200,62400,69200,60000,7600,3800,5200,34000,11600,100000,58800,74000,77000,63000,76000,32000,75000,15000,18000,68000,39000,13000,56000,98000,110000,107000,88000,90000,250,55000,38000,48000,60000,91000,46500,73000,21000,9000,87000,88000,83000,71000,185000,175000,37000,42000,40000,37000,92000,61000,29000,29000,71000,117000,35000,79000,42000,106000,62000],"text":["Expected Value: $102,940<br>Offer Value: $69,800<br>Round: 4","Expected Value: $26,716<br>Offer Value: $30,200<br>Round: 4","Expected Value: $15,840<br>Offer Value: $9,600<br>Round: 4","Expected Value: $32,588<br>Offer Value: $23,000<br>Round: 4","Expected Value: $62,951<br>Offer Value: $21,400<br>Round: 4","Expected Value: $198,001<br>Offer Value: $79,000<br>Round: 4","Expected Value: $25,915<br>Offer Value: $15,500<br>Round: 4","Expected Value: $16,190<br>Offer Value: $11,200<br>Round: 4","Expected Value: $15,338<br>Offer Value: $14,500<br>Round: 4","Expected Value: $52,563<br>Offer Value: $39,600<br>Round: 4","Expected Value: $220,313<br>Offer Value: $115,000<br>Round: 4","Expected Value: $5,289<br>Offer Value: $4,400<br>Round: 4","Expected Value: $36,251<br>Offer Value: $19,600<br>Round: 4","Expected Value: $83,252<br>Offer Value: $55,000<br>Round: 4","Expected Value: $17,588<br>Offer Value: $10,400<br>Round: 4","Expected Value: $134,688<br>Offer Value: $55,600<br>Round: 4","Expected Value: $23,316<br>Offer Value: $10,600<br>Round: 4","Expected Value: $77,514<br>Offer Value: $36,600<br>Round: 4","Expected Value: $145,326<br>Offer Value: $80,400<br>Round: 4","Expected Value: $106,250<br>Offer Value: $77,600<br>Round: 4","Expected Value: $73,902<br>Offer Value: $42,200<br>Round: 4","Expected Value: $19,001<br>Offer Value: $8,800<br>Round: 4","Expected Value: $1,692<br>Offer Value: $2,800<br>Round: 4","Expected Value: $154,525<br>Offer Value: $84,000<br>Round: 4","Expected Value: $217,750<br>Offer Value: $81,000<br>Round: 4","Expected Value: $19,589<br>Offer Value: $9,600<br>Round: 4","Expected Value: $11,188<br>Offer Value: $6,500<br>Round: 4","Expected Value: $189,538<br>Offer Value: $86,600<br>Round: 4","Expected Value: $53,313<br>Offer Value: $35,400<br>Round: 4","Expected Value: $7,891<br>Offer Value: $3,500<br>Round: 4","Expected Value: $85,065<br>Offer Value: $46,400<br>Round: 4","Expected Value: $78,575<br>Offer Value: $40,800<br>Round: 4","Expected Value: $38,253<br>Offer Value: $24,400<br>Round: 4","Expected Value: $37,001<br>Offer Value: $15,200<br>Round: 4","Expected Value: $16,390<br>Offer Value: $10,800<br>Round: 4","Expected Value: $95,639<br>Offer Value: $39,400<br>Round: 4","Expected Value: $13,839<br>Offer Value: $8,300<br>Round: 4","Expected Value: $108,815<br>Offer Value: $61,000<br>Round: 4","Expected Value: $199,813<br>Offer Value: $105,000<br>Round: 4","Expected Value: $24,690<br>Offer Value: $19,000<br>Round: 4","Expected Value: $15,028<br>Offer Value: $5,800<br>Round: 4","Expected Value: $316,837<br>Offer Value: $158,400<br>Round: 4","Expected Value: $61,667<br>Offer Value: $36,400<br>Round: 4","Expected Value: $233,843<br>Offer Value: $132,000<br>Round: 4","Expected Value: $135,020<br>Offer Value: $78,000<br>Round: 4","Expected Value: $133,674<br>Offer Value: $90,000<br>Round: 4","Expected Value: $172,357<br>Offer Value: $112,000<br>Round: 4","Expected Value: $67,450<br>Offer Value: $35,600<br>Round: 4","Expected Value: $57,018<br>Offer Value: $39,600<br>Round: 4","Expected Value: $10,344<br>Offer Value: $11,200<br>Round: 4","Expected Value: $37,050<br>Offer Value: $18,400<br>Round: 4","Expected Value: $45,350<br>Offer Value: $34,000<br>Round: 4","Expected Value: $117,833<br>Offer Value: $74,000<br>Round: 4","Expected Value: $9,433<br>Offer Value: $6,000<br>Round: 4","Expected Value: $225,001<br>Offer Value: $116,000<br>Round: 4","Expected Value: $11,854<br>Offer Value: $8,800<br>Round: 4","Expected Value: $107,023<br>Offer Value: $78,000<br>Round: 4","Expected Value: $122,334<br>Offer Value: $76,000<br>Round: 4","Expected Value: $50,737<br>Offer Value: $33,200<br>Round: 4","Expected Value: $257,340<br>Offer Value: $158,000<br>Round: 4","Expected Value: $125,167<br>Offer Value: $76,800<br>Round: 4","Expected Value: $191,761<br>Offer Value: $39,200<br>Round: 4","Expected Value: $26,613<br>Offer Value: $9,600<br>Round: 4","Expected Value: $46,650<br>Offer Value: $16,400<br>Round: 4","Expected Value: $44,505<br>Offer Value: $14,400<br>Round: 4","Expected Value: $20,038<br>Offer Value: $7,600<br>Round: 4","Expected Value: $221,700<br>Offer Value: $58,000<br>Round: 4","Expected Value: $54,160<br>Offer Value: $19,800<br>Round: 4","Expected Value: $36,851<br>Offer Value: $11,960<br>Round: 4","Expected Value: $9,701<br>Offer Value: $4,800<br>Round: 4","Expected Value: $59,078<br>Offer Value: $19,200<br>Round: 4","Expected Value: $11,111<br>Offer Value: $5,604<br>Round: 4","Expected Value: $39,306<br>Offer Value: $13,600<br>Round: 4","Expected Value: $7,975<br>Offer Value: $2,400<br>Round: 4","Expected Value: $25,005<br>Offer Value: $8,888<br>Round: 4","Expected Value: $19,383<br>Offer Value: $6,800<br>Round: 4","Expected Value: $7,113<br>Offer Value: $3,200<br>Round: 4","Expected Value: $139,300<br>Offer Value: $62,400<br>Round: 4","Expected Value: $147,700<br>Offer Value: $69,200<br>Round: 4","Expected Value: $161,756<br>Offer Value: $60,000<br>Round: 4","Expected Value: $19,106<br>Offer Value: $7,600<br>Round: 4","Expected Value: $10,513<br>Offer Value: $3,800<br>Round: 4","Expected Value: $13,030<br>Offer Value: $5,200<br>Round: 4","Expected Value: $69,360<br>Offer Value: $34,000<br>Round: 4","Expected Value: $22,825<br>Offer Value: $11,600<br>Round: 4","Expected Value: $210,208<br>Offer Value: $100,000<br>Round: 4","Expected Value: $142,003<br>Offer Value: $58,800<br>Round: 4","Expected Value: $156,266<br>Offer Value: $74,000<br>Round: 4","Expected Value: $110,734<br>Offer Value: $77,000<br>Round: 4","Expected Value: $152,006<br>Offer Value: $63,000<br>Round: 4","Expected Value: $188,224<br>Offer Value: $76,000<br>Round: 4","Expected Value: $89,419<br>Offer Value: $32,000<br>Round: 4","Expected Value: $190,709<br>Offer Value: $75,000<br>Round: 4","Expected Value: $16,317<br>Offer Value: $15,000<br>Round: 4","Expected Value: $28,280<br>Offer Value: $18,000<br>Round: 4","Expected Value: $157,576<br>Offer Value: $68,000<br>Round: 4","Expected Value: $132,044<br>Offer Value: $39,000<br>Round: 4","Expected Value: $31,919<br>Offer Value: $13,000<br>Round: 4","Expected Value: $125,725<br>Offer Value: $56,000<br>Round: 4","Expected Value: $212,603<br>Offer Value: $98,000<br>Round: 4","Expected Value: $194,478<br>Offer Value: $110,000<br>Round: 4","Expected Value: $178,969<br>Offer Value: $107,000<br>Round: 4","Expected Value: $125,011<br>Offer Value: $88,000<br>Round: 4","Expected Value: $250,713<br>Offer Value: $90,000<br>Round: 4","Expected Value: $291<br>Offer Value: $250<br>Round: 4","Expected Value: $100,702<br>Offer Value: $55,000<br>Round: 4","Expected Value: $62,751<br>Offer Value: $38,000<br>Round: 4","Expected Value: $77,042<br>Offer Value: $48,000<br>Round: 4","Expected Value: $98,263<br>Offer Value: $60,000<br>Round: 4","Expected Value: $116,425<br>Offer Value: $91,000<br>Round: 4","Expected Value: $137,519<br>Offer Value: $46,500<br>Round: 4","Expected Value: $156,408<br>Offer Value: $73,000<br>Round: 4","Expected Value: $95,097<br>Offer Value: $21,000<br>Round: 4","Expected Value: $34,610<br>Offer Value: $9,000<br>Round: 4","Expected Value: $181,938<br>Offer Value: $87,000<br>Round: 4","Expected Value: $223,166<br>Offer Value: $88,000<br>Round: 4","Expected Value: $212,544<br>Offer Value: $83,000<br>Round: 4","Expected Value: $106,453<br>Offer Value: $71,000<br>Round: 4","Expected Value: $250,667<br>Offer Value: $185,000<br>Round: 4","Expected Value: $282,682<br>Offer Value: $175,000<br>Round: 4","Expected Value: $78,778<br>Offer Value: $37,000<br>Round: 4","Expected Value: $54,563<br>Offer Value: $42,000<br>Round: 4","Expected Value: $47,119<br>Offer Value: $40,000<br>Round: 4","Expected Value: $62,688<br>Offer Value: $37,000<br>Round: 4","Expected Value: $235,663<br>Offer Value: $92,000<br>Round: 4","Expected Value: $164,047<br>Offer Value: $61,000<br>Round: 4","Expected Value: $72,616<br>Offer Value: $29,000<br>Round: 4","Expected Value: $53,331<br>Offer Value: $29,000<br>Round: 4","Expected Value: $137,533<br>Offer Value: $71,000<br>Round: 4","Expected Value: $178,176<br>Offer Value: $117,000<br>Round: 4","Expected Value: $107,706<br>Offer Value: $35,000<br>Round: 4","Expected Value: $170,069<br>Offer Value: $79,000<br>Round: 4","Expected Value: $104,609<br>Offer Value: $42,000<br>Round: 4","Expected Value: $193,894<br>Offer Value: $106,000<br>Round: 4","Expected Value: $153,266<br>Offer Value: $62,000<br>Round: 4"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(44,114,142,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(44,114,142,1)"}},"hoveron":"points","name":"4","legendgroup":"4","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[53916.666666666679,16953.333666666669,43367.006666666675,97333.5,4670.666666666667,60000.050000000003,126833.67333333334,7050.2000000000007,25000.839999999997,17669.166666666668,16783.373333333333,21088.333333333332,193684,140000.16666666666,17001.049999999999,207000,25285,1583.3403333333333,252716.66666666672,57750.006666666668,3855,110836.83333333336,104516.66666666669,44333.350333333336,36001.666666666664,8353.3566666666684,14285.000333333337,145003.33333333334,32833.333666666666,20001.006666666668,380200,34000.008000000002,200612,102024,100408.8,68021.199999999997,8412.7999999999993,4460.3999999999996,54400,141000,11280,210000.80800000002,14220.800000000001,120428,146800,60084.007999999994,108808,70200.800000000003,250680.13333333336,35480.666666666672,58800.333333333328,58473.333333333328,25050,128666.66666666666,3880.1333333333337,40667.340000000004,9600.6666666666679,78636.666666666657,14480.133333333335,35740.666666666672,7300.1333333333332,18340.473333333335,9144,4350.6666666666661,185667,83600.46666666666,149000.66666666669,11940.799999999999,8350.4733333333315,9040.133333333335,87467,25100.133333333335,180270.00666666665,167670.34000000003,208353.33333333331,95979.166666666657,201841.66666666669,250930.83333333331,35875.833333333328,250095.83333333331,20872.666666666664,37579.333333333336,208368.33333333331,175159.33333333331,42516.666666666664,159300.16666666669,166804.16833333333,258462.5,180291.66833333333,150012.66666666666,333400.00166666665,354.16666666666669,50919.166666666672,33500.833333333328,69387.5,118516.66666666666,138500,183338.33333333331,208385.00166666665,126783.33500000001,46141.666666666672,233416.66666666669,285054.16666666663,283379.16666666663,141850.16833333333,334216.66666666663,251908.33333333331,88354.166666666657,22750.166666666664,62650.001666666663,16917.5,310000.16666666663,218691.66666666669,96816.666666666657,70970.833333333343,183344.16666666669,112555.83333333334,129441.66666666667,60059.166666666672,89395.833333333343,133509.16666666669,66855.001666666678],"y":[32600,15200,40400,82400,4600,48000,88200,6800,16200,20200,15600,14800,143000,134000,10400,163200,15600,900,142000,45000,2200,82000,92000,37000,23800,5500,13000,122000,24200,10400,244000,27600,128000,64000,72000,54800,8400,7600,46000,108000,8000,132000,12800,100000,98000,50800,77200,58800,90000,19600,30800,31108,11200,76000,4000,20000,5600,31200,8400,19200,3600,10088,6000,2800,100000,33600,60000,8400,4800,5600,49000,14400,84000,71200,119200,63000,99000,124000,25000,113000,19000,26000,125000,66000,30000,82000,60000,198000,95000,109000,179000,300,34000,20000,35000,94000,103000,99000,145000,63000,29000,131000,127000,160000,99000,303000,149000,50000,19000,57000,15000,186000,122000,41000,57000,131000,84000,57000,37000,55000,88000,33000],"text":["Expected Value: $53,917<br>Offer Value: $32,600<br>Round: 5","Expected Value: $16,953<br>Offer Value: $15,200<br>Round: 5","Expected Value: $43,367<br>Offer Value: $40,400<br>Round: 5","Expected Value: $97,334<br>Offer Value: $82,400<br>Round: 5","Expected Value: $4,671<br>Offer Value: $4,600<br>Round: 5","Expected Value: $60,000<br>Offer Value: $48,000<br>Round: 5","Expected Value: $126,834<br>Offer Value: $88,200<br>Round: 5","Expected Value: $7,050<br>Offer Value: $6,800<br>Round: 5","Expected Value: $25,001<br>Offer Value: $16,200<br>Round: 5","Expected Value: $17,669<br>Offer Value: $20,200<br>Round: 5","Expected Value: $16,783<br>Offer Value: $15,600<br>Round: 5","Expected Value: $21,088<br>Offer Value: $14,800<br>Round: 5","Expected Value: $193,684<br>Offer Value: $143,000<br>Round: 5","Expected Value: $140,000<br>Offer Value: $134,000<br>Round: 5","Expected Value: $17,001<br>Offer Value: $10,400<br>Round: 5","Expected Value: $207,000<br>Offer Value: $163,200<br>Round: 5","Expected Value: $25,285<br>Offer Value: $15,600<br>Round: 5","Expected Value: $1,583<br>Offer Value: $900<br>Round: 5","Expected Value: $252,717<br>Offer Value: $142,000<br>Round: 5","Expected Value: $57,750<br>Offer Value: $45,000<br>Round: 5","Expected Value: $3,855<br>Offer Value: $2,200<br>Round: 5","Expected Value: $110,837<br>Offer Value: $82,000<br>Round: 5","Expected Value: $104,517<br>Offer Value: $92,000<br>Round: 5","Expected Value: $44,333<br>Offer Value: $37,000<br>Round: 5","Expected Value: $36,002<br>Offer Value: $23,800<br>Round: 5","Expected Value: $8,353<br>Offer Value: $5,500<br>Round: 5","Expected Value: $14,285<br>Offer Value: $13,000<br>Round: 5","Expected Value: $145,003<br>Offer Value: $122,000<br>Round: 5","Expected Value: $32,833<br>Offer Value: $24,200<br>Round: 5","Expected Value: $20,001<br>Offer Value: $10,400<br>Round: 5","Expected Value: $380,200<br>Offer Value: $244,000<br>Round: 5","Expected Value: $34,000<br>Offer Value: $27,600<br>Round: 5","Expected Value: $200,612<br>Offer Value: $128,000<br>Round: 5","Expected Value: $102,024<br>Offer Value: $64,000<br>Round: 5","Expected Value: $100,409<br>Offer Value: $72,000<br>Round: 5","Expected Value: $68,021<br>Offer Value: $54,800<br>Round: 5","Expected Value: $8,413<br>Offer Value: $8,400<br>Round: 5","Expected Value: $4,460<br>Offer Value: $7,600<br>Round: 5","Expected Value: $54,400<br>Offer Value: $46,000<br>Round: 5","Expected Value: $141,000<br>Offer Value: $108,000<br>Round: 5","Expected Value: $11,280<br>Offer Value: $8,000<br>Round: 5","Expected Value: $210,001<br>Offer Value: $132,000<br>Round: 5","Expected Value: $14,221<br>Offer Value: $12,800<br>Round: 5","Expected Value: $120,428<br>Offer Value: $100,000<br>Round: 5","Expected Value: $146,800<br>Offer Value: $98,000<br>Round: 5","Expected Value: $60,084<br>Offer Value: $50,800<br>Round: 5","Expected Value: $108,808<br>Offer Value: $77,200<br>Round: 5","Expected Value: $70,201<br>Offer Value: $58,800<br>Round: 5","Expected Value: $250,680<br>Offer Value: $90,000<br>Round: 5","Expected Value: $35,481<br>Offer Value: $19,600<br>Round: 5","Expected Value: $58,800<br>Offer Value: $30,800<br>Round: 5","Expected Value: $58,473<br>Offer Value: $31,108<br>Round: 5","Expected Value: $25,050<br>Offer Value: $11,200<br>Round: 5","Expected Value: $128,667<br>Offer Value: $76,000<br>Round: 5","Expected Value: $3,880<br>Offer Value: $4,000<br>Round: 5","Expected Value: $40,667<br>Offer Value: $20,000<br>Round: 5","Expected Value: $9,601<br>Offer Value: $5,600<br>Round: 5","Expected Value: $78,637<br>Offer Value: $31,200<br>Round: 5","Expected Value: $14,480<br>Offer Value: $8,400<br>Round: 5","Expected Value: $35,741<br>Offer Value: $19,200<br>Round: 5","Expected Value: $7,300<br>Offer Value: $3,600<br>Round: 5","Expected Value: $18,340<br>Offer Value: $10,088<br>Round: 5","Expected Value: $9,144<br>Offer Value: $6,000<br>Round: 5","Expected Value: $4,351<br>Offer Value: $2,800<br>Round: 5","Expected Value: $185,667<br>Offer Value: $100,000<br>Round: 5","Expected Value: $83,600<br>Offer Value: $33,600<br>Round: 5","Expected Value: $149,001<br>Offer Value: $60,000<br>Round: 5","Expected Value: $11,941<br>Offer Value: $8,400<br>Round: 5","Expected Value: $8,350<br>Offer Value: $4,800<br>Round: 5","Expected Value: $9,040<br>Offer Value: $5,600<br>Round: 5","Expected Value: $87,467<br>Offer Value: $49,000<br>Round: 5","Expected Value: $25,100<br>Offer Value: $14,400<br>Round: 5","Expected Value: $180,270<br>Offer Value: $84,000<br>Round: 5","Expected Value: $167,670<br>Offer Value: $71,200<br>Round: 5","Expected Value: $208,353<br>Offer Value: $119,200<br>Round: 5","Expected Value: $95,979<br>Offer Value: $63,000<br>Round: 5","Expected Value: $201,842<br>Offer Value: $99,000<br>Round: 5","Expected Value: $250,931<br>Offer Value: $124,000<br>Round: 5","Expected Value: $35,876<br>Offer Value: $25,000<br>Round: 5","Expected Value: $250,096<br>Offer Value: $113,000<br>Round: 5","Expected Value: $20,873<br>Offer Value: $19,000<br>Round: 5","Expected Value: $37,579<br>Offer Value: $26,000<br>Round: 5","Expected Value: $208,368<br>Offer Value: $125,000<br>Round: 5","Expected Value: $175,159<br>Offer Value: $66,000<br>Round: 5","Expected Value: $42,517<br>Offer Value: $30,000<br>Round: 5","Expected Value: $159,300<br>Offer Value: $82,000<br>Round: 5","Expected Value: $166,804<br>Offer Value: $60,000<br>Round: 5","Expected Value: $258,462<br>Offer Value: $198,000<br>Round: 5","Expected Value: $180,292<br>Offer Value: $95,000<br>Round: 5","Expected Value: $150,013<br>Offer Value: $109,000<br>Round: 5","Expected Value: $333,400<br>Offer Value: $179,000<br>Round: 5","Expected Value: $354<br>Offer Value: $300<br>Round: 5","Expected Value: $50,919<br>Offer Value: $34,000<br>Round: 5","Expected Value: $33,501<br>Offer Value: $20,000<br>Round: 5","Expected Value: $69,388<br>Offer Value: $35,000<br>Round: 5","Expected Value: $118,517<br>Offer Value: $94,000<br>Round: 5","Expected Value: $138,500<br>Offer Value: $103,000<br>Round: 5","Expected Value: $183,338<br>Offer Value: $99,000<br>Round: 5","Expected Value: $208,385<br>Offer Value: $145,000<br>Round: 5","Expected Value: $126,783<br>Offer Value: $63,000<br>Round: 5","Expected Value: $46,142<br>Offer Value: $29,000<br>Round: 5","Expected Value: $233,417<br>Offer Value: $131,000<br>Round: 5","Expected Value: $285,054<br>Offer Value: $127,000<br>Round: 5","Expected Value: $283,379<br>Offer Value: $160,000<br>Round: 5","Expected Value: $141,850<br>Offer Value: $99,000<br>Round: 5","Expected Value: $334,217<br>Offer Value: $303,000<br>Round: 5","Expected Value: $251,908<br>Offer Value: $149,000<br>Round: 5","Expected Value: $88,354<br>Offer Value: $50,000<br>Round: 5","Expected Value: $22,750<br>Offer Value: $19,000<br>Round: 5","Expected Value: $62,650<br>Offer Value: $57,000<br>Round: 5","Expected Value: $16,918<br>Offer Value: $15,000<br>Round: 5","Expected Value: $310,000<br>Offer Value: $186,000<br>Round: 5","Expected Value: $218,692<br>Offer Value: $122,000<br>Round: 5","Expected Value: $96,817<br>Offer Value: $41,000<br>Round: 5","Expected Value: $70,971<br>Offer Value: $57,000<br>Round: 5","Expected Value: $183,344<br>Offer Value: $131,000<br>Round: 5","Expected Value: $112,556<br>Offer Value: $84,000<br>Round: 5","Expected Value: $129,442<br>Offer Value: $57,000<br>Round: 5","Expected Value: $60,059<br>Offer Value: $37,000<br>Round: 5","Expected Value: $89,396<br>Offer Value: $55,000<br>Round: 5","Expected Value: $133,509<br>Offer Value: $88,000<br>Round: 5","Expected Value: $66,855<br>Offer Value: $33,000<br>Round: 5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(33,144,140,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(33,144,140,1)"}},"hoveron":"points","name":"5","legendgroup":"5","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[24700,12344.000399999999,12040.407999999999,2604.8000000000002,68000.059999999998,30000.808000000005,21201,16140.048000000003,23306,168000,20401.220000000001,10342,1600.0083999999999,303060,61300.008000000002,4624,33004.200000000004,43200,10020.028,17140.000400000001,154004,19400.000400000001,24000.408000000003,42500,100511,85001.5,10511,5550.5,63000,176000,13100,12501.01,17526,150035,25105.010000000002,136000,100816.15999999997,42560.800000000003,50560.400000000001,62168,30056,152400,656.15999999999997,48800.008000000002,11520,94324,17056.159999999996,42808.800000000003,8440.1599999999999,22000.567999999999,10964.799999999999,4820.8000000000002,202800.39999999999,100320.15999999997,58800.800000000003,14328.799999999999,10020.168000000001,10808.16,104160.39999999999,18120.159999999996,200324.00799999997,201200.408,244024,110175,242150,201117,41051,300110,25047,35095.199999999997,250027,210041.20000000001,31020,41160.199999999997,160165.00200000001,110155,216200.00200000001,180010.20000000001,340080.00199999998,365,60103,201,82265,86200,220005,230062.00200000001,150140.00200000001,55310,275100,242065,280055,170200.20199999999,381060,302280,106015,27100.200000000001,75100.002000000008,20101,370000.20000000001,262280,116100,70165,140013,135007,150330,70071,102275,80211,80226],"y":[22600,12300,10900,2700,62000,29000,25000,16000,18200,154000,15000,8200,1300,199000,61000,4700,23400,37600,9600,14300,135000,13600,19000,42000,84000,84000,11200,8400,60000,144000,12800,11600,18000,138000,23200,99600,60000,24000,25200,32800,20000,92000,828,30064,8000,50000,11200,26000,5200,14800,9200,3600,125600,59600,34000,10000,7200,7200,72000,9600,128000,120000,164000,90000,162000,121000,37000,199000,23000,22000,199000,97000,16000,37000,48000,85000,123000,164000,199000,350,52000,100,69000,55000,148990,172000,96000,45000,211000,119000,148000,167000,349000,263000,81000,25000,68000,20000,299000,237000,74000,48000,97000,112000,81000,49000,70000,61000,68000],"text":["Expected Value: $24,700<br>Offer Value: $22,600<br>Round: 6","Expected Value: $12,344<br>Offer Value: $12,300<br>Round: 6","Expected Value: $12,040<br>Offer Value: $10,900<br>Round: 6","Expected Value: $2,605<br>Offer Value: $2,700<br>Round: 6","Expected Value: $68,000<br>Offer Value: $62,000<br>Round: 6","Expected Value: $30,001<br>Offer Value: $29,000<br>Round: 6","Expected Value: $21,201<br>Offer Value: $25,000<br>Round: 6","Expected Value: $16,140<br>Offer Value: $16,000<br>Round: 6","Expected Value: $23,306<br>Offer Value: $18,200<br>Round: 6","Expected Value: $168,000<br>Offer Value: $154,000<br>Round: 6","Expected Value: $20,401<br>Offer Value: $15,000<br>Round: 6","Expected Value: $10,342<br>Offer Value: $8,200<br>Round: 6","Expected Value: $1,600<br>Offer Value: $1,300<br>Round: 6","Expected Value: $303,060<br>Offer Value: $199,000<br>Round: 6","Expected Value: $61,300<br>Offer Value: $61,000<br>Round: 6","Expected Value: $4,624<br>Offer Value: $4,700<br>Round: 6","Expected Value: $33,004<br>Offer Value: $23,400<br>Round: 6","Expected Value: $43,200<br>Offer Value: $37,600<br>Round: 6","Expected Value: $10,020<br>Offer Value: $9,600<br>Round: 6","Expected Value: $17,140<br>Offer Value: $14,300<br>Round: 6","Expected Value: $154,004<br>Offer Value: $135,000<br>Round: 6","Expected Value: $19,400<br>Offer Value: $13,600<br>Round: 6","Expected Value: $24,000<br>Offer Value: $19,000<br>Round: 6","Expected Value: $42,500<br>Offer Value: $42,000<br>Round: 6","Expected Value: $100,511<br>Offer Value: $84,000<br>Round: 6","Expected Value: $85,002<br>Offer Value: $84,000<br>Round: 6","Expected Value: $10,511<br>Offer Value: $11,200<br>Round: 6","Expected Value: $5,550<br>Offer Value: $8,400<br>Round: 6","Expected Value: $63,000<br>Offer Value: $60,000<br>Round: 6","Expected Value: $176,000<br>Offer Value: $144,000<br>Round: 6","Expected Value: $13,100<br>Offer Value: $12,800<br>Round: 6","Expected Value: $12,501<br>Offer Value: $11,600<br>Round: 6","Expected Value: $17,526<br>Offer Value: $18,000<br>Round: 6","Expected Value: $150,035<br>Offer Value: $138,000<br>Round: 6","Expected Value: $25,105<br>Offer Value: $23,200<br>Round: 6","Expected Value: $136,000<br>Offer Value: $99,600<br>Round: 6","Expected Value: $100,816<br>Offer Value: $60,000<br>Round: 6","Expected Value: $42,561<br>Offer Value: $24,000<br>Round: 6","Expected Value: $50,560<br>Offer Value: $25,200<br>Round: 6","Expected Value: $62,168<br>Offer Value: $32,800<br>Round: 6","Expected Value: $30,056<br>Offer Value: $20,000<br>Round: 6","Expected Value: $152,400<br>Offer Value: $92,000<br>Round: 6","Expected Value: $656<br>Offer Value: $828<br>Round: 6","Expected Value: $48,800<br>Offer Value: $30,064<br>Round: 6","Expected Value: $11,520<br>Offer Value: $8,000<br>Round: 6","Expected Value: $94,324<br>Offer Value: $50,000<br>Round: 6","Expected Value: $17,056<br>Offer Value: $11,200<br>Round: 6","Expected Value: $42,809<br>Offer Value: $26,000<br>Round: 6","Expected Value: $8,440<br>Offer Value: $5,200<br>Round: 6","Expected Value: $22,001<br>Offer Value: $14,800<br>Round: 6","Expected Value: $10,965<br>Offer Value: $9,200<br>Round: 6","Expected Value: $4,821<br>Offer Value: $3,600<br>Round: 6","Expected Value: $202,800<br>Offer Value: $125,600<br>Round: 6","Expected Value: $100,320<br>Offer Value: $59,600<br>Round: 6","Expected Value: $58,801<br>Offer Value: $34,000<br>Round: 6","Expected Value: $14,329<br>Offer Value: $10,000<br>Round: 6","Expected Value: $10,020<br>Offer Value: $7,200<br>Round: 6","Expected Value: $10,808<br>Offer Value: $7,200<br>Round: 6","Expected Value: $104,160<br>Offer Value: $72,000<br>Round: 6","Expected Value: $18,120<br>Offer Value: $9,600<br>Round: 6","Expected Value: $200,324<br>Offer Value: $128,000<br>Round: 6","Expected Value: $201,200<br>Offer Value: $120,000<br>Round: 6","Expected Value: $244,024<br>Offer Value: $164,000<br>Round: 6","Expected Value: $110,175<br>Offer Value: $90,000<br>Round: 6","Expected Value: $242,150<br>Offer Value: $162,000<br>Round: 6","Expected Value: $201,117<br>Offer Value: $121,000<br>Round: 6","Expected Value: $41,051<br>Offer Value: $37,000<br>Round: 6","Expected Value: $300,110<br>Offer Value: $199,000<br>Round: 6","Expected Value: $25,047<br>Offer Value: $23,000<br>Round: 6","Expected Value: $35,095<br>Offer Value: $22,000<br>Round: 6","Expected Value: $250,027<br>Offer Value: $199,000<br>Round: 6","Expected Value: $210,041<br>Offer Value: $97,000<br>Round: 6","Expected Value: $31,020<br>Offer Value: $16,000<br>Round: 6","Expected Value: $41,160<br>Offer Value: $37,000<br>Round: 6","Expected Value: $160,165<br>Offer Value: $48,000<br>Round: 6","Expected Value: $110,155<br>Offer Value: $85,000<br>Round: 6","Expected Value: $216,200<br>Offer Value: $123,000<br>Round: 6","Expected Value: $180,010<br>Offer Value: $164,000<br>Round: 6","Expected Value: $340,080<br>Offer Value: $199,000<br>Round: 6","Expected Value: $365<br>Offer Value: $350<br>Round: 6","Expected Value: $60,103<br>Offer Value: $52,000<br>Round: 6","Expected Value: $201<br>Offer Value: $100<br>Round: 6","Expected Value: $82,265<br>Offer Value: $69,000<br>Round: 6","Expected Value: $86,200<br>Offer Value: $55,000<br>Round: 6","Expected Value: $220,005<br>Offer Value: $148,990<br>Round: 6","Expected Value: $230,062<br>Offer Value: $172,000<br>Round: 6","Expected Value: $150,140<br>Offer Value: $96,000<br>Round: 6","Expected Value: $55,310<br>Offer Value: $45,000<br>Round: 6","Expected Value: $275,100<br>Offer Value: $211,000<br>Round: 6","Expected Value: $242,065<br>Offer Value: $119,000<br>Round: 6","Expected Value: $280,055<br>Offer Value: $148,000<br>Round: 6","Expected Value: $170,200<br>Offer Value: $167,000<br>Round: 6","Expected Value: $381,060<br>Offer Value: $349,000<br>Round: 6","Expected Value: $302,280<br>Offer Value: $263,000<br>Round: 6","Expected Value: $106,015<br>Offer Value: $81,000<br>Round: 6","Expected Value: $27,100<br>Offer Value: $25,000<br>Round: 6","Expected Value: $75,100<br>Offer Value: $68,000<br>Round: 6","Expected Value: $20,101<br>Offer Value: $20,000<br>Round: 6","Expected Value: $370,000<br>Offer Value: $299,000<br>Round: 6","Expected Value: $262,280<br>Offer Value: $237,000<br>Round: 6","Expected Value: $116,100<br>Offer Value: $74,000<br>Round: 6","Expected Value: $70,165<br>Offer Value: $48,000<br>Round: 6","Expected Value: $140,013<br>Offer Value: $97,000<br>Round: 6","Expected Value: $135,007<br>Offer Value: $112,000<br>Round: 6","Expected Value: $150,330<br>Offer Value: $81,000<br>Round: 6","Expected Value: $70,071<br>Offer Value: $49,000<br>Round: 6","Expected Value: $102,275<br>Offer Value: $70,000<br>Round: 6","Expected Value: $80,211<br>Offer Value: $61,000<br>Round: 6","Expected Value: $80,226<br>Offer Value: $68,000<br>Round: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(39,173,129,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(39,173,129,1)"}},"hoveron":"points","name":"6","legendgroup":"6","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[30375,15050.009999999998,3251,35000.075000000004,25251.25,501.52500000000003,2000.01,378800,5775,16255.25,24250,53333.333333333336,681.33333333333326,7400,201333.33333333334,10800,16668,13368,133380,140.01333333333335,148000,26020.200000000001,52801,50700.5,70210,37520,185500,520.20000000000005,36000.009999999995,13900,117900,21300.200000000001,51011,10550,7500.71,13506,1026,251000.5,125100.2,73500,17901,25.210000000000001,13510,30200.5,20150.200000000001,250400.01000000001,137643.75,302500,251271.25,50063.75,375062.5,31306.25,43868.75,312531.25,262501.5,20025,51450,12706.252499999999,137675,20250.002499999999,225000.25,175100.0025,431.25,75053.75,201.25,89000,225006.25,287502.5025,350018.75,476250,375350,126268.75,93875,6376.25,212500.25,325350,145000,12706.25,50016.25,143758.75,75088.75,75263.75,100032.5],"y":[37800,14200,3800,35000,32400,480,1700,299000,5600,13700,19000,53200,680,9200,172000,10800,16000,12400,130000,72,136800,22000,34000,40000,42800,29200,116000,832,20000,12000,74800,16000,38000,8400,6000,12000,800,184000,88000,64000,13600,48,10000,24000,15200,200000,138000,240000,201000,50000,275000,28000,40000,279000,172000,12000,50000,14000,139000,19000,221000,109000,400,76000,150,80000,126000,199000,301000,464000,357000,124000,100000,6000,144000,340000,98000,14000,44000,121000,71000,49000,90000],"text":["Expected Value: $30,375<br>Offer Value: $37,800<br>Round: 7","Expected Value: $15,050<br>Offer Value: $14,200<br>Round: 7","Expected Value: $3,251<br>Offer Value: $3,800<br>Round: 7","Expected Value: $35,000<br>Offer Value: $35,000<br>Round: 7","Expected Value: $25,251<br>Offer Value: $32,400<br>Round: 7","Expected Value: $502<br>Offer Value: $480<br>Round: 7","Expected Value: $2,000<br>Offer Value: $1,700<br>Round: 7","Expected Value: $378,800<br>Offer Value: $299,000<br>Round: 7","Expected Value: $5,775<br>Offer Value: $5,600<br>Round: 7","Expected Value: $16,255<br>Offer Value: $13,700<br>Round: 7","Expected Value: $24,250<br>Offer Value: $19,000<br>Round: 7","Expected Value: $53,333<br>Offer Value: $53,200<br>Round: 7","Expected Value: $681<br>Offer Value: $680<br>Round: 7","Expected Value: $7,400<br>Offer Value: $9,200<br>Round: 7","Expected Value: $201,333<br>Offer Value: $172,000<br>Round: 7","Expected Value: $10,800<br>Offer Value: $10,800<br>Round: 7","Expected Value: $16,668<br>Offer Value: $16,000<br>Round: 7","Expected Value: $13,368<br>Offer Value: $12,400<br>Round: 7","Expected Value: $133,380<br>Offer Value: $130,000<br>Round: 7","Expected Value: $140<br>Offer Value: $72<br>Round: 7","Expected Value: $148,000<br>Offer Value: $136,800<br>Round: 7","Expected Value: $26,020<br>Offer Value: $22,000<br>Round: 7","Expected Value: $52,801<br>Offer Value: $34,000<br>Round: 7","Expected Value: $50,700<br>Offer Value: $40,000<br>Round: 7","Expected Value: $70,210<br>Offer Value: $42,800<br>Round: 7","Expected Value: $37,520<br>Offer Value: $29,200<br>Round: 7","Expected Value: $185,500<br>Offer Value: $116,000<br>Round: 7","Expected Value: $520<br>Offer Value: $832<br>Round: 7","Expected Value: $36,000<br>Offer Value: $20,000<br>Round: 7","Expected Value: $13,900<br>Offer Value: $12,000<br>Round: 7","Expected Value: $117,900<br>Offer Value: $74,800<br>Round: 7","Expected Value: $21,300<br>Offer Value: $16,000<br>Round: 7","Expected Value: $51,011<br>Offer Value: $38,000<br>Round: 7","Expected Value: $10,550<br>Offer Value: $8,400<br>Round: 7","Expected Value: $7,501<br>Offer Value: $6,000<br>Round: 7","Expected Value: $13,506<br>Offer Value: $12,000<br>Round: 7","Expected Value: $1,026<br>Offer Value: $800<br>Round: 7","Expected Value: $251,000<br>Offer Value: $184,000<br>Round: 7","Expected Value: $125,100<br>Offer Value: $88,000<br>Round: 7","Expected Value: $73,500<br>Offer Value: $64,000<br>Round: 7","Expected Value: $17,901<br>Offer Value: $13,600<br>Round: 7","Expected Value: $25<br>Offer Value: $48<br>Round: 7","Expected Value: $13,510<br>Offer Value: $10,000<br>Round: 7","Expected Value: $30,200<br>Offer Value: $24,000<br>Round: 7","Expected Value: $20,150<br>Offer Value: $15,200<br>Round: 7","Expected Value: $250,400<br>Offer Value: $200,000<br>Round: 7","Expected Value: $137,644<br>Offer Value: $138,000<br>Round: 7","Expected Value: $302,500<br>Offer Value: $240,000<br>Round: 7","Expected Value: $251,271<br>Offer Value: $201,000<br>Round: 7","Expected Value: $50,064<br>Offer Value: $50,000<br>Round: 7","Expected Value: $375,062<br>Offer Value: $275,000<br>Round: 7","Expected Value: $31,306<br>Offer Value: $28,000<br>Round: 7","Expected Value: $43,869<br>Offer Value: $40,000<br>Round: 7","Expected Value: $312,531<br>Offer Value: $279,000<br>Round: 7","Expected Value: $262,502<br>Offer Value: $172,000<br>Round: 7","Expected Value: $20,025<br>Offer Value: $12,000<br>Round: 7","Expected Value: $51,450<br>Offer Value: $50,000<br>Round: 7","Expected Value: $12,706<br>Offer Value: $14,000<br>Round: 7","Expected Value: $137,675<br>Offer Value: $139,000<br>Round: 7","Expected Value: $20,250<br>Offer Value: $19,000<br>Round: 7","Expected Value: $225,000<br>Offer Value: $221,000<br>Round: 7","Expected Value: $175,100<br>Offer Value: $109,000<br>Round: 7","Expected Value: $431<br>Offer Value: $400<br>Round: 7","Expected Value: $75,054<br>Offer Value: $76,000<br>Round: 7","Expected Value: $201<br>Offer Value: $150<br>Round: 7","Expected Value: $89,000<br>Offer Value: $80,000<br>Round: 7","Expected Value: $225,006<br>Offer Value: $126,000<br>Round: 7","Expected Value: $287,503<br>Offer Value: $199,000<br>Round: 7","Expected Value: $350,019<br>Offer Value: $301,000<br>Round: 7","Expected Value: $476,250<br>Offer Value: $464,000<br>Round: 7","Expected Value: $375,350<br>Offer Value: $357,000<br>Round: 7","Expected Value: $126,269<br>Offer Value: $124,000<br>Round: 7","Expected Value: $93,875<br>Offer Value: $100,000<br>Round: 7","Expected Value: $6,376<br>Offer Value: $6,000<br>Round: 7","Expected Value: $212,500<br>Offer Value: $144,000<br>Round: 7","Expected Value: $325,350<br>Offer Value: $340,000<br>Round: 7","Expected Value: $145,000<br>Offer Value: $98,000<br>Round: 7","Expected Value: $12,706<br>Offer Value: $14,000<br>Round: 7","Expected Value: $50,016<br>Offer Value: $44,000<br>Round: 7","Expected Value: $143,759<br>Offer Value: $121,000<br>Round: 7","Expected Value: $75,089<br>Offer Value: $71,000<br>Round: 7","Expected Value: $75,264<br>Offer Value: $49,000<br>Round: 7","Expected Value: $100,032<br>Offer Value: $90,000<br>Round: 7"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(93,200,99,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(93,200,99,1)"}},"hoveron":"points","name":"7","legendgroup":"7","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[20000.013333333336,668.66666666666663,2666.666666666667,7033.333333333333,20007,22,11000,16000,20002,210,220000,1360.2666666666667,70001.333333333328,66946.666666666657,30026.666666666668,246666.66666666669,666.93333333333328,46666.68,18000,23866.666666666664,27066.933333333334,68013.333333333343,4066.666666666667,0.94666666666666666,18006.666666666668,1341.3333333333335,334666.66666666669,96666.666666666672,7201.3333333333339,33.600000000000001,18000,26934,26733.599999999999,333866.66666666663,16858.333333333336,236666.66666666666,66685,333416.66666666663,41733.333333333336,58358.333333333336,416675,100002,26666.666666666668,16916.670000000002,183500,2000.0033333333333,441.66666666666669,71.666666666666657,168.33333333333334,18666.666666666668,300000,383333.33666666667,333800,8368.3333333333321,116667,25011.666666666664,118.33333333333334,100101.66666666666,133360],"y":[20000,700,2000,7000,20000,16,10800,15600,19200,212,196000,2400,52000,60000,21600,200000,1000,40000,16000,20000,22000,60000,4000,0.76000000000000001,16508,1600,301200,87200,6800,63.960000000000001,14800,24400,24000,300000,17000,189000,67000,267000,35000,55000,359000,80000,24000,19000,202000,2000,450,50,125,21000,252000,375000,215000,9000,70000,28000,100,94000,137000],"text":["Expected Value: $20,000<br>Offer Value: $20,000<br>Round: 8","Expected Value: $669<br>Offer Value: $700<br>Round: 8","Expected Value: $2,667<br>Offer Value: $2,000<br>Round: 8","Expected Value: $7,033<br>Offer Value: $7,000<br>Round: 8","Expected Value: $20,007<br>Offer Value: $20,000<br>Round: 8","Expected Value: $22<br>Offer Value: $16<br>Round: 8","Expected Value: $11,000<br>Offer Value: $10,800<br>Round: 8","Expected Value: $16,000<br>Offer Value: $15,600<br>Round: 8","Expected Value: $20,002<br>Offer Value: $19,200<br>Round: 8","Expected Value: $210<br>Offer Value: $212<br>Round: 8","Expected Value: $220,000<br>Offer Value: $196,000<br>Round: 8","Expected Value: $1,360<br>Offer Value: $2,400<br>Round: 8","Expected Value: $70,001<br>Offer Value: $52,000<br>Round: 8","Expected Value: $66,947<br>Offer Value: $60,000<br>Round: 8","Expected Value: $30,027<br>Offer Value: $21,600<br>Round: 8","Expected Value: $246,667<br>Offer Value: $200,000<br>Round: 8","Expected Value: $667<br>Offer Value: $1,000<br>Round: 8","Expected Value: $46,667<br>Offer Value: $40,000<br>Round: 8","Expected Value: $18,000<br>Offer Value: $16,000<br>Round: 8","Expected Value: $23,867<br>Offer Value: $20,000<br>Round: 8","Expected Value: $27,067<br>Offer Value: $22,000<br>Round: 8","Expected Value: $68,013<br>Offer Value: $60,000<br>Round: 8","Expected Value: $4,067<br>Offer Value: $4,000<br>Round: 8","Expected Value: $1<br>Offer Value: $1<br>Round: 8","Expected Value: $18,007<br>Offer Value: $16,508<br>Round: 8","Expected Value: $1,341<br>Offer Value: $1,600<br>Round: 8","Expected Value: $334,667<br>Offer Value: $301,200<br>Round: 8","Expected Value: $96,667<br>Offer Value: $87,200<br>Round: 8","Expected Value: $7,201<br>Offer Value: $6,800<br>Round: 8","Expected Value: $34<br>Offer Value: $64<br>Round: 8","Expected Value: $18,000<br>Offer Value: $14,800<br>Round: 8","Expected Value: $26,934<br>Offer Value: $24,400<br>Round: 8","Expected Value: $26,734<br>Offer Value: $24,000<br>Round: 8","Expected Value: $333,867<br>Offer Value: $300,000<br>Round: 8","Expected Value: $16,858<br>Offer Value: $17,000<br>Round: 8","Expected Value: $236,667<br>Offer Value: $189,000<br>Round: 8","Expected Value: $66,685<br>Offer Value: $67,000<br>Round: 8","Expected Value: $333,417<br>Offer Value: $267,000<br>Round: 8","Expected Value: $41,733<br>Offer Value: $35,000<br>Round: 8","Expected Value: $58,358<br>Offer Value: $55,000<br>Round: 8","Expected Value: $416,675<br>Offer Value: $359,000<br>Round: 8","Expected Value: $100,002<br>Offer Value: $80,000<br>Round: 8","Expected Value: $26,667<br>Offer Value: $24,000<br>Round: 8","Expected Value: $16,917<br>Offer Value: $19,000<br>Round: 8","Expected Value: $183,500<br>Offer Value: $202,000<br>Round: 8","Expected Value: $2,000<br>Offer Value: $2,000<br>Round: 8","Expected Value: $442<br>Offer Value: $450<br>Round: 8","Expected Value: $72<br>Offer Value: $50<br>Round: 8","Expected Value: $168<br>Offer Value: $125<br>Round: 8","Expected Value: $18,667<br>Offer Value: $21,000<br>Round: 8","Expected Value: $300,000<br>Offer Value: $252,000<br>Round: 8","Expected Value: $383,333<br>Offer Value: $375,000<br>Round: 8","Expected Value: $333,800<br>Offer Value: $215,000<br>Round: 8","Expected Value: $8,368<br>Offer Value: $9,000<br>Round: 8","Expected Value: $116,667<br>Offer Value: $70,000<br>Round: 8","Expected Value: $25,012<br>Offer Value: $28,000<br>Round: 8","Expected Value: $118<br>Offer Value: $100<br>Round: 8","Expected Value: $100,102<br>Offer Value: $94,000<br>Round: 8","Expected Value: $133,360<br>Offer Value: $137,000<br>Round: 8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(170,220,50,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(170,220,50,1)"}},"hoveron":"points","name":"8","legendgroup":"8","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1001,3500,2000.4000000000001,100002,45000,800.39999999999998,25000,35000,40600,102000,1100,1.02,25010,12,500000,120000,802,10.4,25000,25250,100025,25100,87500,3,37500,2500.0050000000001,625,7.5,52.5,25000.5,175],"y":[1200,3200,3000,90000,45000,1200,20000,32400,39996,100000,1000,1.52,27600,12,500000,140000,800,9.9600000000000009,26000,25000,99000,23000,85000,2,38000,2800,650,8,50,25000,175],"text":["Expected Value: $1,001<br>Offer Value: $1,200<br>Round: 9","Expected Value: $3,500<br>Offer Value: $3,200<br>Round: 9","Expected Value: $2,000<br>Offer Value: $3,000<br>Round: 9","Expected Value: $100,002<br>Offer Value: $90,000<br>Round: 9","Expected Value: $45,000<br>Offer Value: $45,000<br>Round: 9","Expected Value: $800<br>Offer Value: $1,200<br>Round: 9","Expected Value: $25,000<br>Offer Value: $20,000<br>Round: 9","Expected Value: $35,000<br>Offer Value: $32,400<br>Round: 9","Expected Value: $40,600<br>Offer Value: $39,996<br>Round: 9","Expected Value: $102,000<br>Offer Value: $100,000<br>Round: 9","Expected Value: $1,100<br>Offer Value: $1,000<br>Round: 9","Expected Value: $1<br>Offer Value: $2<br>Round: 9","Expected Value: $25,010<br>Offer Value: $27,600<br>Round: 9","Expected Value: $12<br>Offer Value: $12<br>Round: 9","Expected Value: $500,000<br>Offer Value: $500,000<br>Round: 9","Expected Value: $120,000<br>Offer Value: $140,000<br>Round: 9","Expected Value: $802<br>Offer Value: $800<br>Round: 9","Expected Value: $10<br>Offer Value: $10<br>Round: 9","Expected Value: $25,000<br>Offer Value: $26,000<br>Round: 9","Expected Value: $25,250<br>Offer Value: $25,000<br>Round: 9","Expected Value: $100,025<br>Offer Value: $99,000<br>Round: 9","Expected Value: $25,100<br>Offer Value: $23,000<br>Round: 9","Expected Value: $87,500<br>Offer Value: $85,000<br>Round: 9","Expected Value: $3<br>Offer Value: $2<br>Round: 9","Expected Value: $37,500<br>Offer Value: $38,000<br>Round: 9","Expected Value: $2,500<br>Offer Value: $2,800<br>Round: 9","Expected Value: $625<br>Offer Value: $650<br>Round: 9","Expected Value: $8<br>Offer Value: $8<br>Round: 9","Expected Value: $52<br>Offer Value: $50<br>Round: 9","Expected Value: $25,000<br>Offer Value: $25,000<br>Round: 9","Expected Value: $175<br>Offer Value: $175<br>Round: 9"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(253,231,37,1)","opacity":0.59999999999999998,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(253,231,37,1)"}},"hoveron":"points","name":"9","legendgroup":"9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-24999.006000000001,524999.95266666671],"y":[-24999.006000000001,524999.95266666671],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":38.854296388542977,"l":52.137816521378184},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-24999.006000000001,524999.95266666671],"tickmode":"array","ticktext":["0k","100k","200k","300k","400k","500k"],"tickvals":[0,100000,200000,300000,400000,500000.00000000006],"categoryorder":"array","categoryarray":["0k","100k","200k","300k","400k","500k"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":true,"gridcolor":"rgba(229,229,229,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"Expected Value ($)","scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-24999.202000000001,524999.96200000006],"tickmode":"array","ticktext":["0k","100k","200k","300k","400k","500k"],"tickvals":[0,100000,200000,300000,400000.00000000006,500000.00000000006],"categoryorder":"array","categoryarray":["0k","100k","200k","300k","400k","500k"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":true,"gridcolor":"rgba(229,229,229,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":"Bank Offer ($)","scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(0,0,0,1)","width":1.32835201328352,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"title":{"text":"Round","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"orientation":"h","x":0.5,"xanchor":"center","y":1.1200000000000001,"yanchor":"bottom"},"hovermode":"closest","barmode":"relative","dragmode":false,"autosize":true},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"source":"A","attrs":{"a7f3196d067b":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"a7f344c48247":{"intercept":{},"slope":{}}},"cur_data":"a7f3196d067b","visdat":{"a7f3196d067b":["function (y) ","x"],"a7f344c48247":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Now we can start to see a trend emerging! The early-round offers are well below the line of parity, but as we get closer to round 9 (the final round) those offers start to approach the Expected Value of the remaining cases.</p>
+<p>We can do a bit better than this, though – how exactly does The Banker determine what proportion of the Expected Value to offer each round? One suggestion made by Post et al. (2008)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is that the offer for each round is a proportion (<span class="math inline">\(b_r\)</span>) of the Expected Value that takes the proportion offered on the previous round (<span class="math inline">\(b_{r-1}\)</span>) and increases it in progressively smaller steps as it until the final round is reached:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{1}
+b_r = b_{r-1} + (1 - b_{r-1})\cdot\rho^{9-(r-1)}
+\end{equation}\]</span></p>
+<p>There’s quite a strong assumption baked into this – that the proportion of the Expected Value offered each round is dependent on the proportion offered in the previous round. It’s equally plausible that, instead, the proportion offered follows a set trajectory, with random noise added independently each round. Post et al. don’t directly address this assumption, so we’ll have to do some digging of our own.</p>
+<p>Below is the correlation between the proportion of the Expected Value offered in round <span class="math inline">\(r\)</span> and the proportion of the Expected Value offered in the preceding round <span class="math inline">\(r-1\)</span>. To prevent scaling issues, I’ve z-scored the proportions in each round. If the offer is dependent on the previous round, there will be a positive correlation…</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="dondpart1_files/figure-html5/plot_zScoreoffers-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<p>…and that’s exactly what we see. Great! Let’s adopt Equation 1 from the Post et al. and replicate their results.</p>
+<p>If we treat our data hierarchically, each country in our dataset produces a slightly different <span class="math inline">\(\rho\)</span> estimate. The US edition has a <span class="math inline">\(\rho\)</span> of 0.778, in the German edition, <span class="math inline">\(\rho =\)</span> 0.775, while in the Dutch, <span class="math inline">\(\rho =\)</span> 0.804.</p>
+<p>Ignoring the hierarchical structure, we get an aggregated estimate of <span class="math inline">\(\rho = .787\)</span>. Let’s see how these estimates map onto our data. Here, we have the aggregate model predictions for each round shown as dashed lines. The predictions here clearly illustrate how the model correctly increases its predicted offers as the rounds progress.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="dondpart1_files/figure-html5/plot_EVoffers3-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<p>To summarize:</p>
+<ul>
+<li><strong>The Banker’s offers are somewhat predictable.</strong> Each round, The Banker makes an offer that is some proportion of the Expected Value of the remaining cases. The offers seem to have some variability, whether through the addition of random noise</li>
+<li><strong>Consecutive offers are not independent.</strong> The exact proportion of the Expected Value offered is a function of the proportion offered last round. That proportion increases as the rounds progress.</li>
+</ul>
+<center>
+<span style="font-size: 18px;"><em>So what does this mean for us beating The Banker?</em></span>
+</center>
+<center>
+<span style="font-size: 17px;">Well, there are a few takeaway points:</span>
+</center>
+<p><br></p>
+<ol type="1">
+<li><strong>The offers you get in the first few rounds will generally be terrible.</strong> The Banker’s early offers will be extreme lowballs that should be easily rejected.</li>
+<li><strong>The Banker will almost never offer you above the Expected Value of the remaining cases.</strong> You won’t be getting your money’s worth from The Banker until the very final rounds.</li>
+</ol>
+<p>Given The Banker is almost never going to offer you the true value of your case: <strong>Does this mean that it is right for everyone to simply reject every offer and play until the final round?</strong> Well… not quite. While this strategy will earn you the biggest win on average, there will be a lot more variability in the final outcome than if you accept an earlier offer. To quickly illustrate this, I’ve plotted the distributions of possible outcomes in each round of a game<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. I’ve multiplied each outcome by the average proportion of the Expected Value offered by The Banker to illustrate how the offers evolve over the course of the game. You will notice that although the average reward creeps up in the later rounds (as The Banker starts to make offers approaching the true Expected Value), there is also a higher chance of winning a very small prize compared with in round 4, for example…</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="dondpart1_files/figure-html5/plot_possibleOffers-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<p>So, it’s really up to the player to determine whether the higher average rewards available in later rounds are worth the additional variability in rewards!</p>
+<p>Once we get past the idea of “Beating The Banker”, the question of whether an offer is <em>subjectively</em> substantial enough for you to accept it is a much more interesting one. It starts to invoke core principles of modern behavioural economics and decision science that allow this relatively simple game to produce its trademark difficult decisions.</p>
+<p>In the next post, we’ll explore how the contestants make their decisions about whether to accept an offer.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Here we’re working with data from the US, German, and Dutch editions of the show. For the sake of plotting, I’ve transformed the data from the European versions to dollar amounts peaking at 1 million dollars.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Full article available here: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=636508" class="uri">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=636508</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I’m using the case values from the US edition here – the cases in the European editions are slightly different, but the same general principles apply.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
