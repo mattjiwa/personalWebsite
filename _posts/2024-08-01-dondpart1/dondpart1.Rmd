@@ -1,15 +1,15 @@
 ---
 title: "Deal or No Deal | Part 1: Beating the Banker"
 description: |
-  Everyone has heard of Deal or No Deal, but how does the show actually work?
-author:
-  - name: Matthew Jiwa
-    url: {}
+  Everyone has heard of Deal or No Deal, but how does the show actually work? And more importantly, is it actually possible to "Beat the Banker"?
 date: 2024-08-01
 preview: DoND_case2.png
+bibliography: DoND_ref.bib
 output:
   distill::distill_article:
+    toc: true
     self_contained: false
+    citations: false
 ---
 
 ```{css, echo=FALSE}
@@ -65,9 +65,9 @@ It's an incredibly simple format, but it also involves a series of crucial decis
 In this series of posts, I'll be using a dataset of over 225 games^[The data used in this post is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Modifications were made to the original materials for analysis purposes. Credit for this dataset should be given to the original authors: Thierry Post, Martijn van den Assem, Guido Baltussen, and Richard Thaler, and to the American Economic Association. [The full dataset is available here](https://www.openicpsr.org/openicpsr/project/113232/version/V1/view;jsessionid=38766B84B8D203291DF7B953AF315EC6).
 ] of *Deal or No Deal* to explore the mechanics of the TV game show. In part 1, I'll explore how the mysterious Banker produces their offers for the contestants to either accept or reject. In part 2, I'll examine how those contestants make their decisions. And in part 3, I'll use all of those insights to design the ultimate Banker.
 
-### So, can we actually "Beat the Banker"?
+### How should *Deal or No Deal* be played?
 
-On first consideration, the solution to the game is quite simple: you should never accept any offer that is less than the *Expected Value* of the remaining cases. When we say Expected Value, what we mean is the average amount in each of the remaining cases. For example, if you had two cases remaining, the 1-cent case and the 1 million dollar case, you should not be willing to accept anything less than $500,000 from The Banker because, on average, that is the amount that you will win.
+On first consideration, the solution to *Deal or No Deal* is quite simple: you should never accept any offer that is less than the <b>*Expected Value*</b> of the remaining cases. When we say Expected Value, what we mean is the average amount in each of the remaining cases. For example, if you had two cases remaining, the 1-cent case and the 1 million dollar case, you should not be willing to accept anything less than $500,000 from The Banker because, on average, that is the amount that you will win.
 
 The predicament, however, is that The Banker (i.e., the showrunners) also understands Expected Value and adjusts their offers accordingly. To really optimize our strategy, we'll have to better understand how these offers are formulated...
 
@@ -208,7 +208,7 @@ load(here::here("data", "DOND", "StanOffers", "Samples", "H_OfferModelX2_model_s
 
 Now we can start to see a trend emerging! The early-round offers are well below the line of parity, but as we get closer to round 9 (the final round) those offers start to approach the Expected Value of the remaining cases.
 
-We can do a bit better than this, though -- how exactly does The Banker determine what proportion of the Expected Value to offer each round? One suggestion made by Post et al. (2008)^[Full article available here: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=636508] is that the offer for each round is a proportion ($b_r$) of the Expected Value that takes the proportion offered on the previous round ($b_{r-1}$) and increases it in progressively smaller steps as it until the final round is reached:
+We can do a bit better than this, though -- how exactly does The Banker determine what proportion of the Expected Value to offer each round? One suggestion made by @Post2008 is that the offer for each round is a proportion ($b_r$) of the Expected Value that takes the proportion offered on the previous round ($b_{r-1}$) and increases it in progressively smaller steps as it until the final round is reached:
 
 \begin{equation}
 \tag{1}
@@ -395,7 +395,9 @@ show(predPlot)
 
 ```
 
-To summarize:
+### So, can we "Beat the Banker"?
+
+Let's summarize what we've learned so far...
 
 - **The Banker's offers are somewhat predictable.** Each round, The Banker makes an offer that is some proportion of the Expected Value of the remaining cases. The offers seem to have some variability, whether through the addition of random noise 
 - **Consecutive offers are not independent.** The exact proportion of the Expected Value offered is a function of the proportion offered last round. That proportion increases as the rounds progress.
@@ -408,7 +410,7 @@ To summarize:
 1) **The offers you get in the first few rounds will generally be terrible.** The Banker's early offers will be extreme lowballs that should be easily rejected.
 2) **The Banker will almost never offer you above the Expected Value of the remaining cases.** You won't be getting your money's worth from The Banker until the very final rounds.
 
-Given The Banker is almost never going to offer you the true value of your case: **Does this mean that it is right for everyone to simply reject every offer and play until the final round?** Well... not quite. While this strategy will earn you the biggest win on average, there will be a lot more variability in the final outcome than if you accept an earlier offer. To quickly illustrate this, I've plotted the distributions of possible outcomes in each round of a game^[I'm using the case values from the US edition here -- the cases in the European editions are slightly different, but the same general principles apply.]. I've multiplied each outcome by the average proportion of the Expected Value offered by The Banker to illustrate how the offers evolve over the course of the game. You will notice that the <span style='font-size:14pt; color:#1d0dff;'><b>average offer</b></span> creeps up in the later rounds, as The Banker starts to make offers approaching the true Expected Value. However, the <span style='font-size:14pt; color:#cf3400;'><b>median offer</b></span> starts to decrease in later rounds as the distribution skews to the right, leaving a higher chance of a very small offer than in round 4, for example...
+Given The Banker is almost never going to offer you the true value of your case: **Does this mean that it is right for everyone to simply reject every offer and play until the final round?** Well... not quite. While this strategy will earn you the biggest win on average, there will be a lot more variability in the final outcome than if you accept an earlier offer. To quickly illustrate this, I've plotted the distributions of possible outcomes in each round of a game^[I'm using the case values from the US edition here -- the cases in the European editions are slightly different, but the same general principles apply.]. I've multiplied each outcome by the average proportion of the Expected Value offered by The Banker to illustrate how the offers evolve over the course of the game. You will notice that the <span style='font-size:14pt; color:#1d0dff;'><b>average offer</b></span> creeps up in the later rounds, as The Banker starts to make offers approaching the true Expected Value. However, the <span style='font-size:14pt; color:#cf3400;'><b>median offer</b></span> starts to decrease in later rounds as the distribution skews to the right, leaving a higher chance of a very small offer than in round 4, for example...<br>
 
 ```{r plot_possibleOffers, echo=FALSE, warning = FALSE, message=FALSE, fig.width = 8, fig.height = 5, fig.align = 'center', results = 'asis'}
 
