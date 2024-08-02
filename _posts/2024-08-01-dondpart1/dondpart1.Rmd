@@ -2,6 +2,8 @@
 title: "Deal or No Deal | Part 1: Beating the Banker"
 description: |
   Everyone has heard of Deal or No Deal, but how does the show actually work?
+base_url: https://matthewjiwa.com
+preview: assets/thumbnails/DoND_case.png
 author:
   - name: Matthew Jiwa
     url: {}
@@ -10,7 +12,6 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-
 
 ```{css, echo=FALSE}
 img {
@@ -53,25 +54,26 @@ blank_theme <- theme(
 
 ```
 
-In this series of posts, I'll be exploring the mechanics of the TV game show *Deal or No Deal*. In part 1, we'll explore how the mysterious Banker produces their offers for the contestants to either accept or reject. In part 2, we'll examine how those contestants make their decisions. And in part 3, we'll use all of those insights to design the ultimate Banker.
-
-<center><span style="font-size: 18px;">*So, can we actually Beat the Banker?*</span></center>
-<br>
 
 ### What is *Deal or No Deal*?
 
-You're probably aware of the TV gameshow *Deal or No Deal* -- since its launch in 2005, it has been licensed in 80 different countries, airing over 600 episodes of the original US version alone. For those who need a reminder, in *Deal or No Deal*, a contenstant is offered a selection of 26 briefcases each containing a different amount of money ranging from a single cent all the way up to 1 million dollars. Over the course of the game, they play a series of rounds in which they open some of the briefcases, eliminating those cases from the game. At the end of each round, "The Banker" offers the contestant a guaranteed cash value to quit the game. If the contenstant declines, the game continues until only one case remains and the contestant wins the amount in that case.
+You're probably aware of the TV gameshow *Deal or No Deal* -- since its launch in 2005, it has been licensed in 80 different countries, airing over 600 episodes of the original US version alone. For those who need a reminder, in *Deal or No Deal*, a contestant is offered a selection of 26 briefcases each containing a different amount of money ranging from a single cent all the way up to 1 million dollars. Over the course of the game, they play a series of rounds in which they open some of the briefcases, eliminating those cases from the game. At the end of each round, "The Banker" offers the contestant a guaranteed cash value to quit the game. If the contestant declines, the game continues until only one case remains and the contestant wins the amount in that case.
 
 It's an incredibly simple format, but it also involves a series of crucial decisions all centred around the question:
 
 <center><span style="font-size: 18px;">*How much should you be willing to accept from The Banker?*</span></center>
 <br>
 
-On first consideration, the answer is quite simple: you should never accept any offer that is less than the *Expected Value* of the remaining cases. When we say Expected Value, what we mean is the average amount in each of the remaining cases. For example, if you had two cases remaining, the 1-cent case and the 1 million dollar case, you should not be willing to accept anything less than $500,000 from The Banker because, on average, that is the amount that you will win.
+In this series of posts, I'll be using a dataset of over 225 games^[The data used in this post is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Modifications were made to the original materials for analysis purposes. Credit for this dataset should be given to the original authors: Thierry Post, Martijn van den Assem, Guido Baltussen, and Richard Thaler, and to the American Economic Association. [The full dataset is available here](https://www.openicpsr.org/openicpsr/project/113232/version/V1/view;jsessionid=38766B84B8D203291DF7B953AF315EC6).
+] of *Deal or No Deal* to explore the mechanics of the TV game show. In part 1, I'll explore how the mysterious Banker produces their offers for the contestants to either accept or reject. In part 2, I'll examine how those contestants make their decisions. And in part 3, I'll use all of those insights to design the ultimate Banker.
+
+### So, can we actually "Beat the Banker"?
+
+On first consideration, the solution to the game is quite simple: you should never accept any offer that is less than the *Expected Value* of the remaining cases. When we say Expected Value, what we mean is the average amount in each of the remaining cases. For example, if you had two cases remaining, the 1-cent case and the 1 million dollar case, you should not be willing to accept anything less than $500,000 from The Banker because, on average, that is the amount that you will win.
 
 The predicament, however, is that The Banker (i.e., the showrunners) also understands Expected Value and adjusts their offers accordingly. To really optimize our strategy, we'll have to better understand how these offers are formulated...
 
-### So, how do the offers in *Deal or No Deal* work?
+### How do the offers in *Deal or No Deal* work?
 
 Below, I've plotted the offers made by The Banker in nearly 1000 rounds of *Deal or No Deal* played in three different countries^[Here we're working with data from the US, German, and Dutch editions of the show. For the sake of plotting, I've transformed the data from the European versions to dollar amounts peaking at 1 million dollars.]. The solid diagonal line indicates parity between the Expected Value and The Banker's offer. You'll notice that the offers are extremely variable, but almost never rise above the Expected Value.
 
@@ -114,9 +116,7 @@ ggplot(plotData, aes(x = ExpectedValue, y = OfferValue)) +
 
 ```
 
-So, how do these offers actually work?
-
-To understand them, we first have to understand the motives of the showrunners. To make the show entertaining (and fill the 44-minute runtime), they do **not** want contestants to accept the first offer they receive. To make sure of this, they make the first offer <u>extremely low</u>. In fact, for the 225 contestants we are analyzing, the first round offer was an average of `r round(mean(allData$EVperc[allData$round==1])*100, 2)`% of the Expected Value.
+To understand these offers, we first have to understand the motives of the showrunners. To make the show entertaining (and fill the 44-minute runtime), they do **not** want contestants to accept the first offer they receive. To make sure of this, they make the first offer <u>extremely low</u>. In fact, for the 225 contestants we are analyzing, the first round offer was an average of `r round(mean(allData$EVperc[allData$round==1])*100, 2)`% of the Expected Value.
 
 However, it is also in the showrunners' interests that not every contestant goes to the final round; there need to be some difficult decisions and suspense. To make sure of this, The Banker's offer gets closer to the Expected Value with every round that passes. This is best demonstrated visually -- let's plot the offers again, but this time, we'll give each offer a colour corresponding to the round in which it was made. You can use the legend to toggle each round on/off.
 
@@ -269,11 +269,11 @@ ggplot(plotDataLag, aes(x = lag_z_score_EVperc, y = z_score_EVperc)) +
   facet_wrap(~Country, labeller = label_both, ncol = 3) +
   blank_theme +
   theme(legend.position = "right",
-        strip.text = element_text(size = 16, face = "bold"),
-        axis.text.y = element_text(size = 16, colour = "black"),
-        axis.text.x = element_text(size = 16, colour = "black"),
-        axis.title = element_text(size = 18, colour = "black"),
-        plot.title = element_text(size = 19, colour = "black"),
+        strip.text = element_text(size = 17, face = "bold"),
+        axis.text.y = element_text(size = 17, colour = "black"),
+        axis.text.x = element_text(size = 17, colour = "black"),
+        axis.title = element_text(size = 19, colour = "black"),
+        plot.title = element_text(size = 20, colour = "black"),
         panel.grid.major = element_line(
           colour = "grey90",
           linewidth = .5
@@ -362,10 +362,10 @@ predPlot <- ggplot(plotData, aes(x = mean_N, y = offer_N, colour = factor(Round)
     facet_wrap(~Round, labeller = label_both, ncol = 4) +
     blank_theme +
     theme(legend.position = "none",
-          strip.text = element_text(size = 18, face = "bold"),
-          axis.text.y = element_text(size = 16, colour = "black"),
-          axis.title = element_text(size = 19, colour = "black"),
-          axis.text.x = element_text(size = 16, colour = "black", angle = 90, vjust = 0.5, hjust = 1),
+          strip.text = element_text(size = 20, face = "bold"),
+          axis.text.y = element_text(size = 18, colour = "black"),
+          axis.title = element_text(size = 21, colour = "black"),
+          axis.text.x = element_text(size = 18, colour = "black", angle = 90, vjust = 0.5, hjust = 1),
           panel.grid.major = element_line(
               colour = "grey90",
               linewidth = .5
@@ -410,8 +410,7 @@ To summarize:
 1) **The offers you get in the first few rounds will generally be terrible.** The Banker's early offers will be extreme lowballs that should be easily rejected.
 2) **The Banker will almost never offer you above the Expected Value of the remaining cases.** You won't be getting your money's worth from The Banker until the very final rounds.
 
-Given The Banker is almost never going to offer you the true value of your case: **Does this mean that it is right for everyone to simply reject every offer and play until the final round?** Well... not quite. While this strategy will earn you the biggest win on average, there will be a lot more variability in the final outcome than if you accept an earlier offer. To quickly illustrate this, I've plotted the distributions of possible outcomes in each round of a game^[I'm using the case values from the US edition here -- the cases in the European editions are slightly different, but the same general principles apply.]. I've multiplied each outcome by the average proportion of the Expected Value offered by The Banker to illustrate how the offers evolve over the course of the game. You will notice that although the average reward creeps up in the later rounds (as The Banker starts to make offers approaching the true Expected Value), there is also a higher chance of winning a very small prize compared with in round 4, for example...
-
+Given The Banker is almost never going to offer you the true value of your case: **Does this mean that it is right for everyone to simply reject every offer and play until the final round?** Well... not quite. While this strategy will earn you the biggest win on average, there will be a lot more variability in the final outcome than if you accept an earlier offer. To quickly illustrate this, I've plotted the distributions of possible outcomes in each round of a game^[I'm using the case values from the US edition here -- the cases in the European editions are slightly different, but the same general principles apply.]. I've multiplied each outcome by the average proportion of the Expected Value offered by The Banker to illustrate how the offers evolve over the course of the game. You will notice that the <span style='font-size:14pt; color:#1d0dff;'><b>average offer</b></span> creeps up in the later rounds, as The Banker starts to make offers approaching the true Expected Value. However, the <span style='font-size:14pt; color:#cf3400;'><b>median offer</b></span> starts to decrease in later rounds as the distribution skews to the right, leaving a higher chance of a very small offer than in round 4, for example...
 
 ```{r plot_possibleOffers, echo=FALSE, warning = FALSE, message=FALSE, fig.width = 8, fig.height = 5, fig.align = 'center', results = 'asis'}
 
@@ -483,7 +482,7 @@ expectedOfferPlot <- ggplot(mean_data, aes(x = WeightedMean)) +
   geom_vline(data = stats_per_round, aes(xintercept = AvgWeightedMean), 
              linetype = "dashed", color = "#1d0dff", size = .75) +
   geom_vline(data = stats_per_round, aes(xintercept = MedianWeightedMean), 
-             linetype = "dotted", color = "#cf3400", size = .75) +
+             linetype = "twodash", color = "#cf3400", size = .75) +
   facet_wrap(~Round, labeller = label_both, scales = "free_y") +
   labs(title = "Distribution of Possible Banker Offers Each Round",
        x = "Expected Offer ($)",
