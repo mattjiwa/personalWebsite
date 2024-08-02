@@ -3,6 +3,7 @@ title: "Matthew Jiwa"
 description: |
   My Website
 output_dir: "_site"
+base_url: https://matthewjiwa.com
 navbar:
   right:
     - text: "Home"
