@@ -399,8 +399,8 @@ show(predPlot)
 
 Let's summarize what we've learned so far...
 
-- **The Banker's offers are somewhat predictable.** Each round, The Banker makes an offer that is some proportion of the Expected Value of the remaining cases. The offers seem to have some variability, whether through the addition of random noise 
-- **Consecutive offers are not independent.** The exact proportion of the Expected Value offered is a function of the proportion offered last round. That proportion increases as the rounds progress.
+- **The Banker's offers are somewhat predictable.** Each round, The Banker's offer is some proportion of the Expected Value of the remaining cases. The offers seem to have some variability, whether through the addition of random noise or deliberate decisions made by the showrunners.
+- **Consecutive offers are not independent.** The exact proportion of the Expected Value offered is a function of the proportion offered last round. That proportion increases as the rounds progress, starting with large increases before steadily plateauing.
 
 
 <center><span style="font-size: 18px;">*So what does this mean for us beating The Banker?*</span></center>
