@@ -34,6 +34,8 @@ library(ggtext)
 
 # Load
 source(here::here("data", "DOND", "preProcess.R"))
+allData <- allData %>% 
+  filter(!country %in% c("EX"))
 
 blank_theme <- theme(
   axis.text.y = element_text(size = 10, colour = "black"),
@@ -62,7 +64,7 @@ It's an incredibly simple format, but it also involves a series of crucial decis
 <center><span style="font-size: 18px;">*How much should you be willing to accept from The Banker?*</span></center>
 <br>
 
-In this series of posts, I'll be using a dataset of over 225 games^[The data used in this post is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Modifications were made to the original materials for analysis purposes. Credit for this dataset should be given to the original authors: Thierry Post, Martijn van den Assem, Guido Baltussen, and Richard Thaler, and to the American Economic Association. [The full dataset is available here](https://www.openicpsr.org/openicpsr/project/113232/version/V1/view;jsessionid=38766B84B8D203291DF7B953AF315EC6).
+In this series of posts, I'll be using a dataset of over 145 games^[The data used in this post is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Modifications were made to the original materials for analysis purposes. Credit for this dataset should be given to the original authors: Thierry Post, Martijn van den Assem, Guido Baltussen, and Richard Thaler, and to the American Economic Association. [The full dataset is available here](https://www.openicpsr.org/openicpsr/project/113232/version/V1/view;jsessionid=38766B84B8D203291DF7B953AF315EC6).
 ] of *Deal or No Deal* to explore the mechanics of the TV game show. In part 1, I'll explore how the mysterious Banker produces their offers for the contestants to either accept or reject. In part 2, I'll examine how those contestants make their decisions. And in part 3, I'll use all of those insights to design the ultimate Banker.
 
 ### How should *Deal or No Deal* be played?
@@ -109,7 +111,7 @@ ggplot(plotData, aes(x = ExpectedValue, y = OfferValue)) +
         panel.grid.major = element_line(
           colour = "grey90",
           linewidth = .5
-        )) # Top outlier is GE3.017
+        ))
 
 
 ```
@@ -208,12 +210,14 @@ load(here::here("data", "DOND", "StanOffers", "Samples", "H_OfferModelX2_model_s
 
 Now we can start to see a trend emerging! The early-round offers are well below the line of parity, but as we get closer to round 9 (the final round) those offers start to approach the Expected Value of the remaining cases.
 
-We can do a bit better than this, though -- how exactly does The Banker determine what proportion of the Expected Value to offer each round? One suggestion made by @Post2008 is that the offer for each round is a proportion ($b_r$) of the Expected Value that takes the proportion offered on the previous round ($b_{r-1}$) and increases it in progressively smaller steps as it until the final round is reached:
+We can do a bit better than this, though -- how exactly does The Banker determine what proportion of the Expected Value to offer each round? One suggestion made by @Post2008 is that the offer for each round is a proportion ($b_r$) of the Expected Value that takes the proportion offered on the previous round ($b_{r-1}$) and increases it in progressively smaller steps until the final round is reached:
 
 \begin{equation}
 \tag{1}
 b_r = b_{r-1} + (1 - b_{r-1})\cdot\rho^{9-(r-1)}
 \end{equation}
+
+Here, $0 < \rho < 1$ dictates the rate at which the proportion offered changes -- the closer $\rho$ is to 1, the quicker the offers will approach 100% of the Expected Value...
 
 There's quite a strong assumption baked into this -- that the proportion of the Expected Value offered each round is dependent on the proportion offered in the previous round. It's equally plausible that, instead, the proportion offered follows a set trajectory, with random noise added independently each round. Post et al. don't directly address this assumption, so we'll have to do some digging of our own.
 
@@ -403,7 +407,7 @@ Let's summarize what we've learned so far...
 - **Consecutive offers are not independent.** The exact proportion of the Expected Value offered is a function of the proportion offered last round. That proportion increases as the rounds progress, starting with large increases before steadily plateauing.
 
 
-<center><span style="font-size: 18px;">*So what does this mean for us beating The Banker?*</span></center>
+<center><span style="font-size: 18px;">*So, what does this mean for us beating The Banker?*</span></center>
 <center><span style="font-size: 17px;">Well, there are a few takeaway points:</span></center>
 <br>
 
