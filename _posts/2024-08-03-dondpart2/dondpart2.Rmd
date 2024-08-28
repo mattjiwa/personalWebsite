@@ -57,10 +57,9 @@ blank_theme <- theme(
 ```
 
 
-In [part 1](https://matthewjiwa.com/posts/2024-08-01-dondpart1/), we examined how The Banker determines how much to offer...
+In this series of blog posts, we're exploring the mechanics of TV game show *Deal or No Deal*. In [part 1](https://matthewjiwa.com/posts/2024-08-01-dondpart1/), we examined how The Banker determines how much to offer. This time, we'll be turning our attention to the contestant -- how do they decide when to accept and when to reject The Banker's offer?
 
-
-This time, we'll be turning our attention to the contestant -- how do they decide when to accept and when to reject The Banker's offer? We'll start by exploring the offers that real contestants accepted. From there, we'll replicate the analyses performed by @Post2008, elaborating on the reasoning behind their model and exploring possible alternatives.
+We'll start by exploring the offers that real contestants accepted. From there, we'll replicate the analyses performed by @Post2008, elaborating on the reasoning behind their model and exploring possible alternatives.
 
 ### What does an acceptable offer look like?
 
