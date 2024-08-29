@@ -518,5 +518,5 @@ So, it's really up to the player to determine whether the higher average rewards
 
 Once we get past the idea of "Beating The Banker", the question of whether an offer is *subjectively* substantial enough for you to accept it is a much more interesting one. It starts to invoke core principles of modern behavioural economics and decision science that allow this relatively simple game to produce its trademark difficult decisions.
 
-In the next post, we'll explore how the contestants make their decisions about whether to accept an offer.
+In the [next post](https://matthewjiwa.com/posts/2024-08-03-dondpart2/), we'll explore how the contestants make their decisions about whether to accept an offer.
 
