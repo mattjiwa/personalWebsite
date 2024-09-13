@@ -1,0 +1,200 @@
+---
+title: "models_of_our_world"
+description: |
+  A short description of the post.
+date: 2024-08-01
+preview: clickbait_img.png
+draft: TRUE
+output:
+  distill::distill_article:
+    toc: true
+    self_contained: false
+    citations: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(plyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(viridis)
+library(plotly)
+library(htmltools)
+library(scales)
+library(ggimage)
+
+blank_theme <- theme(
+  axis.text.y = element_text(size = 10, colour = "black"),
+  axis.text.x = element_text(size = 10, colour = "black"),
+  axis.title = element_text(size = 11, colour = "black"),
+  plot.title = element_text(size = 13, colour = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(),
+  panel.background = element_blank(),
+  axis.line = element_line(colour = "black"),
+  legend.text = element_text(size = 8, colour = "black"),
+  legend.title = element_text(size = 9, colour = "black"),
+  legend.margin=margin(t = 0, unit='cm'),
+  legend.position = "none",
+  panel.border = element_rect(colour = "black", fill=NA, linewidth=1)
+)
+
+```
+
+If everyone was after **land** in the 19th century and **oil** in the 20th, it seems that ~~Beanie Babies~~  ~~NFTs~~ **attention** is the new hottest commodity on the market.
+
+This shift towards capturing attention---a multifaceted and intangible resource---has brought with it a slew of new challenges. Where tangible resources like oil allow us to leverage our extensive knowledge of fluid dynamics and geology to maximize their extraction, the mechanisms underlying information demand are far more elusive. The complexity of these dynamics leave us without an optimized method to attract attention, making approximation and innovation key to winning eyeballs.
+
+So, how have we navigated the uncharted waters of the new attention economy?
+
+
+### The heuristic approach
+
+In the absence of a complete understanding of information demand, we've relied heavily on the guidance of heuristics---shortcuts that guide us towards our goal without requiring a full, mechanistic model. These heuristics are evident in the way media outlets tailor their headlines, how online creators frame their content, and how social media platforms are structured. Let's take a closer look at some of the most prominent heuristics deployed today.
+
+
+#### Heuristic #1: Emotion
+
+Emotion plays a central role in how we select which content to consume, and in turn, how that content is curated. In psychology, we think of emotions as occurring across two dimensions: **valence** (how positive or negative the emotion is) and **arousal** (how intense an emotion is). For example, excitement is an example of an emotion that is high in both valence and arousal, while a feeling of calm would be high in valence but low in arousal.
+
+Both dimensions are relevant for capturing attention. Specifically, content that is has negative valence and high arousal (e.g., anger, fear)
+
+
+
+```{r plot_sentiment, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
+
+load(here::here("data", "attentionEcon", "sentimentData_summary.Rdata"))
+load(here::here("data", "attentionEcon", "sentimentData_outlet.Rdata"))
+
+outlet_df <- outlet_df %>%
+  # mutate(image = here::here("data", "attentionEcon", "images", paste(outlet, ".png", sep = "")))
+  mutate(image = paste0("file:///", here::here("data", "attentionEcon", "images", 
+                                               paste(outlet, ".png", sep = ""))))
+
+ggplot(data = summary_df, aes(x = year, y = mean_sentiment)) +
+  geom_hline(aes(yintercept = 0), linetype = "dashed", colour = "grey70") +
+  geom_line() +
+  geom_point() +
+  geom_ribbon(aes(x = year, ymin = mean_sentiment - se, 
+                    ymax = mean_sentiment + se), alpha = .2) +
+  labs(x = "Year", y = "Valence", 
+       title = "Mean Valence of News Articles in 47 Popular News Media Outlets (2000-2019)") +
+  blank_theme +
+  theme(
+    plot.title = element_text(size = 11, colour = "black"),
+  )
+
+p <- ggplot(outlet_df, aes(x = reliability, y = mean_sentiment)) +
+  geom_hline(aes(yintercept=0), linetype = "dotted", colour = "gray70") +
+  geom_image(aes(image = image), size = 0.1) +
+  labs(x = "Reliability", y = "Mean Sentiment") +
+  blank_theme
+
+p
+
+# Make interactive plot
+ip <- plot_ly(outlet_df, x = ~reliability, y = ~mean_sentiment, type = 'scatter', mode = 'markers',
+             marker = list(size = 15, color = 'rgba(0,0,0,0)'))  # Invisible markers
+  
+ip <- layout(ip,images = list(
+    list(
+      # Add images
+      source = outlet_df$image,
+      xref = "x",
+      yref = "y",
+      x = outlet_df$reliability,
+      y = outlet_df$mean_sentiment,
+      sizex = 2,
+      sizey = 2,
+      sizing = "stretch",
+      opacity = 0.4,
+      layer = "above"
+    )
+  ))
+
+# Loop through each data point to add images
+for (i in seq_along(outlet_df$reliability)) {
+  ip <- add_annotations(
+    ip,
+    x = outlet_df$reliability[i],
+    y = outlet_df$mean_sentiment[i],
+    xref = "x",
+    yref = "y",
+    ax = 0,
+    ay = 0,
+    xanchor = "center",
+    yanchor = "middle",
+    text = "",
+    showarrow = FALSE,
+    imgsrc = outlet_df$image[i],
+    width = 50,  # Adjust width and height as necessary
+    height = 50
+  )
+}
+
+ip <- layout(ip, title = 'Reliability vs. Mean Sentiment with Images',
+            xaxis = list(title = 'Reliability'),
+            yaxis = list(title = 'Mean Sentiment'))
+
+ip
+
+
+knitr::include_graphics(here::here("assets/images/abcnews.png"))
+knitr::include_graphics("https://www.matthewjiwa.com/assets/images/abcnews.png")
+
+```
+
+
+#### Heuristic #2: Confirmation Bias
+
+*Confirmation Bias* is a term that gets thrown around a lot. It's generally portrayed as a fundamental flaw in human reasoning that is to blame for all manner of societal ills.
+
+
+#### Heuristic #3: Uncertainty
+
+
+
+### Consequences of the attention economy
+
+
+We have heuristics (fear, emotion, uncertainty)
+We also have biases (which is a pretty pointless word)
+Concordant information is desirable (confirmation bias) -- we don't really know why
+We have the "pay-to-win" option of advertising
+
+But the latest evolution of this (the recommendation algorithm) doesn't need heuristics as it doesn't rely on a model at all.
+It is entirely indifferent to/unaware of the levers it is pulling (way more imprecise than oil extraction, etc.)
+It's also much more opaque -- it's way harder to look under the hood of an algorithm like this.
+
+We have all the solutions for how to leverage curiosity to maximize attention
+Deep learning algorithms that maximize attention also produce information silos
+The same principles underlie behaviors that power some of the most corrosive aspects of human society.
+But our misaligned incentive structures have driven innovation
+So, we have these extraordinarily powerful tools 
+What's to say we can't leverage those tools to produce more desirable outcomes (reduce misinformation, leading to deradicalization, depolarization)
+But that might be entirely at odds with the existing incentive structures -- there's a reason that optimized algorithms promote consistent viewpoints
+Without regulatory oversight, there is 
+
+
+We don't really understand the mechanisms that underlie information demand...
+
+But we clearly have some strong heuristics
+
+What attracts attention?
+Visual contrast, obviously.
+Novelty, surprise (you won't believe...)
+Uncertainty (uncertainty is aversive)
+Emotive imagery
+
+News networks -- drama, bombast, fear?
+YouTube thumbnails -- 
+
+TikTok gets around the issue through algorithmic means -- it doesn't need a coherent model of what captures attention.
+
+
+It seems we're now at a critical crossroads -- down one path is reckless abandon
+
