@@ -4,6 +4,7 @@ description: |
   A short description of the post.
 date: 2024-08-01
 preview: clickbait_img.png
+bibliography: attentionEcon.bib
 draft: TRUE
 output:
   distill::distill_article:
@@ -26,6 +27,8 @@ library(plotly)
 library(htmltools)
 library(scales)
 library(ggimage)
+library(base64enc)
+library(scales)
 
 blank_theme <- theme(
   axis.text.y = element_text(size = 10, colour = "black"),
@@ -61,19 +64,53 @@ In the absence of a complete understanding of information demand, we've relied h
 
 Emotion plays a central role in how we select which content to consume, and in turn, how that content is curated. In psychology, we think of emotions as occurring across two dimensions: **valence** (how positive or negative the emotion is) and **arousal** (how intense an emotion is). For example, excitement is an example of an emotion that is high in both valence and arousal, while a feeling of calm would be high in valence but low in arousal.
 
-Both dimensions are relevant for capturing attention. Specifically, content that is has negative valence and high arousal (e.g., anger, fear)
+Both dimensions are relevant for capturing attention. Specifically, content that has a strong, negative valence and high arousal (e.g., anger, fear)
+
+In an analysis of online news headlines between 2000 and 2019, @Rozado2022 reported a gradual but sustained trend towards more negative emotional valence. While they didn't explicitly analyze trends in the emotional arousal of content, the frequency of headlines with a neutral emotional payload dropped from around 70% to below 50%, while those featuring anger and fear increased by 100% and 150%, respectively^[A plausible explanation for the change in mean valence could be the advent of more partisan outlets with strong, negative emotional content in the middle of 2000-2019 time period (e.g., *The Daily Wire*). However, the downward trend in mean valence is only slightly lessened when we exclude the 27 outlets that don't have data for the full 20-year period.].
 
 
-
-```{r plot_sentiment, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
+```{r plot_sentiment1, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
 
 load(here::here("data", "attentionEcon", "sentimentData_summary.Rdata"))
 load(here::here("data", "attentionEcon", "sentimentData_outlet.Rdata"))
+load(here::here("data", "attentionEcon", "sentimentData_all.Rdata"))
+
+# Check outlets with complete data only
+# Filtering process
+filtered_df <- all_data %>%
+  dplyr::group_by(outlet) %>%
+  dplyr::summarize(unique_years = n_distinct(year)) %>%
+  filter(unique_years == 20) %>%
+  inner_join(all_data, by = "outlet")
+
+summary_filt_df <- filtered_df %>% 
+  dplyr::group_by(year) %>% 
+  dplyr::summarise(mean_sentiment = mean(score),
+                   n = n(),
+                   sd = sd(score),
+                   se = sd(score) / sqrt(n()),
+                   .groups = "drop")
+
+fp <- ggplot(data = summary_filt_df, aes(x = year, y = mean_sentiment)) +
+  geom_hline(aes(yintercept = 0), linetype = "dashed", colour = "grey70") +
+  geom_line() +
+  geom_point() +
+  geom_ribbon(aes(x = year, ymin = mean_sentiment - se, 
+                    ymax = mean_sentiment + se), alpha = .2) +
+  labs(x = "Year", y = "Mean Valence", 
+       title = "Mean Valence of News Articles in 20 Popular News Media Outlets (2000-2019)") +
+  blank_theme +
+  theme(
+    plot.title = element_text(size = 11, colour = "black"),
+  )
+
 
 outlet_df <- outlet_df %>%
-  # mutate(image = here::here("data", "attentionEcon", "images", paste(outlet, ".png", sep = "")))
-  mutate(image = paste0("file:///", here::here("data", "attentionEcon", "images", 
-                                               paste(outlet, ".png", sep = ""))))
+  # mutate(image = paste("http://matthewjiwa.com/assets/images/", outlet, ".png", sep = ""))
+  mutate(image = here::here("data", "attentionEcon", "images", paste(outlet, ".png", sep = "")))
+  # mutate(image = paste0("file:///", here::here("data", "attentionEcon", "images", 
+  #                                              paste(outlet, ".png", sep = ""))))
+  
 
 ggplot(data = summary_df, aes(x = year, y = mean_sentiment)) +
   geom_hline(aes(yintercept = 0), linetype = "dashed", colour = "grey70") +
@@ -81,70 +118,150 @@ ggplot(data = summary_df, aes(x = year, y = mean_sentiment)) +
   geom_point() +
   geom_ribbon(aes(x = year, ymin = mean_sentiment - se, 
                     ymax = mean_sentiment + se), alpha = .2) +
-  labs(x = "Year", y = "Valence", 
+  labs(x = "Year", y = "Mean Valence", 
        title = "Mean Valence of News Articles in 47 Popular News Media Outlets (2000-2019)") +
   blank_theme +
   theme(
     plot.title = element_text(size = 11, colour = "black"),
   )
 
-p <- ggplot(outlet_df, aes(x = reliability, y = mean_sentiment)) +
-  geom_hline(aes(yintercept=0), linetype = "dotted", colour = "gray70") +
-  geom_image(aes(image = image), size = 0.1) +
-  labs(x = "Reliability", y = "Mean Sentiment") +
-  blank_theme
+# p <- ggplot(outlet_df, aes(x = reliability, y = mean_sentiment)) +
+#   geom_hline(aes(yintercept=0), linetype = "dotted", colour = "gray70") +
+#   geom_image(aes(image = image), size = 0.1) +
+#   labs(x = "Reliability", y = "Mean Sentiment") +
+#   blank_theme
+# 
+# p
 
-p
-
-# Make interactive plot
-ip <- plot_ly(outlet_df, x = ~reliability, y = ~mean_sentiment, type = 'scatter', mode = 'markers',
-             marker = list(size = 15, color = 'rgba(0,0,0,0)'))  # Invisible markers
+# Function to calculate color based on bias
+bias_color_gradient <- function(bias) {
+  # Define the colors at the extremes and middle
+  colors <- c("blue", "black", "red")
+  # Create a color ramp based on these colors
+  color_func <- colorRampPalette(colors)
   
-ip <- layout(ip,images = list(
-    list(
-      # Add images
-      source = outlet_df$image,
-      xref = "x",
-      yref = "y",
-      x = outlet_df$reliability,
-      y = outlet_df$mean_sentiment,
-      sizex = 2,
-      sizey = 2,
-      sizing = "stretch",
-      opacity = 0.4,
-      layer = "above"
-    )
-  ))
+  # Scale bias to a 0-100 range for indexing into the color ramp
+  # Bias ranges from -25 to 25, so adjust and scale it to 1-100
+  index <- round((bias + 22) * 2, 0) + 1  # +1 because R is 1-indexed
+  
+  # Generate 101 colors (one for each point between -25 and +25, inclusive)
+  color_values <- color_func(101)
+  
+  # Return the appropriate color
+  color_values[index]
+}
 
-# Loop through each data point to add images
+
+# Calculate linear model of mean_sentiment vs reliability
+model <- lm(mean_sentiment ~ reliability, data = outlet_df)
+# Extract coefficients
+coeffs <- coef(model)
+# Generate predictions for a sequence covering the observed range of reliability
+reliability_range <- seq(min(outlet_df$reliability), max(outlet_df$reliability), length.out = 47)
+predicted_sentiment <- coeffs[1] + coeffs[2] * reliability_range
+
+# Initialize the list to store image configurations
+image_list <- list()
+
+# Populate the image list with configurations for each image
 for (i in seq_along(outlet_df$reliability)) {
-  ip <- add_annotations(
-    ip,
+  image_list[[i]] <- list(
+    source = base64enc::dataURI(file = outlet_df$image[i]),
     x = outlet_df$reliability[i],
     y = outlet_df$mean_sentiment[i],
-    xref = "x",
+    sizex = 2,  # Adjust based on the scale you desire
+    sizey = 2,  # Adjust based on the scale you desire
+    xref = "x", 
     yref = "y",
-    ax = 0,
-    ay = 0,
-    xanchor = "center",
-    yanchor = "middle",
-    text = "",
-    showarrow = FALSE,
-    imgsrc = outlet_df$image[i],
-    width = 50,  # Adjust width and height as necessary
-    height = 50
+    xanchor = "center",  # Center the image on the x coordinate
+    yanchor = "middle",  # Center the image on the y coordinate
+    opacity = 0.7  # Optional: Adjust opacity for visual preference
   )
 }
 
-ip <- layout(ip, title = 'Reliability vs. Mean Sentiment with Images',
+p <- ggplot(data = outlet_df, aes(x = reliability, y = mean_sentiment)) +
+  geom_hline(aes(yintercept = 0), colour = "black", size = .2) +
+  # geom_point(colour = NA, fill = NA) +
+  xlim(21, 46) +
+  ylim(-.575, .35) +
+  blank_theme +
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth=1),
+        panel.grid.major = element_line(colour = "grey90", linewidth = .5))
+
+ip <- ggplotly(p)
+
+# Create your initial plot
+ip <- ip %>% 
+  add_trace(data = outlet_df, x = ~reliability, y = ~mean_sentiment, type = 'scatter', mode = 'markers',
+              marker = list(size = 10, color = 'rgba(255,255,255,0)'),
+              text = ~paste(
+                "Outlet: ", outlet_str, "<br>",
+                "Reliability: ", round(reliability,2), "<br>",
+                "Valence: ", round(mean_sentiment,2), "<br>",
+                "<span style='color:", sapply(bias, bias_color_gradient), ";'>Bias: ", 
+                bias_str, "</span>"
+              ),
+              hoverinfo = 'text')  # Show custom text in tooltip
+
+## Add trendline
+ip <- ip %>%
+  add_trace(x = c(min(reliability_range), max(reliability_range)), 
+            y = c(min(predicted_sentiment), max(predicted_sentiment)), 
+            type = "scatter", mode = "lines",
+            line = list(color = 'grey', width = 1, dash = "dash"), 
+            hoverinfo = "none",  # Disables tooltips for this trace
+            showlegend = FALSE)
+
+# Add all images at once to the layout
+ip <- ip %>%
+  layout(
+    images = image_list,
+    margin = list(t = 50),  # Adjust margin if necessary
+    title = 'Reliability and Valence of News Outlets',
             xaxis = list(title = 'Reliability'),
-            yaxis = list(title = 'Mean Sentiment'))
+            yaxis = list(title = 'Mean Valence'),
+    xaxis = list(
+      zeroline= T, zerolinewidth=2, linecolor='black',
+      fixedrange = TRUE  # Fix zooming on the X-axis
+    ),
+    yaxis = list(
+      zeroline= T, zerolinewidth=2, linecolor='black',
+      fixedrange = TRUE  # Allows zooming on the Y-axis
+    ),
+    dragmode = FALSE,
+    hoverlabel = list(
+      bgcolor = "white",  # Background color of the tooltip
+      font = list(
+        family = "Arial, sans-serif",  # Font family of the tooltip text
+        size = 12  # Font size of the tooltip text
+        # color = "navy"  # Text color of the tooltip
+      ),
+      bordercolor = "black"  # Border color of the tooltip
+    )
+  ) %>% 
+  config(displayModeBar = FALSE)
 
-ip
+
+```
 
 
-knitr::include_graphics(here::here("assets/images/abcnews.png"))
-knitr::include_graphics("https://www.matthewjiwa.com/assets/images/abcnews.png")
+The worst offenders are strongly-partisan, low-reliability news outlets^[I'm using the reliability and bias scores from the August 2024 <a href="https://adfontesmedia.com/static-mbc/">Ad Fontes media bias scores</a>.]
+
+It's also worth nothing that the content analyzed here (both in the valence analyses of @Rozado2022 and the bias/reliability scores) is online written news only. While partisan outlets (e.g., *Fox News*, *MSNBC*) offer moderately biased news with generally factual reporting, they often serve as a gateway for their more heavily biased offerings. For example, while *FoxNews.com* receives a bias rating of "Skews right" and a reliability score in the mid 30s, popular opinion segments on the *Fox News Channel* (Sean Hannity, Laura Ingraham, Jesse Watters) all pick up bias scores in the "Hyper-partisan right" range and reliability scores low enough to be classified by Ad Fontes as "Propaganda".
+
+
+```{r plot_sentiment2, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
+
+# Display the plot
+htmltools::browsable(
+  htmltools::tagList(
+    htmltools::tags$div(
+      style = "display: flex; justify-content: center; align-items: center; height: auto !important; width: 500px; margin: auto; max-width: 100%",
+      ip
+    )
+  )
+)
+
 
 ```
 

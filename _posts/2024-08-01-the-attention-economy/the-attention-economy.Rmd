@@ -1,0 +1,748 @@
+---
+title: "The Attention Economy: How Incentive Structures Drive Division"
+description: |
+  Bad actors are often blamed for sowing ideological division. But what about the incentive structures that underlie our media landscape?
+date: 2024-10-01
+preview: attentionEcon.png
+bibliography: attentionEcon.bib
+draft: FALSE
+output:
+  distill::distill_article:
+    toc: true
+    self_contained: false
+    citations: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(plyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(viridis)
+library(plotly)
+library(htmltools)
+library(scales)
+library(ggimage)
+library(base64enc)
+library(scales)
+library(reshape2)
+library(MASS)
+library(viridis)
+
+blank_theme <- theme(
+  axis.text.y = element_text(size = 10, colour = "black"),
+  axis.text.x = element_text(size = 10, colour = "black"),
+  axis.title = element_text(size = 11, colour = "black"),
+  plot.title = element_text(size = 13, colour = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(),
+  panel.background = element_blank(),
+  axis.line = element_line(colour = "black"),
+  legend.text = element_text(size = 8, colour = "black"),
+  legend.title = element_text(size = 9, colour = "black"),
+  legend.margin=margin(t = 0, unit='cm'),
+  legend.position = "none",
+  panel.border = element_rect(colour = "black", fill=NA, linewidth=1)
+)
+
+```
+
+```{css, echo=FALSE}
+.center-text {
+    text-align: center;
+    font-size: 18px; /* Default size for headers */
+}
+.center-text small {
+    font-size: 17px; /* Slightly smaller size for subtexts */
+}
+.thin-line {
+    border: 0;
+    height: 2px;
+    background-color: gainsboro;
+    width: 50%; /* Adjust this value based on your text width */
+    margin: 0 auto; /* Centers the line */
+}
+
+```
+
+In the lead-up to the 2020 election, 87% of Democratic Party voters expected a Biden victory, while 84% of Republicans expected Donald Trump to win [@Coibion2020]. In fact, as many as 15% of Democrats and 23% of Republicans rated their candidate's chances of winning at 100%. While it's not wholly unusual for supporters of a particular candidate to overestimate their likelihood of success, this partisan division effectively amounts to two groups experiencing entirely different realities. These disparities make it easier for baseless conspiracies about election fraud to gain traction over the truth. This growing ideological rift among the American populace is now rightly seen as a catalyst for political violence, eroding trust in democratic institutions and threatening the very fabric of democratic governance.
+
+When an event like January 6th occurs, there's an immediate temptation to individualize the blame. We blame the rioters for their failure to distinguish basic facts from outrageous lies and we blame Donald Trump and his allies for spreading those lies. However, events like this are only made possible by the substantial epistemic divide in Americans' beliefs. While Trump may have armed the bomb and the rioters flipped the switch, it was the pervasive misinformation and deep-seated polarization that built the bomb itself.
+
+In tracing the causes of polarized beliefs, attention is often placed on the increasingly partisan coverage of mainstream news outlets [@Kim2022]. This raises a chicken-or-egg question: are news networks responding to consumer demand by adjusting their offerings to match the beliefs of their prospective audiences? Or, is the divide in the audience's beliefs being driven by the increasingly partisan coverage offered by news networks?
+
+To understand the possible reasons behind the shift towards more partisan coverage, we need to break down the media landscape and the incentive structures that led us to this point. As Charlie Munger put it: *"Show me the incentives, and I'll show you the outcome"*
+
+### The Attention Economy
+
+If everyone was after **land** in the 19th century and **oil** in the 20th, it seems that ~~Beanie Babies~~  ~~NFTs~~ **attention** is the new hottest commodity on the market.
+
+This shift towards capturing attention has brought with it a slew of new challenges. Where tangible resources like oil allow us to leverage our extensive knowledge of fluid dynamics and geology to maximize their extraction, the mechanisms underlying information demand are far more elusive. The complexity of these dynamics leave us without an optimized method to attract attention, making approximation and innovation key to winning eyeballs.
+
+Picture yourself as the CEO of a media conglomerate in the early 2000s. Your profits are dependent on the share of the market you hold, but that market share is constantly being siphoned off by competitors with similar offerings. The functional features that your network once prided itself on---being first on the scene or having exclusive coverage---begins to dry up as the internet democratizes the information space. You're left asking yourself:
+
+<center><span style="font-size: 18px;">*How can I shore up a dedicated audience that I can rely on to maintain my network's existence?*</span></center>
+<div style="height:20px;font-size:1px;">&nbsp;</div>
+
+### Method 1: Shift the emotional tone of content
+
+It's no industry secret that emotive content gets views. Emotion plays a central role in how we select which content to consume, and in turn, how that content is curated. In psychology, we think of emotions as occurring across two dimensions: **valence** (how positive or negative the emotion is) and **arousal** (how intense an emotion is). For example, excitement is an example of an emotion that is high in both valence and arousal, while a feeling of calm would be high in valence but low in arousal.
+
+In an analysis of online news headlines between 2000 and 2019, @Rozado2022 reported a gradual but sustained trend towards more negative emotional valence. While they didn't explicitly analyze trends in the emotional arousal of content, the frequency of headlines with a neutral emotional payload dropped from around 70% to below 50%, while those featuring anger and fear increased by 100% and 150%, respectively^[A plausible explanation for the change in mean valence could be the advent of more partisan outlets with strong, negative emotional content in the middle of 2000-2019 time period (e.g., *The Daily Wire*). However, the downward trend in mean valence is only slightly lessened when we exclude the 27 outlets that don't have data for the full 20-year period.].
+
+
+```{r plot_sentiment1, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
+
+load(here::here("data", "attentionEcon", "sentimentData_summary.Rdata"))
+load(here::here("data", "attentionEcon", "sentimentData_outlet.Rdata"))
+load(here::here("data", "attentionEcon", "sentimentData_all.Rdata"))
+
+ggplot(data = summary_df, aes(x = year, y = mean_sentiment)) +
+  geom_hline(aes(yintercept = 0), linetype = "dashed", colour = "grey70") +
+  geom_line() +
+  geom_point() +
+  geom_ribbon(aes(x = year, ymin = mean_sentiment - se, 
+                    ymax = mean_sentiment + se), alpha = .2) +
+  labs(x = "Year", y = "Mean Valence", 
+       title = "Mean Valence of News Articles in 47 Popular News Media Outlets (2000-2019)") +
+  blank_theme +
+  theme(
+    plot.title = element_text(size = 11, colour = "black"),
+  )
+
+
+```
+
+
+If we combine the sentiment analysis of @Rozado2022 with a metric of partisan bias (we'll use the scores from the August 2024 [v12.0] <a href="https://adfontesmedia.com/static-mbc/">Ad Fontes media bias report</a>), we find that it is more biased news outlets that tend to produce the most negatively-valenced content^[Note that all the content in these analyses is based on written (online) news media. This means that the scores for outlets with both written and broadcast content (e.g., Fox News, MSNBC, etc.) are based solely on their written content. This is relevant because the broadcast content for some of these outlets is far more focused on opinion pieces, which tend to have a considerably stronger partisan bias and lower reliability (e.g., primetime shows from the likes of Laura Ingraham, Sean Hannity, Jesse Watters, or Lawrence O'Donnell)].
+
+
+
+```{r plot_sentiment2, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 6, results = 'asis'}
+
+
+outlet_df <- outlet_df %>%
+  mutate(image = here::here("data", "attentionEcon", "images", paste(outlet, ".png", sep = "")))
+  
+# Function to calculate color based on bias
+bias_color_gradient <- function(bias) {
+  # Define the colors at the extremes and middle
+  colors <- c("blue", "black", "red")
+  # Create a color ramp based on these colors
+  color_func <- colorRampPalette(colors)
+  
+  # Scale bias to a 0-100 range for indexing into the color ramp
+  # Bias ranges from -25 to 25, so adjust and scale it to 1-100
+  index <- round((bias + 22) * 2, 0) + 1  # +1 because R is 1-indexed
+  
+  # Generate 101 colors (one for each point between -25 and +25, inclusive)
+  color_values <- color_func(101)
+  
+  # Return the appropriate color
+  color_values[index]
+}
+
+# Fit a quadratic model
+quadratic_model <- lm(mean_sentiment ~ bias + I(bias^2), data = outlet_df)
+# Extract coefficients
+coeffs <- coef(quadratic_model)
+# Generate predictions for a sequence covering the observed range of reliability
+bias_range <- seq(min(outlet_df$bias), max(outlet_df$bias), length.out = 47)
+# Calculate predicted sentiment including the quadratic term
+predicted_sentiment <- coeffs[1] + coeffs[2] * bias_range + coeffs[3] * bias_range^2
+
+# Initialize the list to store image configurations
+image_list <- list()
+
+# Populate the image list with configurations for each image
+for (i in seq_along(outlet_df$reliability)) {
+  image_list[[i]] <- list(
+    source = base64enc::dataURI(file = outlet_df$image[i]),
+    x = outlet_df$bias[i],
+    y = outlet_df$mean_sentiment[i],
+    sizex = 4,  # Adjust based on the scale you desire
+    sizey = 4,  # Adjust based on the scale you desire
+    xref = "x", 
+    yref = "y",
+    xanchor = "center",  # Center the image on the x coordinate
+    yanchor = "middle",  # Center the image on the y coordinate
+    opacity = 0.7  # Optional: Adjust opacity for visual preference
+  )
+}
+
+p <- ggplot(data = outlet_df, aes(x = bias, y = mean_sentiment)) +
+  geom_vline(aes(xintercept = 0), colour = "black", size = .2) +
+  geom_hline(aes(yintercept = 0), colour = "black", size = .2) +
+  # geom_point(colour = NA, fill = NA) +
+  xlim(-22.5, 20.5) +
+  ylim(-.585, .35) +
+  blank_theme +
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth=1),
+        panel.grid.major = element_line(colour = "grey90", linewidth = .5))
+
+ip <- ggplotly(p)
+
+# Create your initial plot
+ip <- ip %>% 
+  add_trace(data = outlet_df, x = ~bias, y = ~mean_sentiment, type = 'scatter', mode = 'markers',
+              marker = list(size = 10, color = 'rgba(255,255,255,0)'),
+              text = ~paste(
+                "Outlet: ", outlet_str, "<br>",
+                "Reliability: ", round(reliability,2), "<br>",
+                "Valence: ", round(mean_sentiment,2), "<br>",
+                "<span style='color:", sapply(bias, bias_color_gradient), ";'>Bias: ", 
+                bias_str, "</span>"
+              ),
+              hoverinfo = 'text')  # Show custom text in tooltip
+
+## Add trendline
+ip <- ip %>%
+  add_trace(
+    x = bias_range,  # Use the full bias range
+    y = predicted_sentiment,  # Use the full set of predicted sentiments
+    type = "scatter", 
+    mode = "lines",
+    line = list(color = 'grey', width = 2, dash = "dash"), 
+    hoverinfo = "none",  # Disables tooltips for this trace
+    showlegend = FALSE
+  )
+
+# Add all images at once to the layout
+ip <- ip %>%
+  layout(
+    images = image_list,
+    margin = list(t = 50),  # Adjust margin if necessary
+    title = 'Bias and Valence of News Outlets',
+            xaxis = list(title = 'Bias'),
+            yaxis = list(title = 'Mean Valence'),
+    xaxis = list(
+      zeroline= T, zerolinewidth=2, linecolor='black',
+      fixedrange = TRUE  # Fix zooming on the X-axis
+    ),
+    yaxis = list(
+      zeroline= T, zerolinewidth=2, linecolor='black',
+      fixedrange = TRUE  # Allows zooming on the Y-axis
+    ),
+    dragmode = FALSE,
+    hoverlabel = list(
+      bgcolor = "white",  # Background color of the tooltip
+      font = list(
+        family = "Arial, sans-serif",  # Font family of the tooltip text
+        size = 12  # Font size of the tooltip text
+        # color = "navy"  # Text color of the tooltip
+      ),
+      bordercolor = "black"  # Border color of the tooltip
+    )
+  ) %>% 
+  config(displayModeBar = FALSE)
+
+
+
+# Display the plot
+htmltools::browsable(
+  htmltools::tagList(
+    htmltools::tags$div(
+      style = "display: flex; justify-content: center; align-items: center; height: auto !important; width: 500px; margin: auto; max-width: 100%",
+      ip
+    )
+  )
+)
+
+
+```
+
+From these data, it seems that if you want to produce more emotive content, it might be necessary to adopt a more strongly partisan stance^[This analysis is both cross-sectional and correlational, so take it with a grain of salt.]. It's plausible to suggest, therefore, that the shift towards more biased content may simply be a side-effect of the pursuit of emotionally-driven eyeballs.
+
+
+### Method 2: Shift the partisan identity of content
+
+Similar to emotive content, it's a well-known fact of human information demand that we tend to favor information that is consistent with our existing beliefs or values (commonly termed *confirmation bias*). Picture someone whose conspiratorial anti-establishment beliefs are an important part of their identity. This person is more likely to seek out anti-vax information, for example, than someone who doesn't share those beliefs. This behaviour is commonly cast as a defense mechanism for protecting our chosen identity -- we avoid information that we think might challenge our beliefs because the dissonance between the two is unpleasant. However, this view of confirmation bias is reductive and is not consistent with our understanding of how we select information to sample and how we use that information to inform ourselves.
+
+To an extent, behavior consistent with confirmation bias is not biased at all, but a logical, Bayesian process of integrating one's priors into the evaluation of new evidence. To someone with a deep mistrust of institutions, anti-vax conspiracies are far more plausible than they are to the average person. Extend this to a less extreme example and we can understand that someone with right-leaning beliefs might choose to watch *Fox News* over a more balanced alternative simply because they believe it to be more accurate than a center-aligned network. All of this is to make the obvious point that **our beliefs and our decisions about where we choose to get information from are not independent**.
+
+The evolution of one's beliefs and one's choice of media content can be thought of as a spiral [@Slater2020]. By integrating our existing beliefs and attempting to avoid cognitive dissonance, we sample media that is consistent with our existing values and beliefs. The sampled media content in turn reinforces those pre-existing beliefs and values, resulting in deeper entrenchment and resilience to change. This produces a feedback loop, as the strengthened beliefs then influence media selection which then continues reinforcing the increasingly entrenched beliefs...and so on...
+
+So, how might you---early 2000s media mogul---leverage these dynamics to build a dedicated following for your network? Let's imagine that your news network currently operates as a center-right news outlet -- considered the most right-wing of the mainstream outlets. You might consider two main options: 
+
+<hr class="thin-line"> 
+<div style="height:10px;">&nbsp;</div>
+
+<div class="center-text"> <strong>Option 1: Converge</strong><br> <small>Move your network's coverage closer to the ideological center</small></div> 
+<div style="height:10px;font-size:1px;">&nbsp;</div>
+
+This option might allow you to expand your network of likely viewers by expanding your appeal to an audience with more center-aligned beliefs.
+
+<div style="height:10px;">&nbsp;</div>
+
+<div style="height:10px;font-size:1px;">&nbsp;</div>
+<div class="center-text"> <strong>Option 2: Diverge</strong><br> <small>Move your network's coverage <b>further away</b> from the ideological center.</small></div> 
+<div style="height:10px;font-size:1px;">&nbsp;</div>
+
+This option might increase the ideological distance between your existing audience and the other networks, allowing you to create and corner a less competitive share of the market. 
+
+<hr class="thin-line"> 
+<br>
+
+To get a sense of how these options might work, we can conduct a small-scale simulation. In our simulation, individual agents will repeatedly sample from five media outlets, obtaining some information and updating their beliefs and their trust in each of the five outlets accordingly. This simulation is adapted from the work of @Perfors2019 -- I'll leave more details in a footnote here^[In brief, each agent in the simulation is represented by their current belief state and their level of trust in each of the five available media outlets. In each iteration, the agents each choose one of the media outlets to tune in to. The more they trust an outlet (a function of how closely the outlet's views align with their own), the more likely the agent is to sample from it. The media outlet produces an information sample drawn from a normal distribution around the mean of the outlet's coverage. Using a a probabilistic acceptance rule (Metropolis-Hastings algorithm), the agent may accept the new information and update their beliefs, allowing for exploration of different belief states. The agent's trust in each outlet is then re-calculated using the likelihood of the recent samples they received from each source given their current belief-state.]. 
+
+To test how changing the partisan identity of your outlet's coverage might affect audience metrics, I simulated the choices of 1200 Bayesian, rational agents across 400 iterations. In the first and last 100 iterations, the media outlets did not change in the bias of their coverage. In the middle 200 iterations, Outlet E steadily shifted the partisan identity of its coverage towards/away from the others. Below are example simulations of 30 <span style='font-size:14pt; color:#32a852;'><b>agents</b></span> and 5 <span style='font-size:14pt; color:#5500ff;'><b>media outlets</b></span>. The axes here are fairly arbitrary---we would need more dimensions to capture real ideological positions---we're just demonstrating here that it's possible to simulate the basic dynamics.
+
+
+```{r plot_animation_converge, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 6, results = 'asis'}
+
+load(here::here("data", "attentionEcon", "simulations", "animation_results_converge.Rdata"))
+
+combined_df <- combined_df %>% 
+  mutate(size = ifelse(entity == "Agent", 1, 2))
+
+# Define specific colors for clarity
+agent_color <- "#32a852"
+source_color <- "#5500ff"
+
+agent_data <- combined_df %>% filter(entity == "Agent")
+source_data <- combined_df %>% filter(entity == "Source")
+
+fig_converge <- plot_ly(type = 'scatter', mode = 'markers') %>% 
+  animation_opts(frame = 40,
+                 easing = "elastic",
+                 redraw = FALSE)
+
+
+fig_converge <- fig_converge %>% 
+  add_trace(
+    x = agent_data$X1, 
+    y = agent_data$X2,
+    marker = list(
+      color = agent_color,
+      line = list(
+        width = 0
+      )
+    ),
+    frame = agent_data$iteration, 
+    text = agent_data$ID,
+    size = agent_data$size,
+    hoverinfo = "none",
+    type = 'scatter',
+    mode = 'markers',
+    showlegend = FALSE  # Optionally control legend per trace
+  )
+
+fig_converge <- fig_converge %>% 
+  add_trace(
+    x = source_data$X1, 
+    y = source_data$X2,
+    marker = list(
+      color = source_color,
+      line = list(
+        width = 0
+      )
+    ),
+    text = source_data$ID,  # Assuming IDs are numbers 1-5 you want to display
+    textposition = "middle center",  # Position text in the center of the markers
+    textfont = list(
+      family = "Arial, sans-serif",  # Font family
+      size = 11,  # Font size, adjust as necessary
+      color = "white"  # Font color, adjust for visibility
+    ),
+    mode = 'markers+text',  # Include both markers and text in the trace
+    frame = source_data$iteration,
+    size = source_data$size,
+    hoverinfo = "none",
+    type = 'scatter',
+    showlegend = FALSE  # Optionally control legend per trace
+  )
+
+line <- list(
+  type = "rect",
+  xref = "x",
+  yref = "paper",
+  opacity = .2,
+  line = list(width = 0)  # Set line width to 0
+)
+lines <- list()
+
+for (i in 1:100) {
+  # Increase red and green to 255 by the midpoint (i=50)
+  r <- round(255 * min(1, 2 * i / 100))  # Red increases to 255 by the midpoint and stays
+  g <- ifelse(i <= 50, 
+              round(255 * min(1, 2 * i / 100)), 
+              round(255 * (2 - 2 * i / 100)))  # Green increases to 255 by the midpoint
+
+  # Blue starts at 255 and decreases to 0 after the midpoint
+  if (i <= 50) {
+    b <- 255  # Blue stays at 255 until the midpoint
+  } else {
+    b <- round(255 * (2 - 2 * i / 100))  # Blue decreases to 0 after the midpoint
+  }
+  
+  line[["x0"]] <- -2.5 + (i - 1) * (5 / 100)  # Adjust starting x position
+  line[["x1"]] <- -2.5 + i * (5 / 100)  # Adjust ending x position
+  line[["y0"]] <- 0
+  line[["y1"]] <- 1
+  line[["fillcolor"]] = sprintf("rgb(%d, %d, %d)", r, g, b)
+  lines <- c(lines, list(line))
+  
+}
+
+fig_converge <- fig_converge %>% layout(
+  title = "Option 1: Converge",
+  shapes = lines,
+  dragmode = FALSE,
+  xaxis = list(
+      title = "Political Alignment",
+      range = c(-2.5,2.5)
+    ),
+    yaxis = list(
+      title = "Social Alignment",
+      range = c(-2,2)
+    )
+  ) %>% 
+  config(displayModeBar = FALSE) %>% 
+  animation_slider(
+    currentvalue = list(prefix = "Iteration: ",
+                        font = list(color = "black")),
+    tickwidth = 0,
+    label = "",
+    font = list(
+      color = "white"
+    )
+  )
+
+# Display the plot
+htmltools::browsable(
+  htmltools::tagList(
+    htmltools::tags$div(
+      style = "display: flex; justify-content: center; align-items: center; height: auto !important; width: 500px; margin: auto; max-width: 100%",
+      fig_converge
+    )
+  )
+)
+
+
+```
+
+```{r plot_animation_diverge, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 6, results = 'asis'}
+
+load(here::here("data", "attentionEcon", "simulations", "animation_results_diverge.Rdata"))
+
+combined_df <- combined_df %>% 
+  mutate(size = ifelse(entity == "Agent", 1, 2))
+
+agent_data <- combined_df %>% filter(entity == "Agent")
+source_data <- combined_df %>% filter(entity == "Source")
+
+fig_diverge <- plot_ly(type = 'scatter', mode = 'markers') %>% 
+  animation_opts(frame = 40,
+                 easing = "elastic",
+                 redraw = FALSE)
+
+
+fig_diverge <- fig_diverge %>% 
+  add_trace(
+    x = agent_data$X1, 
+    y = agent_data$X2,
+    marker = list(
+      color = agent_color,
+      line = list(
+        width = 0
+      )
+    ),
+    frame = agent_data$iteration, 
+    text = agent_data$ID,
+    size = agent_data$size,
+    hoverinfo = "none",
+    type = 'scatter',
+    mode = 'markers',
+    showlegend = FALSE  # Optionally control legend per trace
+  )
+
+fig_diverge <- fig_diverge %>% 
+  add_trace(
+    x = source_data$X1, 
+    y = source_data$X2,
+    marker = list(
+      color = source_color,
+      line = list(
+        width = 0
+      )
+    ),
+    text = source_data$ID,  # Assuming IDs are numbers 1-5 you want to display
+    textposition = "middle center",  # Position text in the center of the markers
+    textfont = list(
+      family = "Arial, sans-serif",  # Font family
+      size = 11,  # Font size, adjust as necessary
+      color = "white"  # Font color, adjust for visibility
+    ),
+    mode = 'markers+text',  # Include both markers and text in the trace
+    frame = source_data$iteration,
+    size = source_data$size,
+    hoverinfo = "none",
+    type = 'scatter',
+    showlegend = FALSE  # Optionally control legend per trace
+  )
+
+line <- list(
+  type = "rect",
+  xref = "x",
+  yref = "paper",
+  opacity = .2,
+  line = list(width = 0)  # Set line width to 0
+)
+lines <- list()
+
+for (i in 1:100) {
+  # Increase red and green to 255 by the midpoint (i=50)
+  r <- round(255 * min(1, 2 * i / 100))  # Red increases to 255 by the midpoint and stays
+  g <- ifelse(i <= 50, 
+              round(255 * min(1, 2 * i / 100)), 
+              round(255 * (2 - 2 * i / 100)))  # Green increases to 255 by the midpoint
+
+  # Blue starts at 255 and decreases to 0 after the midpoint
+  if (i <= 50) {
+    b <- 255  # Blue stays at 255 until the midpoint
+  } else {
+    b <- round(255 * (2 - 2 * i / 100))  # Blue decreases to 0 after the midpoint
+  }
+  
+  line[["x0"]] <- -2.5 + (i - 1) * (5 / 100)  # Adjust starting x position
+  line[["x1"]] <- -2.5 + i * (5 / 100)  # Adjust ending x position
+  line[["y0"]] <- 0
+  line[["y1"]] <- 1
+  line[["fillcolor"]] = sprintf("rgb(%d, %d, %d)", r, g, b)
+  lines <- c(lines, list(line))
+  
+}
+
+fig_diverge <- fig_diverge %>% layout(
+  title = "Option 2: Diverge",
+  shapes = lines,
+  dragmode = FALSE,
+  xaxis = list(
+      title = "Political Alignment",
+      range = c(-2.5,2.5)
+    ),
+    yaxis = list(
+      title = "Social Alignment",
+      range = c(-2,2)
+    )
+  ) %>% 
+  config(displayModeBar = FALSE) %>% 
+  animation_slider(
+    currentvalue = list(prefix = "Iteration: ",
+                        font = list(color = "black")),
+    tickwidth = 0,
+    label = "",
+    font = list(
+      color = "white"
+    )
+  )
+
+# Display the plot
+htmltools::browsable(
+  htmltools::tagList(
+    htmltools::tags$div(
+      style = "display: flex; justify-content: center; align-items: center; height: auto !important; width: 500px; margin: auto; max-width: 100%",
+      fig_diverge
+    )
+  )
+)
+
+
+```
+
+
+So, which option will give your outlet better long-term outcomes? Let's consider two important metrics: (1) What proportion of all views does your outlet receive, and (2) How many *dedicated* viewers does your outlet have?
+
+To test these, we'll focus on the final 100 iterations the simulations. I'm defining a dedicated viewer as any agent who samples from a single outlet on at least 80 of the last 100 iterations.
+
+
+```{r plot_sim_outcomes, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 6, results = 'asis'}
+
+load(here::here("data", "attentionEcon", "simulations", "sim_results_converge.Rdata"))
+
+all_sampleLog_late <- do.call(
+  cbind, 
+  lapply(allSampleLog_results, function(matrix) {
+    if(ncol(matrix) > 100) {
+      matrix[, (ncol(matrix) - 99):ncol(matrix)]  # Extracts the last 100 columns
+    } else {
+      matrix  # In case any matrix has less than 100 columns, adjust accordingly
+    }
+  })
+)
+sampleLog_late_df <- melt(as.data.frame(all_sampleLog_late), 
+                          variable.name = "ID", value.name = "Outlet")
+sample_tallies_late_converge <- sampleLog_late_df %>%
+  group_by(Outlet) %>%
+  summarise(Count = n() / (100*40*30), .groups = 'drop') %>%   # Count occurrences and drop grouping
+  mutate(Condition = "Converge")
+
+allRegularViewersConverge <- data.frame(
+  Outlet = seq(1:5),
+  regularViewerCount = colSums(allRegularViewers_df),
+  Condition = "Converge"
+)
+
+
+load(here::here("data", "attentionEcon", "simulations", "sim_results_diverge.Rdata"))
+
+all_sampleLog_late <- do.call(
+  cbind, 
+  lapply(allSampleLog_results, function(matrix) {
+    if(ncol(matrix) > 100) {
+      matrix[, (ncol(matrix) - 99):ncol(matrix)]  # Extracts the last 100 columns
+    } else {
+      matrix  # In case any matrix has less than 100 columns, adjust accordingly
+    }
+  })
+)
+sampleLog_late_df <- melt(as.data.frame(all_sampleLog_late), 
+                          variable.name = "ID", value.name = "Outlet")
+sample_tallies_late_diverge <- sampleLog_late_df %>%
+  group_by(Outlet) %>%
+  summarise(Count = n() / (100*40*30), .groups = 'drop') %>%   # Count occurrences and drop grouping
+  mutate(Condition = "Diverge")
+
+allRegularViewersDiverge <- data.frame(
+  Outlet = seq(1:5),
+  regularViewerCount = colSums(allRegularViewers_df),
+  Condition = "Diverge"
+)
+
+sample_tallies_late_all <- rbind(sample_tallies_late_diverge, sample_tallies_late_converge)
+regular_viewers_all <- rbind(allRegularViewersDiverge, allRegularViewersConverge)
+
+
+late_samples_plot <- ggplot(data = sample_tallies_late_all) +
+  geom_bar(aes(x = LETTERS[Outlet], y = Count, fill = Condition), stat = "identity",
+           position = "dodge", colour = "black", size = 1) + 
+  labs(
+    title = "Proportion of Views",
+    x = "Outlet",
+    y = "Proportion"
+  ) +
+  blank_theme +
+  theme(legend.position = "bottom",
+        axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 12, colour = "black")
+        )
+
+regular_viewers_plot <- ggplot(data = regular_viewers_all) +
+  geom_bar(aes(x = LETTERS[Outlet], y = regularViewerCount, fill = Condition), stat = "identity",
+           position = "dodge", colour = "black", size = 1) + 
+  labs(
+    title = "Number of Dedicated Viewers",
+    x = "Outlet",
+    y = "Count"
+  ) +
+  blank_theme +
+  theme(legend.position = "bottom",
+        axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 12, colour = "black")
+        )
+
+
+grid.arrange(late_samples_plot, regular_viewers_plot, ncol=2)
+
+```
+
+
+Overall, it looks like **diverging away from the ideological center** produces the best results for Outlet E. Specifically, while diverging didn't increase the total proportion of views Outlet E received, it did increase its number of regular, dedicated viewers by 24% relative to the converge option.
+
+
+### Outlining and fixing the problems
+
+In this article, I deliberately chose not to address certain incentives that could motivate media outlets to propagate fringe or extremist ideologies. Specifically, I overlooked the potential for these outlets to divert attention from class disparities by focusing on divisions related to race, gender, or sexuality---a strategy that could disproportionately benefit the wealthy owners and financiers of these media entities. Despite taking this charitable approach, we still found that an attention-based economy alone contains potential incentives that promote divisive ideological shifts. Specifically, we found that, in pursuit of a dedicated audience, steadily shifting towards the production of content that is emotive and ideologically extreme could be an effective strategy.
+
+Ultimately, there is no panacea to address the wide-ranging impact our attention-based economy has had on media divisions. A collective approach that combines regulatory oversight, education, ethical journalism, and technological refinement offers the best chance for reducing media-driven ideological polarization. Only through sustained efforts across these domains can we hope to rebuild a media landscape that fosters informed dialogue and promotes societal unity rather than division.
+
+<!-- One of the few ways in which spreading misinformation is directly punished is through litigious means. Recent examples include the Dominion vs. Fox News lawsuit and the Sandy Hook parents vs. Alex Jones lawsuit -- both of which were successful in handing out fines substantial enough to act as significant deterrents. However, litigation is a time-consuming process with significant financial barriers to entry that make it impracticable for many would-be victims. It is a reactive option that only applies to the most egregious examples of journalistic malpractice. Proactive regulatory measures may be necessary to ensure that the landscape of media coverage shifts towards one that values truth and civic responsibility over division and sensationalism. -->
+
+
+<!-- Delicate balance between protecting free speech/freedom of the press and punishing misinfo -->
+
+
+
+
+<!-- Incentives for ethical journalism (independent accreditation body for accurate reporting) MCA? -->
+<!-- However, top-down approaches like this are ripe for exploitation in the wrong hands. They are likely to garner  -->
+
+<!-- Litigation (e.g., Dominion, Sandy Hook) -->
+<!-- - Only available to those with money -->
+
+
+```{r plot_sim_outcomes2, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 8, results = 'asis'}
+
+# Heatmaps of final positions in each condition
+load(here::here("data", "attentionEcon", "simulations", "sim_results_diverge.Rdata"))
+
+allFinalAgents_diverge <- data.frame(do.call(rbind, allFinalAgent_results))
+# First, we calculate the density of points
+xlim_vals <- c(-2.5, 2.5)  # X1 domain constraints
+ylim_vals <- c(-.3, .3)      # X2 range constraints
+# Adjust 'n' for grid resolution
+dens <- kde2d(allFinalAgents_diverge$X1, allFinalAgents_diverge$X2, n = 100, 
+              lims = c(xlim_vals, ylim_vals))  
+# Convert the output to a data frame for ggplot
+dens_df <- expand.grid(X1 = dens$x, X2 = dens$y)
+dens_df$z <- as.vector(dens$z)
+
+diverge_heatmap <- ggplot(dens_df, aes(x = X1, y = X2, z = z)) +
+  geom_contour_filled(aes(fill = stat(level))) +
+  labs(title = "Ideological Positions After Divergence",
+       x = "Political Alignment",
+       y = "Social Alignment") +
+  scale_fill_viridis_d() +
+  xlim(xlim_vals) +  # Constrain the plot to the same x-range as the density calculation
+  ylim(ylim_vals) +  # Constrain the plot to the same y-range as the density calculation
+  blank_theme +
+  theme(axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 13, colour = "black")
+        )
+
+
+
+# Heatmaps of final positions in each condition
+load(here::here("data", "attentionEcon", "simulations", "sim_results_converge.Rdata"))
+
+allFinalAgents_converge <- data.frame(do.call(rbind, allFinalAgent_results))
+# First, we calculate the density of points
+xlim_vals <- c(-2.5, 2.5)  # X1 domain constraints
+ylim_vals <- c(-.3, .3)      # X2 range constraints
+# Adjust 'n' for grid resolution
+dens <- kde2d(allFinalAgents_converge$X1, allFinalAgents_converge$X2, n = 100, 
+              lims = c(xlim_vals, ylim_vals))  
+# Convert the output to a data frame for ggplot
+dens_df <- expand.grid(X1 = dens$x, X2 = dens$y)
+dens_df$z <- as.vector(dens$z)
+
+converge_heatmap <- ggplot(dens_df, aes(x = X1, y = X2, z = z)) +
+  geom_contour_filled(aes(fill = stat(level))) +
+  labs(title = "Ideological Positions After Convergence",
+       x = "Political Alignment",
+       y = "Social Alignment") +
+  scale_fill_viridis_d() +
+  xlim(xlim_vals) +  # Constrain the plot to the same x-range as the density calculation
+  ylim(ylim_vals) +  # Constrain the plot to the same y-range as the density calculation
+  blank_theme +
+  theme(axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 13, colour = "black")
+        )
+
+# grid.arrange(converge_heatmap, diverge_heatmap, ncol=2)
+
+```
+
+
