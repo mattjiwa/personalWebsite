@@ -83,7 +83,7 @@ If everyone was after **land** in the 19th century and **oil** in the 20th, it s
 
 This shift towards capturing attention has brought with it a slew of new challenges. Where tangible resources like oil allow us to leverage our extensive knowledge of fluid dynamics and geology to maximize their extraction, the mechanisms underlying information demand are far more elusive. The complexity of these dynamics leave us without an optimized method to attract attention, making approximation and innovation key to winning eyeballs.
 
-Picture yourself as the CEO of a media conglomerate in the early 2000s. Your profits are dependent on the share of the market you hold, but that market share is constantly being siphoned off by competitors with similar offerings. The functional features that your network once prided itself on---being first on the scene or having exclusive coverage---begins to dry up as the internet democratizes the information space. You're left asking yourself:
+Picture yourself as the CEO of a media conglomerate in the early 2000s. Your profits are dependent on the share of the market you hold, but that market share is constantly being siphoned off by competitors with similar offerings. The functional features that your network once prided itself on---being first on the scene or having exclusive coverage---begin to dry up as the internet democratizes the information space. You're left asking yourself:
 
 <center><span style="font-size: 18px;">*How can I shore up a dedicated audience that I can rely on to maintain my network's existence?*</span></center>
 <div style="height:20px;font-size:1px;">&nbsp;</div>
@@ -110,9 +110,11 @@ ggplot(data = summary_df, aes(x = year, y = mean_sentiment)) +
   labs(x = "Year", y = "Mean Valence", 
        title = "Mean Valence of News Articles in 47 Popular News Media Outlets (2000-2019)") +
   blank_theme +
-  theme(
-    plot.title = element_text(size = 11, colour = "black"),
-  )
+  theme(axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 11, colour = "black")
+        )
 
 
 ```
@@ -217,7 +219,7 @@ ip <- ip %>%
     images = image_list,
     margin = list(t = 50),  # Adjust margin if necessary
     title = 'Bias and Valence of News Outlets',
-            xaxis = list(title = 'Bias'),
+            xaxis = list(title = 'Partisan Bias'),
             yaxis = list(title = 'Mean Valence'),
     xaxis = list(
       zeroline= T, zerolinewidth=2, linecolor='black',
@@ -630,7 +632,9 @@ late_samples_plot <- ggplot(data = sample_tallies_late_all) +
         axis.text.y = element_text(size = 12, colour = "black"),
         axis.text.x = element_text(size = 12, colour = "black"),
         axis.title = element_text(size = 14, colour = "black"),
-        plot.title = element_text(size = 12, colour = "black")
+        plot.title = element_text(size = 12, colour = "black"),
+        legend.title = element_text(size = 10, colour = "black"),
+        legend.text = element_text(size = 9, colour = "black")
         )
 
 regular_viewers_plot <- ggplot(data = regular_viewers_all) +
@@ -646,7 +650,9 @@ regular_viewers_plot <- ggplot(data = regular_viewers_all) +
         axis.text.y = element_text(size = 12, colour = "black"),
         axis.text.x = element_text(size = 12, colour = "black"),
         axis.title = element_text(size = 14, colour = "black"),
-        plot.title = element_text(size = 12, colour = "black")
+        plot.title = element_text(size = 12, colour = "black"),
+        legend.title = element_text(size = 10, colour = "black"),
+        legend.text = element_text(size = 9, colour = "black")
         )
 
 
