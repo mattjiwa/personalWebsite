@@ -559,7 +559,7 @@ htmltools::browsable(
 
 So, which option will give your outlet better long-term outcomes? Let's consider two important metrics: (1) What proportion of all views does your outlet receive, and (2) How many *dedicated* viewers does your outlet have?
 
-To test these, we'll focus on the final 100 iterations the simulations. I'm defining a dedicated viewer as any agent who samples from a single outlet on at least 80 of the last 100 iterations.
+To test these, we'll focus on the final 100 iterations of the simulations. I'm defining a dedicated viewer as any agent who samples from a single outlet on at least 80 of the last 100 iterations.
 
 
 ```{r plot_sim_outcomes, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 6, results = 'asis'}
