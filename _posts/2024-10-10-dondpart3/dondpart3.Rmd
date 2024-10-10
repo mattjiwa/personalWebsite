@@ -1,0 +1,16 @@
+---
+title: "Deal or No Deal | Part 3: Becoming the Banker"
+description: |
+  Is Deal or No Deal's Banker giving out more money than they need to?
+date: 2024-09-01
+draft: TRUE
+preview: DoND_buzzer.png
+bibliography: DoND_ref.bib
+output:
+  distill::distill_article:
+    toc: true
+    self_contained: false
+    citations: false
+---
+
+
