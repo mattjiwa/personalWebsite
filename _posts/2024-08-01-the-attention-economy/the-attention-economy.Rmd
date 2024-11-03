@@ -2,7 +2,7 @@
 title: "The Attention Economy: How Incentive Structures Drive Division"
 description: |
   Bad actors are often blamed for sowing ideological division. But what about the incentive structures that underlie our media landscape?
-date: 2024-10-01
+date: 2024-11-01
 preview: attentionEcon.png
 bibliography: attentionEcon.bib
 draft: FALSE

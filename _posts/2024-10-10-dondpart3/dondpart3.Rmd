@@ -2,9 +2,9 @@
 title: "Deal or No Deal | Part 3: Becoming the Banker"
 description: |
   Is Deal or No Deal's Banker giving out more money than they need to?
-date: 2024-09-01
-draft: TRUE
-preview: DoND_buzzer.png
+date: 2024-10-01
+draft: FALSE
+preview: theBanker.png
 bibliography: DoND_ref.bib
 output:
   distill::distill_article:
@@ -12,5 +12,430 @@ output:
     self_contained: false
     citations: false
 ---
+
+```{css, echo=FALSE}
+img {
+  max-width:100%;
+  height: auto;
+}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(viridis)
+library(plotly)
+library(htmltools)
+library(scales)
+library(RColorBrewer)
+
+# Load
+source(here::here("data", "DOND", "preProcess.R"))
+allData <- allData %>% 
+  filter(!country %in% c("EX"))
+
+blank_theme <- theme(
+  axis.text.y = element_text(size = 10, colour = "black"),
+  axis.text.x = element_text(size = 10, colour = "black"),
+  axis.title = element_text(size = 11, colour = "black"),
+  plot.title = element_text(size = 13, colour = "black"),
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank(),
+  panel.background = element_blank(),
+  axis.line = element_line(colour = "black"),
+  legend.text = element_text(size = 8, colour = "black"),
+  legend.title = element_text(size = 9, colour = "black"),
+  legend.margin=margin(t = 0, unit='cm'),
+  legend.position = "none",
+  panel.border = element_rect(colour = "black", fill=NA, linewidth=1)
+)
+
+```
+
+This is the final installment in a series of blog posts exploring the mechanics of TV game show *Deal or No Deal*. In [part 1](https://matthewjiwa.com/posts/2024-08-01-dondpart1/), we examined how The Banker determines how much to offer, followed by [part 2](https://matthewjiwa.com/posts/2024-08-03-dondpart2/), where we explored how contestants evaluate whether to accept or reject these offers.
+
+In this third and final chapter, we'll be seeing whether The Banker can leverage what we've learned to minimize the payouts of the game.
+
+### Simulating contestants
+
+Before we can design our own algorithm for producing bank offers, we'll first need to replicate the performance of The Banker. To achieve this, I'll be using the parameters we estimated for both The Banker and the contestants to simulate a new batch of contestants -- you can read more about those parameters in the previous two parts.
+
+I simulated 1000 new contestants using this method. To verify that our simulation is roughly equivalent to the real games, I took 1000 bootstrap samples of 145 contestants (the sample size of the original dataset) to find the expected mean winnings of the contestants. Below, I've plotted the 95% highest density interval, with lines showing the <span style='font-size:14pt; color:#758BFD;'><b>median</b></span> of the simulated samples and the <span style='font-size:14pt; color:#b00c00;'><b>observed mean</b></span> of our original dataset [@Post2008]. It looks like the true mean was in our plausible range (albeit at the lower end), which is a good indicator that our simulation is approximating the contestants' performance.
+
+```{r plot_valueAccept, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 3, fig.width = 4, results = 'asis'}
+
+library(ggridges)
+library(HDInterval)
+library(ggtext)
+
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit1.Rdata"))
+
+plotData <- data.frame(value = simData$bootstrap_means)
+median_value <- median(plotData$value)
+
+sample_average <- mean(allData$offer_N[allData$deal==1])
+
+ggplot(plotData, aes(x = value, y = 0, fill = stat(quantile))) + 
+  ggridges::geom_density_ridges_gradient(quantile_lines = TRUE, alpha = .7,
+                                         quantile_fun = HDInterval::hdi, vline_linetype = 2) +
+  scale_fill_manual(values = c("transparent", "#fcba03", "transparent"), guide = "none") +
+  geom_vline(aes(xintercept = median_value), linetype = "dashed", 
+             color = "#758BFD", size = 0.5) +
+  geom_vline(aes(xintercept = sample_average), 
+             color = "#b00c00", size = 0.5) +
+  scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "k")) +
+  labs(x = "Average Accepted Offer",
+       y = "Density",
+       title = "Simulated Winnings for N = 145") +
+  blank_theme +
+  theme(strip.text = element_text(size = 13, face = "bold"),
+    axis.text.y = element_blank(), #element_text(size = 11, colour = "black"),
+    axis.ticks.y = element_blank(),
+    axis.text.x = element_text(size = 11, colour = "black"),
+    axis.title = element_text(size = 12, colour = "black"),
+    plot.title = element_text(size = 12, colour = "black"),
+    legend.position = "none",
+    panel.grid.major = element_line(colour = "grey90", linewidth = .5))
+
+
+```
+
+For a secondary check, I also plotted the number of the 1000 simulated contestants that accepted The Banker's offer each round. Similar to our dataset, acceptance rates are low in the early rounds, but peak around round 6 before steadily declining:
+
+
+```{r plot_roundAccept, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 4, results = 'asis'}
+
+plotData <- data.frame(
+  ID = 1:length(simData$acceptedRound),
+  acceptedRound = factor(simData$acceptedRound, levels = 1:10)
+) %>% 
+  dplyr::group_by(acceptedRound) %>%
+  dplyr::summarise(count = n(), .groups = 'drop') %>% 
+  complete(acceptedRound = factor(1:10), fill = list(count = 0))  # Use factor with all levels
+
+
+# Create the plot
+ggplot(plotData, aes(x = acceptedRound, y = count, fill = acceptedRound)) +
+  geom_col(show.legend = FALSE, colour = "black") +
+  scale_fill_manual(values = c(rep("steelblue3", 9), "#36648B")) +  # 9 rounds in blue, round 10 in red
+  labs(
+    x = "Round Number",
+    y = "Count",
+    title = "Number of Offers Accepted by Round"
+  ) +
+  blank_theme +
+  theme(legend.position = "right",
+        axis.text.y = element_text(size = 12, colour = "black"),
+        axis.text.x = element_text(size = 12, colour = "black"),
+        axis.title = element_text(size = 14, colour = "black"),
+        plot.title = element_text(size = 14, colour = "black"),
+        panel.grid.major = element_line(
+          colour = "grey90",
+          linewidth = .5
+        ))
+
+
+```
+
+
+### Becoming the Banker
+
+So, we have a benchmark to aim for---our next goal is to design a Banker that will outperform the current one, paying out less by being more strategic in the offers it makes. First, let's set out some ground-rules:
+
+1) **The distribution of accepted offers in each round should stay roughly the same.** Our banker still has to produce broadcastable games -- if all of the round 2 offers are accepted, that won't make for very interesting TV.
+
+2) **The Banker still has to be broadly predictable.** The modelling approach we're using relies on the contestants to approximate the offers they will receive in the next round. We don't want to improve performance by generating a mismatch between the contestants' expectations and the offers---that wouldn't be a realistic long-term strategy. Our banker will follow the same rough trajectory as the original, increasing the proportion of the Expected Value it offers each round.
+
+
+### Exploiting subjective utility
+
+Let's start with something simple -- **contestants are willing to accept well below the Expected Value of the remaining cases.** Despite this, The Banker starts out by offering a small percentage of the Expected Value, but quickly increases to approach the full Expected Value in the final few rounds. Instead, we could consider a banker that approaches a different limit---one a bit below the full expected value.
+
+To put it formally, we'll test how changing $\gamma$ in the equation below affects behavior. Here, $\gamma$ effectively dictates the *maximum proportion of the Expected Value The Banker will offer*. In the standard version of the model, $\gamma = 1$:
+
+\begin{equation}
+\tag{1}
+b_r = b_{r-1} + (\gamma - b_{r-1})\cdot\rho^{9-(r-1)}
+\end{equation}
+
+It's important we bear in mind that our model assumes the contestant is *myopic*: when deciding whether to continue playing, they only consider the expected offer from the next round. However, if we put a cap on those offers, we might be inadvertently exploiting this myopia and encouraging our simulated contestants to accept low offers by reducing the expected next-round offer. To ensure this is not the case, I allowed the contestant to consider not only the next round, but also the final round (the contents of their own case) when deciding whether to continue (i.e., we compute the subjective value of the expected next-round offer AND the subjective value of the possible contents of the final case. The *No Deal* value is the maximum of the two).
+
+So, how does altering $\gamma$ affect the results? Below I've plotted the simulated winnings of 1000 bootstrap samples of 145 contestants each for <span style='font-size:14pt; color:#fcba03;'>$\gamma = 1$</span> against those produced from different levels of $\gamma$. I've annotated the median average winnings for each condition, which can be compared to the $\gamma = 1$ median of $97,247:
+
+
+```{r plot_gamma_winnings, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 4, results = 'asis'}
+
+# Load all data sets
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit6.Rdata"))
+gamma6_data <- data.frame(gamma = 0.6, value = simData$bootstrap_means, type = "condition")
+
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit7.Rdata"))
+gamma7_data <- data.frame(gamma = 0.7, value = simData$bootstrap_means, type = "condition")
+
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit8.Rdata"))
+gamma8_data <- data.frame(gamma = 0.8, value = simData$bootstrap_means, type = "condition")
+
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit9.Rdata"))
+gamma9_data <- data.frame(gamma = 0.9, value = simData$bootstrap_means, type = "condition")
+
+load(file = here::here("data", "DOND", "simulations", "sim_propLimit1.Rdata"))
+reference_data <- data.frame(gamma = 1, value = simData$bootstrap_means, type = "reference")
+
+# Combine data with reference for each gamma
+plotData <- bind_rows(
+  gamma6_data,
+  gamma7_data,
+  gamma8_data,
+  gamma9_data,
+  mutate(reference_data, gamma = 0.6),
+  mutate(reference_data, gamma = 0.7),
+  mutate(reference_data, gamma = 0.8),
+  mutate(reference_data, gamma = 0.9)
+) %>% 
+  mutate(facet = paste0("gamma == ", gamma))
+
+# Calculate medians for each condition
+medians <- plotData %>%
+  filter(type == "condition") %>% 
+  dplyr::group_by(gamma) %>%
+  dplyr::summarize(median_value = round(median(value)), .groups = 'drop') %>% 
+  mutate(facet = paste0("gamma == ", gamma))
+
+
+refData <- plotData %>% 
+  filter(type == "reference")
+
+plotData <- plotData %>% 
+  filter(type == "condition")
+
+ggplot(plotData, aes(x = value)) + 
+  geom_density(data = refData, alpha = 0.7, fill = "#fcba03") +
+  geom_density(alpha = 0.7, aes(fill = facet)) +
+  geom_text(data = medians, aes(x = 100000, y = 5.75e-5, color = facet,
+                                label = paste0("Median:$", median_value)), 
+            vjust = -0.5, hjust = 0.5, size = 3.5) +
+  scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "k")) +
+  
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_manual(values = brewer.pal(8, "Set1")) + # Matching text color to bar fill color
+  facet_wrap(~ facet, nrow = 2, ncol = 2, scales = "fixed",
+             labeller = label_parsed) +
+  labs(x = "Average Accepted Offer",
+       y = "",
+       title = "Simulated Winnings Across \u03b3 Values") +
+  blank_theme +
+  theme(strip.text = element_text(size = 13, face = "bold"),
+        # axis.text.y = element_blank(),
+        # axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 11, colour = "black"),
+        plot.title = element_text(size = 12, colour = "black"),
+        legend.position = "none")
+
+
+```
+
+So, it seems that, if we reduce $\gamma$, we reduce contestants' winnings quite substantially---as much as 33% when we reduce $\gamma$ down to 0.7.
+
+We still need to make sure that we're not breaking our rules, though -- these games have to produce broadcastable TV. Let's take a look at the distribution of rounds in which these simulated games ended, again comparing to the standard <span style='font-size:14pt; color:#fcba03;'>$\gamma = 1$</span> condition. I've annotated the average length of the games in each condition, which can be compared to the $\gamma = 1$ condition average of 6.03...
+
+
+```{r plot_gamma_round, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 4, fig.width = 4, results = 'asis'}
+
+# Load and prepare data from multiple simulations
+gamma_values <- c(1, 0.9, 0.8, 0.7, 0.6)
+file_names <- c("sim_propLimit1.Rdata", "sim_propLimit9.Rdata", "sim_propLimit8.Rdata", 
+                "sim_propLimit7.Rdata", "sim_propLimit6.Rdata")
+
+plotData <- lapply(seq_along(gamma_values), function(i) {
+  load(here::here("data", "DOND", "simulations", file_names[i]))
+  data.frame(
+    ID = 1:length(simData$acceptedRound),
+    gamma = as.character(gamma_values[i]),
+    acceptedRound = factor(simData$acceptedRound, levels = 2:10)
+  )
+}) %>% bind_rows()
+
+# Calculate medians for each condition
+means <- plotData %>%
+  filter(gamma != "1") %>% 
+  dplyr::group_by(gamma) %>%
+  dplyr::summarize(mean_value = round(mean(as.numeric(acceptedRound)+1),2), .groups = 'drop') %>% 
+  mutate(facet = paste0("gamma == ", gamma))
+
+# Group and summarize data
+plotData <- plotData %>% 
+  group_by(acceptedRound, gamma) %>% 
+  summarise(count = n(), .groups = 'drop')
+
+# Create a reference for gamma=1
+reference_data <- plotData %>% 
+  filter(gamma == "1") %>% 
+  rename(reference_count = count) %>%
+  select(-gamma)
+
+# Join reference data to all data
+plotData <- plotData %>%
+  left_join(reference_data, by = "acceptedRound") %>%
+  mutate(reference_count = ifelse(is.na(reference_count), 0, reference_count))
+
+# Remove gamma=1 so it does not get its own facet
+plotData <- plotData %>% 
+  filter(gamma != "1") %>% 
+  mutate(facet = paste0("gamma == ", gamma))
+
+## Plot
+ggplot(plotData, aes(x = acceptedRound, y = count, fill = gamma)) +
+  geom_col(aes(y = reference_count), position = position_dodge(width = 0.9), 
+           fill = "#fcba03", alpha = .7, color = "black") +
+  geom_col(position = position_dodge(width = 0.9), show.legend = TRUE, alpha = .7) +
+  ylim(0,240) +
+  geom_text(data = means, aes(x = 5, y = 210, color = gamma,
+                                label = paste0("Mean length: ", mean_value, " rounds")), 
+            vjust = -0.5, hjust = 0.5, size = 3.25) +
+  facet_wrap(~ facet, nrow = 2, ncol = 2, scales = "fixed",
+             labeller = label_parsed) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_manual(values = brewer.pal(8, "Set1")) + # Matching text color to bar fill color
+  labs(
+    x = "Round Number",
+    y = "Count",
+    title = "Number of Offers Accepted by Round"
+  ) +
+  blank_theme +
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    plot.title = element_text(size = 12)
+  )
+
+
+
+
+```
+
+From these plots we can see that the general pattern of rejecting early offers and accepting those in the middle rounds replicates through most of our variations. When we bring $\gamma$ down to 0.6, we notice a red flag starting to emerge: many contestants show a preference for holding out to the final round, where they receive the full value of the last remaining case.
+
+Given these results, it seems as though lowering $\gamma$ down as far as 0.7 is *potentially* feasible, reducing winnings by one third while only shortening the average game by 0.31 rounds. For the rest of the analyses, we'll stick with a slightly more conservative $\gamma$ of 0.8.
+
+
+### Individualizing offers
+
+As we learned in the previous posts, two contestants facing the same decision may evaluate it differently due to the way they calculate the reference point against which they compare potential outcomes.
+
+In the early rounds, we can leverage these differences by giving better offers to the contestants with the biggest gap between their *Deal!* Value and the Expected Value of the remaining cases.
+
+Specifically, rather than varying $\rho$ randomly for each of the 1000 simulated contestants, on each round, we:
+
+1) Calculated the expected Reference Point by assuming the median parameter values, then used that to calculated the expected *Deal!* Value (i.e., the monetary value at which we expect the contestant to have a 50/50 preference for accepting/rejecting).
+
+2) Calculated z-scored residuals when regressing the Expected Value on the expected *Deal!* Value.
+
+3) Transformed those z-scores into adjustment values by scaling them down, then exponentiating the result. The adjustment values were scaled in a linearly decreasing fashion, starting from .05 and finishing at 0.
+
+4) Multiplied the $\rho$ of each contestant by the resultant adjustment value.
+
+Using z-scores allows us to keep the mean $\rho$ the same---we just employ a more targeted approach to making our offers^[For a functional algorithmic Banker, we wouldn't be able to rely on z-scores, as we wouldn't be running 1000 games simultaneously in the real gameshow. However, we could estimate the intercept and slope of the regression alongside the variance of the residuals at each round provided we simulated enough contestants or simulated all possible outcomes.]. Put simply, we give better early-round offers to contestants our model suggests have a larger difference between the true Expected Value of their remaining cases and their subjective minimum acceptable offer.
+
+We can compare the performance of this <span style='font-size:14pt; color:#1f461e;'>updated Banker</span> to that of the <span style='font-size:14pt; color:#4DAF4A;'>regular Banker</span>, both using a $\gamma$ value of 0.8:
+
+
+```{r plot_history, echo=FALSE, warning = FALSE, message=FALSE, fig.align = 'center', fig.height = 2, fig.width = 5, results = 'asis'}
+
+load(file = here::here("data", "DOND", "simulations", "sim_new_results.Rdata"))
+
+newData <- data.frame(
+    ID = 1:length(simData$acceptedRound),
+    gamma = "0.8",
+    acceptedRound = factor(simData$acceptedRound, levels = 2:10)
+    )
+
+# Group and summarize data
+newData <- newData %>% 
+  group_by(acceptedRound, gamma) %>% 
+  summarise(count = n(), .groups = 'drop') %>% 
+  mutate(reference_count = plotData$count[plotData$gamma == "0.8"])
+
+newMean <- round(mean(simData$acceptedRound), 2)
+
+## Plot
+newRoundPlot <- ggplot() +
+  geom_col(data = newData, aes(x = acceptedRound, y = reference_count), 
+           position = position_dodge(width = 0.9), 
+           fill = brewer.pal(8, "Set1")[3], alpha = .7, color = "black") +
+  geom_col(data = newData, aes(x = acceptedRound, y = count), position = position_dodge(width = 0.9), 
+           show.legend = TRUE, alpha = .7, fill = "#1f461e") +
+  ylim(0,240) +
+  geom_text(aes(x = 5, y = 210, label = paste0("Mean length: ", newMean, " rounds")), 
+            vjust = -0.5, hjust = 0.5, size = 3.25, colour = "#1f461e") +
+  labs(
+    x = "Round Number",
+    y = "Count"
+  ) +
+  blank_theme +
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    plot.title = element_text(size = 12)
+  )
+
+
+newValData <- rbind(gamma8_data %>% 
+                      mutate(value = simData$bootstrap_means),
+                    gamma8_data %>% 
+                      mutate(type = "reference"))
+
+
+newRefData <- newValData %>% 
+  filter(type == "reference")
+
+newPlotData <- newValData %>% 
+  filter(type == "condition")
+
+new_median <- round(median(newPlotData$value))
+
+newValPlot <- ggplot() + 
+  geom_density(data = newRefData, alpha = 0.7, fill = brewer.pal(8, "Set1")[3], aes(x = value)) +
+  geom_density(data = newPlotData, alpha = 0.7, fill = "#1f461e", aes(x = value)) +
+  geom_text(colour = "#1f461e", aes(x = 95000, y = 5.8e-5,
+                                    label = paste0("Median:$", new_median)), 
+            vjust = -0.5, hjust = 0.5, size = 3.5) +
+  scale_x_continuous(labels = scales::label_number(scale = 1e-3, suffix = "k"),
+                     breaks = seq(60000, max(newRefData$value, na.rm = TRUE), by = 20000)) +
+  labs(x = "Average Accepted Offer",
+       y = "") +
+  blank_theme +
+  theme(strip.text = element_text(size = 13, face = "bold"),
+        # axis.text.y = element_blank(),
+        # axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 11, colour = "black"),
+        plot.title = element_text(size = 12, colour = "black"),
+        legend.position = "none")
+
+
+grid.arrange(newValPlot, newRoundPlot, ncol = 2)
+
+```
+
+By strategically adjusting their offers, the updated Banker produced a further reduction in average winnings of $10,000 without meaningfully reducing the average duration of the games.
+
+Bear in mind that this is just a proof-of-concept---these parameters aren't necessarily optimized for reducing payouts. If we wanted to find the optimized parameters for minimizing winnings, we could define guidelines around the required distribution of accepted rounds and enter weights for the various candidate variables and their interactions.
+
+### That's a wrap
+
+And so ends our journey through the mechanisms of *Deal or No Deal*.
+
+The Banker may be a ruthless capitalist but they're not a particularly good one, as our analyses suggest they're overpaying the average contestant by somewhere around 25-30%. By implementing some minor changes that reduced the average game duration by as little as 0.2 rounds (~3%), our Banker cut median winnings down from \$97k to just \$73k.
+
+While some pilot testing would help to confirm the feasibility of these changes and more fine-tuning could benefit the exact parameters of the new Banker's algorithm, it seems The Banker might benefit from a crash-course in behavioral economics.
+
+
+
+
+
 
 
