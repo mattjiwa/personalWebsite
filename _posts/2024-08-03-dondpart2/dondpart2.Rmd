@@ -691,7 +691,7 @@ There are a few notable deviations from the predictions; these are likely driven
 
 So, there we have it, a comprehensive computational account of the decisions made by contestants in *Deal or No Deal*. What we can take away from this is that this game is **not actually about "Beating the Banker"**. Instead, it's about holding your nerve until The Banker starts offering you something close to your *subjective valuation* of the remaining cases. Everyone's subjective value calculation is slightly different---meaning there isn't really a correct or incorrect way to play. If a contestant accepts an offer that's way below the Expected Value, they might have miscalculated the Expected Value OR they might simply be extremely loss-averse.
 
-In part 3, we'll be turning the game on its head, embracing our ruthless capitalist and utilizing everything we've learned so far to answer the question: *"How can The Banker minimize contestants' winnings?"*
+In [part 3](https://matthewjiwa.com/posts/2024-10-10-dondpart3/), we'll be turning the game on its head, embracing our ruthless capitalist and utilizing everything we've learned so far to answer the question: *"How can The Banker minimize contestants' winnings?"*
 
 
 
