@@ -431,7 +431,7 @@ And so ends our journey through the mechanisms of *Deal or No Deal*.
 
 The Banker may be a ruthless capitalist but they're not a particularly good one, as our analyses suggest they're overpaying the average contestant by somewhere around 25-30%. By implementing some minor changes that reduced the average game duration by as little as 0.2 rounds (~3%), our Banker cut median winnings down from \$97k to just \$73k.
 
-While some pilot testing would help to confirm the feasibility of these changes and more fine-tuning could benefit the exact parameters of the new Banker's algorithm, it seems The Banker might benefit from a crash-course in behavioral economics.
+While some pilot testing would help to confirm the feasibility of these changes and more fine-tuning could benefit the exact parameters of the new Banker's algorithm, it seems The Banker might benefit from acknowledging the more human aspects of contestants' decisions.
 
 
 
