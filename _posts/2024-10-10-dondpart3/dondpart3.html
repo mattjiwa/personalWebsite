@@ -1621,9 +1621,14 @@ b_r = b_{r-1} + (\gamma - b_{r-1})\cdot\rho^{9-(r-1)}
 <p>From these plots we can see that the general pattern of rejecting early offers and accepting those in the middle rounds replicates through most of our variations. When we bring <span class="math inline">\(\gamma\)</span> down to 0.6, we notice a red flag starting to emerge: many contestants show a preference for holding out to the final round, where they receive the full value of the last remaining case.</p>
 <p>Given these results, it seems as though lowering <span class="math inline">\(\gamma\)</span> down as far as 0.7 is <em>potentially</em> feasible, reducing winnings by one third while only shortening the average game by 0.31 rounds. For the rest of the analyses, we’ll stick with a slightly more conservative <span class="math inline">\(\gamma\)</span> of 0.8.</p>
 <h3 id="individualizing-offers">Individualizing offers</h3>
-<p>As we learned in the previous posts, two contestants facing the same decision may evaluate it differently due to the way they calculate the reference point against which they compare potential outcomes.</p>
+<p>Recall how we determine how much to offer the contestant each round. We take the proportion of the Expected Value that we offered in the previous round and we increment it by some proportion of the difference between that proportion and <span class="math inline">\(\gamma\)</span>. The speed at which the proportion offered approaches <span class="math inline">\(\gamma\)</span> is dictated by <span class="math inline">\(\rho\)</span>. The Banker uses a <span class="math inline">\(\rho\)</span> of around 0.787, and adds random noise to make sure the offers are variable:</p>
+<p><span class="math display">\[\begin{equation}
+\tag{1}
+b_r = b_{r-1} + (\gamma - b_{r-1})\cdot\rho^{9-(r-1)}
+\end{equation}\]</span></p>
+<p>However, as we learned in the previous posts, two contestants facing the same decision may evaluate it differently due to the way they calculate the reference point against which they compare potential outcomes.</p>
 <p>In the early rounds, we can leverage these differences by giving better offers to the contestants with the biggest gap between their <em>Deal!</em> Value and the Expected Value of the remaining cases.</p>
-<p>Specifically, rather than varying <span class="math inline">\(\rho\)</span> randomly for each of the 1000 simulated contestants, on each round, we:</p>
+<p>So, rather than varying <span class="math inline">\(\rho\)</span> randomly for each of the 1000 simulated contestants, on each round, we:</p>
 <ol type="1">
 <li><p>Calculated the expected Reference Point by assuming the median parameter values, then used that to calculated the expected <em>Deal!</em> Value (i.e., the monetary value at which we expect the contestant to have a 50/50 preference for accepting/rejecting).</p></li>
 <li><p>Calculated z-scored residuals when regressing the Expected Value on the expected <em>Deal!</em> Value.</p></li>

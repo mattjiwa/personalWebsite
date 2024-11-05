@@ -325,11 +325,18 @@ Given these results, it seems as though lowering $\gamma$ down as far as 0.7 is 
 
 ### Individualizing offers
 
-As we learned in the previous posts, two contestants facing the same decision may evaluate it differently due to the way they calculate the reference point against which they compare potential outcomes.
+Recall how we determine how much to offer the contestant each round. We take the proportion of the Expected Value that we offered in the previous round and we increment it by some proportion of the difference between that proportion and $\gamma$. The speed at which the proportion offered approaches $\gamma$ is dictated by $\rho$. The Banker uses a $\rho$ of around 0.787, and adds random noise to make sure the offers are variable:
+
+\begin{equation}
+\tag{1}
+b_r = b_{r-1} + (\gamma - b_{r-1})\cdot\rho^{9-(r-1)}
+\end{equation}
+
+However, as we learned in the previous posts, two contestants facing the same decision may evaluate it differently due to the way they calculate the reference point against which they compare potential outcomes.
 
 In the early rounds, we can leverage these differences by giving better offers to the contestants with the biggest gap between their *Deal!* Value and the Expected Value of the remaining cases.
 
-Specifically, rather than varying $\rho$ randomly for each of the 1000 simulated contestants, on each round, we:
+So, rather than varying $\rho$ randomly for each of the 1000 simulated contestants, on each round, we:
 
 1) Calculated the expected Reference Point by assuming the median parameter values, then used that to calculated the expected *Deal!* Value (i.e., the monetary value at which we expect the contestant to have a 50/50 preference for accepting/rejecting).
 
