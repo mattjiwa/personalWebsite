@@ -2,6 +2,8 @@
 title: "Matthew Jiwa, PhD"
 image: "assets/profile.png"
 links:
+  - label: Bluesky
+    url: "https://bsky.app/profile/mattjiwa.bsky.social"
   - label: LinkedIn
     url: "https://www.linkedin.com/in/matthew-jiwa-b1672610b/"
   - label: Email
