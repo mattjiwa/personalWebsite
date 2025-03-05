@@ -7,7 +7,7 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Bode, S., **Jiwa, M.**, Chum, C., Frost, L., Heekeren, H. R., Wingenfeld, K., & Deuter, C. E. (2023). Non-instrumental information seeking is resistant to acute stress. *Scientific Reports*, 13(1), 19505.
+Bode, S., **Jiwa, M.**, Chum, C., Frost, L., Heekeren, H. R., Wingenfeld, K., & Deuter, C. E. (2023). Non-instrumental information seeking is resistant to acute stress. *Scientific Reports*, 13(1), 19505. https://doi.org/10.1038/s41598-023-46766-w
 
 **Jiwa, M.,** Cooper, P. S., Chong, T. T. J., & Bode, S. (2023). Hedonism as a motive for information search: biased information-seeking leads to biased beliefs. *Scientific Reports*, 13(1), 2086. https://doi.org/10.1038/s41598-023-29429-8
 
@@ -20,6 +20,8 @@ Feuerriegel, D., **Jiwa, M.**, Turner, W. F., Andrejević, M., Hester, R., & Bod
 **Jiwa, M. W.**, & Jiwa, M. (2020). Why the effectiveness of a face mask is not limited to its infection control. *The Journal of Health Design*, 5(3). https://doi.org/10.21853/JHD.2020.117
 
 # Conference Presentations & Workshops
+
+**Jiwa, M.** & Gottlieb, J. (2025). A Novel Theory of Information Demand in the Framework of Probabilistic Reasoning. Society for Judgment and Decision Making Annual Conference, New York City, New York, USA 
 
 **Jiwa, M.,** Rothkopf, C., & Gottlieb, J. (2024). Generating Saccades to Reduce Uncertainty: Cognitive and Sensorimotor Trade-Offs. Vision Science Society Conference, St. Pete Beach, Florida, USA 
 
